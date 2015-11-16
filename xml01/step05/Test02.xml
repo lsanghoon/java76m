@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+default namespace?
+=> 별명을 지정하지 않은 네임스페이스
+=> 문법
+   xmlns="네임스페이스이름"
+-->
+
+<orders xmlns="mynamespace">
+	<!-- 같은 이름의 태그가 있을 때 구분하는 방법 => 이름 공간을 지정한다. -->
+	<c:customer xmlns:c="okok">
+		<c:name>홍길동</c:name>
+	</c:customer>
+	
+	<seller>
+		<name>비트쇼핑몰</name>
+	</seller>
+</orders>

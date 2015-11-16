@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 1) 엘리먼트 선언
+#PCDATA: 문자열.parsed charactor data. 문자열을 해석한다는 의미이다.
+         => 문자열에 태그
+ -->
+
+<!ELEMENT student (#PCDATA)>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE projects SYSTEM "Test05.dtd">
+
+<projects>
+	<student name="홍길동" gender="man" email="hong" />
+	<student name="임꺽정" gender="man" email="aaaaaa.com2" />
+	<student name="유관순" gender="woman" email="aaaaaa.com3" />	
+		
+	<!-- 에러! hon이라는 ID가 존재 하지 않는다. -->
+	<!-- <project title="프로잭트1" owner="hon" /> -->
+	
+	<project title="프로잭트2" owner="hong" />	
+</projects>

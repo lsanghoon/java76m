@@ -1,0 +1,21 @@
+apply plugin: 'java'    // 자바 관련 도구
+apply plugin: 'eclipse' // 이클립스 관련 설정 파일을 다루는 플러그인
+
+repositories {
+    mavenCentral()  // Maven 기본 서버 지정
+}
+
+dependencies {
+    compile 'org.reflections:reflections:0.9.10'
+    compile 'mysql:mysql-connector-java:5.1.37'
+}
+
+
+
+
+
+
+
+
+
+
