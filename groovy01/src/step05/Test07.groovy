@@ -22,8 +22,6 @@ doCall {a, b ->
 	a / b
 }
 
-doCall {
-
 
 
 
