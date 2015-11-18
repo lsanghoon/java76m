@@ -55,5 +55,9 @@ public class BoardListServlet extends GenericServlet {
 						board.getViews(),
 						board.getCreatedDate());
 		}
+		// URL -> CalculatorServlet(request,response) -> BoardListServlet
+		//CalculatorServlet에서 request와 response를 그대로 받아 쓸수있다.
+		out.println(request.getParameter("v1"));	
+		//http://localhost:8080/project03/calc?op=%&v1=10&v2=20
 	}
 }

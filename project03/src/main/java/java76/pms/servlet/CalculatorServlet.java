@@ -19,6 +19,7 @@ public class CalculatorServlet extends GenericServlet {
 			throws ServletException, IOException {
 
 		String op = null;
+		
 		// op=....v2=20 이부분 받아오기
 		String urlpath = ((HttpServletRequest) request).getQueryString();
 		String op1 = urlpath.substring(3, 4);
@@ -29,26 +30,20 @@ public class CalculatorServlet extends GenericServlet {
 		op = request.getParameter("op");
 
 		if (op1.equals("%")) {
-
-			String str = urlpath.replace("%", "%25");
-
-			String url = request.getScheme() + "://" +									// "http" + "://"
-					request.getServerName() + ":" +													// "localhost" + ":"
-					request.getServerPort() +																// "8080"
-					((HttpServletRequest) request).getRequestURI() + "?" +	// "/calc" + "?"
-					str;																										// "op=%25&v1=10&v2=20"
+			//현재 request와 response를 유지시켜 같은 프로젝트에 있는 서블릿에서 받아 쓸수있다.
+			//request.getRequestDispatcher("board/list").forward(request, response);
 			
-			// 서버에 보내기전에 중간에 원래의 URL을 잡아서 다른 URL 바꿔서 서버에 보낸다.!!!!
-			request.getRequestDispatcher(url);
-
 			op = "%";
+			
+		} else if (op1.equals("+")) {
+			op = "+";
 		}
 		
 		PrintWriter out = response.getWriter();
 		CalculatorDao calculatorDao = ContextLoader.context.getBean(CalculatorDao.class);
 
 		switch (op) {
-		case " ":
+		case "+":
 			op = "+";
 			calculatorDao.add(calculator);
 			break;
