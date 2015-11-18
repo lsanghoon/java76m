@@ -38,7 +38,7 @@ public class CalculatorServlet extends GenericServlet {
 					((HttpServletRequest) request).getRequestURI() + "?" +	// "/calc" + "?"
 					str;																										// "op=%25&v1=10&v2=20"
 			
-			// URL 바꾸기!!!!
+			// 서버에 보내기전에 중간에 원래의 URL을 잡아서 다른 URL 바꿔서 서버에 보낸다.!!!!
 			request.getRequestDispatcher(url);
 
 			op = "%";
