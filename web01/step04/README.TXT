@@ -29,8 +29,6 @@ CRLF
 =>method request-URI HTTP버전CRLF
 예) POST /web01/exam/servlet06 HTTP/1.1
 
-
-
 2) ((일반헤더 | 요청헤더 | 엔티티헤더)CRLF)*
 
 => 일반 헤더: 
@@ -52,7 +50,6 @@ Content-Length: 44
 Origin: http://localhost:8080
 Upgrade-Insecure-Requests: 1
 
-
 요청 프로토콜 전체 예:
 --------------------------------------------------------
 POST /web01/exam/servlet06 HTTP/1.1
@@ -69,9 +66,7 @@ Accept-Encoding: gzip, deflate
 Accept-Language: ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4
 
 name=%ED%99%8D%ED%99%8D&age=20&tel=1010-2020   << 44byte
-
 --------------------------------------------------------
-
 
 * 요청 메서드
 => GET
@@ -116,6 +111,7 @@ name=%ED%99%8D%ED%99%8D&age=20&tel=1010-2020   << 44byte
 => TRACE
 => CONNECT
 => OPTIONS
+
 
 
 2. 응답 프로토콜
