@@ -64,6 +64,8 @@ public class CalculatorServlet extends GenericServlet {
 		case "%":
 			calculatorDao.remainder(calculator);
 			break;
+		default:
+			break;
 		}
 
 		out.printf("%.2f %s %.2f = %.2f", 
