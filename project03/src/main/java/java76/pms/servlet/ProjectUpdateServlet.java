@@ -28,11 +28,14 @@ public class ProjectUpdateServlet extends HttpServlet {
 		project.setMember(request.getParameter("member"));
 
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain;charset=UTF-8");
+		
 		ProjectDao projectDao = ContextLoader.context.getBean(ProjectDao.class);
 	
-		if (projectDao.update(project) > 0)
+		if (projectDao.update(project) > 0) {
 			out.println("수정하였습니다.");
-		else
+			response.setHeader("Refresh", "1;url=list");
+		} else
 			out.println("유효하지 않습니다.");
 	}
 

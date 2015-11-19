@@ -41,6 +41,7 @@ public class CalculatorServlet extends HttpServlet {
 		}
 		
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain;charset=UTF-8");
 		CalculatorDao calculatorDao = ContextLoader.context.getBean(CalculatorDao.class);
 
 		switch (op) {

@@ -20,7 +20,7 @@ public class BoardUpdateServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		Board board = new Board();
-
+		
 		board.setNo(Integer.parseInt(request.getParameter("no")));
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
@@ -28,13 +28,16 @@ public class BoardUpdateServlet extends HttpServlet {
 		board.setPassword(request.getParameter("password"));
 
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain;charset=UTF-8");
 
 		BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
 
 		if (boardDao.update(board) > 0) {
-			out.println("수정하였습니다.");
+			out.println("변경성공!");
 		} else
 			out.println("유효하지 않습니다.");
+		
+		response.setHeader("Refresh", "1;url=list");
 	}
 
 

@@ -21,18 +21,20 @@ public class BoardAddServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Board board = new Board();
 		
+		
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
 		board.setCreatedDate(Date.valueOf(request.getParameter("createddate")));
 		board.setPassword(request.getParameter("password"));
 			
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain;charset=UTF-8");
 
 		BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
 		boardDao.insert(board);
 		
-		out.println("저장되었습니다.");
-		out.println();
+		out.println("등록성공!");
+		response.setHeader("Refresh", "1;url=list");
 	}
 
 

@@ -34,7 +34,7 @@
 
 	<delete id="delete" parameterType="int">
 		delete from board where
-		pno=#{value}
+		bno=#{value}
 	</delete>
 
 	<update id="update" parameterType="board">

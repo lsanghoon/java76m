@@ -26,11 +26,13 @@ public class StudentAddServlet extends HttpServlet {
 		student.setCid(request.getParameter("cid"));
 			
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain;charset=UTF-8");
+		
 		StudentDao studentDao = ContextLoader.context.getBean(StudentDao.class);
 		studentDao.insert(student);
 		
 		out.println("저장되었습니다.");
-		out.println();
+		response.setHeader("Refresh", "1;url=list");
 	}
 
 

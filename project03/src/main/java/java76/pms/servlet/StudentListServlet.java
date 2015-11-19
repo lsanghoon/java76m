@@ -43,7 +43,8 @@ public class StudentListServlet extends HttpServlet {
 		// -->
 
 		PrintWriter out = response.getWriter();
-
+		response.setContentType("text/plain;charset=UTF-8");
+		
 		out.printf("%-3s %-5s %-17s %-13s %-7s\n", 
 				"No", "Name", "E-Mail", "Tel", "ClassID");
 

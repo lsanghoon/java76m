@@ -18,6 +18,7 @@ public class BoardListServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		
 		// <-- 페이징 처리
 		int pageNo = 1;
     int pageSize = 10;
@@ -43,6 +44,7 @@ public class BoardListServlet extends HttpServlet {
     // -->
     
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain;charset=UTF-8");
 
 		out.printf("%-3s %-13s %-18s %-13s %s\n", 
 				"No", "Title", "Content", "view", "CreatedDate"); 
@@ -57,9 +59,10 @@ public class BoardListServlet extends HttpServlet {
 						board.getViews(),
 						board.getCreatedDate());
 		}
+		
 		// URL -> CalculatorServlet(request,response) -> BoardListServlet
 		//CalculatorServlet에서 request와 response를 그대로 받아 쓸수있다.
-		out.println(request.getParameter("v1"));	
+		//out.println(request.getParameter("v1"));	
 		//http://localhost:8080/project03/calc?op=%&v1=10&v2=20
 	}
 }

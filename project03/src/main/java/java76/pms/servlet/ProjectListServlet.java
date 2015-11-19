@@ -43,7 +43,8 @@ public class ProjectListServlet extends HttpServlet {
 		// -->
 
 		PrintWriter out = response.getWriter();
-
+		response.setContentType("text/plain;charset=UTF-8");
+		
 		out.printf("%-3s %-13s %-11s %-11s %-40s\n", 
 				"No", "ProjectName", "StartDay", "EndDay", "Member");
 
