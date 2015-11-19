@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,29 +16,32 @@ import java76.pms.domain.Board;
 
 public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		Board board = new Board();
-		
-		board.setNo(Integer.parseInt(request.getParameter("no")));
-		board.setTitle(request.getParameter("title"));
-		board.setContent(request.getParameter("content"));
-		board.setCreatedDate(Date.valueOf(request.getParameter("createddate")));
-		board.setPassword(request.getParameter("password"));
+		try {
+			Board board = new Board();
 
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/plain;charset=UTF-8");
+			board.setNo(Integer.parseInt(request.getParameter("no")));
+			board.setTitle(request.getParameter("title"));
+			board.setContent(request.getParameter("content"));
+			board.setCreatedDate(Date.valueOf(request.getParameter("createddate")));
+			board.setPassword(request.getParameter("password"));
 
-		BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+			response.setContentType("text/plain;charset=UTF-8");
+			PrintWriter out = response.getWriter();
 
-		if (boardDao.update(board) > 0) {
+			BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+
+			boardDao.update(board);
+			response.setHeader("Refresh", "1;url=list");
 			out.println("변경성공!");
-		} else
-			out.println("유효하지 않습니다.");
-		
-		response.setHeader("Refresh", "1;url=list");
+
+		} catch (Exception e) {
+			RequestDispatcher rd = request.getRequestDispatcher("/error");
+			rd.forward(request, response);
+		}
 	}
 
 

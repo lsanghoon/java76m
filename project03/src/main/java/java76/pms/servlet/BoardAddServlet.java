@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,22 +20,27 @@ public class BoardAddServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		Board board = new Board();
-		
-		
-		board.setTitle(request.getParameter("title"));
-		board.setContent(request.getParameter("content"));
-		board.setCreatedDate(Date.valueOf(request.getParameter("createddate")));
-		board.setPassword(request.getParameter("password"));
-			
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/plain;charset=UTF-8");
+		try {
+			Board board = new Board();
 
-		BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
-		boardDao.insert(board);
-		
-		out.println("등록성공!");
-		response.setHeader("Refresh", "1;url=list");
+			board.setTitle(request.getParameter("title"));
+			board.setContent(request.getParameter("content"));
+			board.setCreatedDate(Date.valueOf(request.getParameter("createddate")));
+			board.setPassword(request.getParameter("password"));
+
+			response.setContentType("text/plain;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+
+			BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+			boardDao.insert(board);
+
+			response.setHeader("Refresh", "1;url=list");
+			out.println("등록성공!");
+			
+		} catch (Exception e) {
+			RequestDispatcher rd = request.getRequestDispatcher("/error");
+			rd.forward(request, response);
+		}
 	}
 
 
