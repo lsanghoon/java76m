@@ -4,19 +4,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 import java76.pms.ContextLoader;
-import java76.pms.dao.StudentDao;
-import java76.pms.domain.Student;
+import java76.pms.dao.ProjectDao;
+import java76.pms.domain.Project;
 
-public class StudentListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class ProjectListServlet extends GenericServlet {
 	
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void service(ServletRequest request, ServletResponse response) 
 			throws ServletException, IOException {
 		// <-- 페이징 처리
 		int pageNo = 1;
@@ -32,7 +30,7 @@ public class StudentListServlet extends HttpServlet {
 
 		// <-- 정렬 처리
 		String keyword = "no";
-		String align = "asc";
+		String align = "desc";
 
 		if (request.getParameter("keyword") != null) {
 			keyword = request.getParameter("keyword");
@@ -44,18 +42,18 @@ public class StudentListServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		out.printf("%-3s %-5s %-17s %-13s %-7s\n", 
-				"No", "Name", "E-Mail", "Tel", "ClassID");
+		out.printf("%-3s %-13s %-11s %-11s %-40s\n", 
+				"No", "ProjectName", "StartDay", "EndDay", "Member");
 
-		StudentDao studentDao = ContextLoader.context.getBean(StudentDao.class);
+		ProjectDao projectDao = ContextLoader.context.getBean(ProjectDao.class);
 		
-		for (Student student : studentDao.selectList(pageNo, pageSize, keyword, align)) {
-			out.printf("%3d %-5s %-17s %-13s %7s\n",
-					student.getNo(), 
-					student.getName(),
-					student.getEmail(),
-					student.getTel(),
-					student.getCid());
+		for (Project project : projectDao.selectList(pageNo, pageSize, keyword, align)) {
+			out.printf("%3d %-13s %3$-11s %4$-11s %5$-40s\n", 
+					project.getNo(), 
+					project.getTitle(),
+					project.getStartDate(),
+					project.getEndDate(),
+					project.getMember());
 		}
-	}	
+	}
 }
