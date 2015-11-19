@@ -23,7 +23,6 @@
 		<servlet-name>Servlet02</servlet-name>
 		<servlet-class>servlet.Servlet02</servlet-class>
 	</servlet>
-	<!-- 
 	<servlet>
 		<servlet-name>Servlet03</servlet-name>
 		<servlet-class>servlet.Servlet03</servlet-class>
@@ -44,20 +43,19 @@
     <servlet-name>Servlet07</servlet-name>
     <servlet-class>servlet.Servlet07</servlet-class>
   </servlet>
- -->
+
 
 	<!-- 서블릿 클래스에 URL을 부여한다. -->
 		<!-- URL 이름을 작성할 때 공백을 주어서는 안된다. 확장자명은 마음대로. 사용자가 웹브라우저에서 요청할 때는 다음과 같이 
 			요청해야 한다. http://localhost:8080/web01/exam/servlet01 -->
 	<servlet-mapping>
 		<servlet-name>Servlet01</servlet-name>
-		<url-pattern>/step06/servlet01</url-pattern>
+		<url-pattern>/step05/servlet01</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Servlet02</servlet-name>
-		<url-pattern>/step06/servlet02</url-pattern>
+		<url-pattern>/step05/servlet02</url-pattern>
 	</servlet-mapping>
-	<!-- 
 	<servlet-mapping>
 		<servlet-name>Servlet03</servlet-name>
 		<url-pattern>/step05/servlet03</url-pattern>
@@ -78,5 +76,5 @@
     <servlet-name>Servlet07</servlet-name>
     <url-pattern>/step05/servlet07</url-pattern>
   </servlet-mapping>
- -->
+
 </web-app>
