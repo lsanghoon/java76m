@@ -18,9 +18,9 @@ public class ErrorServlet extends HttpServlet {
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
-		out.println("***************************");
+		out.println("**************************");
 		out.println("*     오류가 발생했습니다.    *");
-		out.println("***************************");
+		out.println("**************************");
 	}
 	
 	@Override
