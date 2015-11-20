@@ -1,10 +1,14 @@
-/* Redirect 
+/* ServletRequest를 사용하여 including 하는 동안 데이터 공유하기
+=> 클라이언트가 보낸 데이터를 가지고 합계(Servlet02Sum)와 평균(Servlet02Aver)을 구한 다음,
+	 그 결과를 ServletRequest에 보관한다.
+	 Servlet02는 ServletRequest에 보관된 데이터를 꺼내 출력한다.
  */
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,31 +21,24 @@ public class Servlet02 extends javax.servlet.http.HttpServlet {
 	public void doGet(
 			HttpServletRequest request, HttpServletResponse response)
 					throws IOException, ServletException {
-		response.setContentType("text/plain;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("결과를 출력한다.");
-		out.println("그리고 3초 후에 daum.net 사이트를 요청하게 만든다.");
+			response.setContentType("text/plain;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.printf("이름 : %s\n", request.getParameter("name"));
+			out.printf("국어 : %s\n", request.getParameter("kor"));
+			out.printf("수학 : %s\n", request.getParameter("math"));
+			out.printf("역사 : %s\n", request.getParameter("hist"));
 
-		//
-		response.sendRedirect("http://www.daum.net");
-		
-		/* sendRedirect() 를 호출하면 버퍼에 출력된 내용은 버린다.
-		   => sendRedirect()를 사용한다면 중간에 쓸데없이 출력하지 말아라!.
-		 	 클라이언트에는 다른 자원의 URL을 응답헤더(Location 헤더)에 실어서 보낸다.
-		 	 
-		 	 sendRedirect()호출 전에 flush()를 호출한다면, redirect는 무시된다.
-		 */
-		
-		/* 응답 헤더
-		 	 HTTP/1.1 302 Found							<-- Redirect일 때 응답 상태 코드값
-		 	 Server: Apache-Coyote/1.1
-		 	 Location: http://www.daum.net	<-- Redirect
-		 	 Content-Type: text/plain;charset=UTF-8
-		 	 Content-Length : 0
-		 	 Date: Thu, 19 Nov 2015 06:10:10 GMT
-		 */
-		
-		
+			RequestDispatcher rd = null;
+			rd = request.getRequestDispatcher("/step07/servlet02sum");
+			rd.include(request, response);
+			
+			int sum = (int)request.getAttribute("sum");
+			out.printf("합계 = %d\n", sum);
+			
+			rd = request.getRequestDispatcher("/step07/servlet02aver");
+			rd.include(request, response);
+			
+			float aver = (float)request.getAttribute("aver");
+			out.printf("평균 = %.2f\n", aver);
 	}
-
 }
