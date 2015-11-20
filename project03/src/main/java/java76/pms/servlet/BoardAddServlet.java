@@ -33,9 +33,12 @@ public class BoardAddServlet extends HttpServlet {
 
 			BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
 			boardDao.insert(board);
-
+			
 			response.setHeader("Refresh", "1;url=list");
 			out.println("등록성공!");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+			rd.include(request, response);
 			
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");

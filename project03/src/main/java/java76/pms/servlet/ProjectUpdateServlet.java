@@ -38,6 +38,9 @@ public class ProjectUpdateServlet extends HttpServlet {
 			response.setHeader("Refresh", "1;url=list");
 			out.println("수정하였습니다.");
 			
+			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+			rd.include(request, response);
+			
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");
 			rd.forward(request, response);

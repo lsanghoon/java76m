@@ -36,6 +36,9 @@ public class StudentAddServlet extends HttpServlet {
 			response.setHeader("Refresh", "1;url=list");
 			out.println("저장되었습니다.");
 			
+			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+			rd.include(request, response);
+			
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");
 			rd.forward(request, response);

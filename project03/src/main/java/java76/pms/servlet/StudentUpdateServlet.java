@@ -35,6 +35,9 @@ public class StudentUpdateServlet extends HttpServlet {
 			studentDao.update(student);
 			out.println("저장되었습니다.");
 			response.setHeader("Refresh", "1;url=list");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+			rd.include(request, response);
 
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");

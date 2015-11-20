@@ -37,6 +37,9 @@ public class BoardUpdateServlet extends HttpServlet {
 			boardDao.update(board);
 			response.setHeader("Refresh", "1;url=list");
 			out.println("변경성공!");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+			rd.include(request, response);
 
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");

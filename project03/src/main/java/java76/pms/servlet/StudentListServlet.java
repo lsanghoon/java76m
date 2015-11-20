@@ -61,6 +61,9 @@ public class StudentListServlet extends HttpServlet {
 						student.getCid());
 			}
 			
+			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+			rd.include(request, response);
+			
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");
 			rd.forward(request, response);
