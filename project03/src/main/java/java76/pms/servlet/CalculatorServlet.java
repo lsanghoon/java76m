@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java76.pms.ContextLoader;
+import org.springframework.context.ApplicationContext;
+
 import java76.pms.dao.CalculatorDao;
 import java76.pms.domain.Calculator;
 
@@ -40,7 +41,12 @@ public class CalculatorServlet extends HttpServlet {
 
 			response.setContentType("text/plain;charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			CalculatorDao calculatorDao = ContextLoader.context.getBean(CalculatorDao.class);
+			
+			ApplicationContext iocContainer= 
+					(ApplicationContext) this.getServletContext()
+																	 .getAttribute("iocContainer");
+			
+			CalculatorDao calculatorDao = iocContainer.getBean(CalculatorDao.class);
 
 			switch (op) {
 			case "+":

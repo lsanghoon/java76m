@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java76.pms.ContextLoader;
+import org.springframework.context.ApplicationContext;
+
 import java76.pms.dao.ProjectDao;
 import java76.pms.domain.Project;
 
@@ -50,7 +51,11 @@ public class ProjectListServlet extends HttpServlet {
 			out.printf("%-3s %-13s %-11s %-11s %-40s\n", 
 					"No", "ProjectName", "StartDay", "EndDay", "Member");
 
-			ProjectDao projectDao = ContextLoader.context.getBean(ProjectDao.class);
+			ApplicationContext iocContainer= 
+					(ApplicationContext) this.getServletContext()
+																	 .getAttribute("iocContainer");
+			
+			ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
 
 			for (Project project : projectDao.selectList(pageNo, pageSize, keyword, align)) {
 				out.printf("%3d %-13s %3$-11s %4$-11s %5$-40s\n", 

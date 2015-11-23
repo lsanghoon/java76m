@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java76.pms.ContextLoader;
+import org.springframework.context.ApplicationContext;
+
 import java76.pms.dao.ProjectDao;
 import java76.pms.domain.Project;
 
@@ -32,7 +33,11 @@ public class ProjectUpdateServlet extends HttpServlet {
 			response.setContentType("text/plain;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 
-			ProjectDao projectDao = ContextLoader.context.getBean(ProjectDao.class);
+			ApplicationContext iocContainer= 
+					(ApplicationContext) this.getServletContext()
+																	 .getAttribute("iocContainer");
+			
+			ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
 
 			projectDao.update(project);
 			response.setHeader("Refresh", "1;url=list");
