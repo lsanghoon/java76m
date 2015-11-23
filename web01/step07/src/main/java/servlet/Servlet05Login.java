@@ -36,8 +36,7 @@ public class Servlet05Login extends javax.servlet.http.HttpServlet {
 			out.printf("관리자로 로그인 하셨습니다.");
 		}
 		else {
-			String level = "0";
-			request.setAttribute("level", level);
+			request.setAttribute("level", 0);
 			request.getRequestDispatcher("servlet05logout").forward(request, response);
 			//session.invalidate();	// 로그인에 실패하면 기존의 세션을 무효화 시킨다.
 			//out.printf("관리자 아이디/암호가 일치하지 않습니다.");
