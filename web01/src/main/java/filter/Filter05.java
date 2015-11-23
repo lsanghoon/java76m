@@ -17,7 +17,7 @@ public class Filter05 implements Filter {
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		System.out.println("Filter04.init()");
+		System.out.println("Filter05.init()");
 		this.config = filterConfig;
 		
 	}
@@ -25,7 +25,7 @@ public class Filter05 implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 	    throws IOException, ServletException {
-		System.out.println("Filter04.doFilter()... 전반작업");
+		System.out.println("Filter05.doFilter()... 전반작업");
 		
 		// web.xml에 선언된 필터의 초기화 파라미터 값 꺼내기.
 		System.out.println(config.getInitParameter("encoding"));
@@ -34,13 +34,13 @@ public class Filter05 implements Filter {
 		// 다음 필터를 실행한다. 만약 다음필터가 없다면, 서블릿이 실행된다.
 		chain.doFilter(request, response);
 		
-		System.out.println("Filter04.doFilter... 후반작업");
+		System.out.println("Filter05.doFilter... 후반작업");
 		
 	}
 
 	@Override
 	public void destroy() {
-		System.out.println("Filter04.destroy()");
+		System.out.println("Filter05.destroy()");
 	
 	}
 
