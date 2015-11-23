@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Servlet02 extends javax.servlet.http.HttpServlet {
+public class Servlet03 extends javax.servlet.http.HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,10 +19,10 @@ public class Servlet02 extends javax.servlet.http.HttpServlet {
 			HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		System.out.println("Servlet02.doGet()...");
+		System.out.println("Servlet03.doGet()...");
 		
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("Servelt02 실행");
+		out.println("Servelt03 실행");
 	}
 }

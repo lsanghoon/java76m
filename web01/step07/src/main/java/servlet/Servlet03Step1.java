@@ -1,5 +1,5 @@
-/* 필터 테스트
- * 
+/* HttpSession을 사용하여 
+
  */
 package servlet;
 
@@ -9,8 +9,9 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class Servlet02 extends javax.servlet.http.HttpServlet {
+public class Servlet03Step1 extends javax.servlet.http.HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,10 +20,19 @@ public class Servlet02 extends javax.servlet.http.HttpServlet {
 			HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		System.out.println("Servlet02.doGet()...");
-		
+		request.setCharacterEncoding("UTF-8");
+		String name = request.getParameter("name");
+
+		//HttpSession 보관소 준비
+		HttpSession session = request.getSession();
+
+		//보관소에 데이터 저장하기
+		session.setAttribute("name", name);
+
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("Servelt02 실행");
+		out.printf("이름을 보관하였습니다.");
+		
 	}
+	
 }

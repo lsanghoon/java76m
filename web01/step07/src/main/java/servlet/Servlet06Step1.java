@@ -1,16 +1,17 @@
-/* 필터 테스트
- * 
+/* HttpSession에 타임아웃 설정하기
+
  */
 package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Servlet02 extends javax.servlet.http.HttpServlet {
+public class Servlet06Step1 extends javax.servlet.http.HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,10 +20,19 @@ public class Servlet02 extends javax.servlet.http.HttpServlet {
 			HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		System.out.println("Servlet02.doGet()...");
+		request.setCharacterEncoding("UTF-8");
+		String name = request.getParameter("name");
+		
+		//ServletContext 얻기
+		ServletContext context = request.getServletContext();
+		
+		//ServletContext에 데이터 보관하기
+		context.setAttribute("name", name);
 		
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("Servelt02 실행");
+		out.printf("이름을 보관하였습니다.");
+		
 	}
+	
 }
