@@ -4,6 +4,22 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1" metadata-complete="true">
 
+  <!-- 필터 등록하기 -->
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>java76.pms.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  
+  <!-- URL에 필터 적용하기 -->
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
+
 	<servlet>
 		<servlet-name>BoardListServlet</servlet-name>
 		<servlet-class>java76.pms.servlet.BoardListServlet</servlet-class>
