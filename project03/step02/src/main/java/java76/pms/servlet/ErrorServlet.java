@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CopyrightServlet extends HttpServlet {
+public class ErrorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -18,9 +18,9 @@ public class CopyrightServlet extends HttpServlet {
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
-		out.println("<p><address>");
-		out.println(" v.이 웹 애플리케이션의 모든 권리는 나에게 있습니다.v  &copy;난! 나나나~ 나에게!");
-		out.println("</address></p>");
+		out.println("**************************");
+		out.println("*     오류가 발생했습니다.    *");
+		out.println("**************************");
 	}
 	
 	@Override
@@ -28,6 +28,6 @@ public class CopyrightServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		doGet(request, response);
-		
+	
 	}
 }

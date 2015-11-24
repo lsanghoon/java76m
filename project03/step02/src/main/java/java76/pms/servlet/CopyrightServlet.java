@@ -18,9 +18,9 @@ public class CopyrightServlet extends HttpServlet {
 		response.setContentType("text/plain;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
-		out.println("<p><address>");
-		out.println(" v.이 웹 애플리케이션의 모든 권리는 나에게 있습니다.v  &copy;난! 나나나~ 나에게!");
-		out.println("</address></p>");
+		out.println("--------------------------------------------");
+		out.println(" v이 웹 애플리케이션의 모든 권리는 나에게 있습니다.v");
+		out.println("--------------------------------------------");
 	}
 	
 	@Override
