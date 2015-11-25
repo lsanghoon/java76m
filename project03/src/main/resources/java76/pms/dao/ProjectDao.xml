@@ -44,4 +44,10 @@
 		member=#{member}
 		where pno=#{no}
 	</update>
+	
+	<select id="selectOne" resultMap="projectMap" parameterType="int">
+		select pno, title, sdt, edt, member
+		from project
+		where pno=#{no}
+	</select>
 </mapper>

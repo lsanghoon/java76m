@@ -32,9 +32,9 @@
 		values(#{title},#{content},now(),#{password})
 	</insert>
 
-	<delete id="delete" parameterType="int">
-		delete from board where
-		bno=#{value}
+	<delete id="delete" parameterType="Map">
+		delete from board 
+		where bno=#{no} and (pw is null or pw=#{password})
 	</delete>
 
 	<update id="update" parameterType="board">

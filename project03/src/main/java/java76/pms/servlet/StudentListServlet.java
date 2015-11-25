@@ -21,7 +21,6 @@ public class StudentListServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			// <-- 페이징 처리
 			int pageNo = 1;
 			int pageSize = 10;
 
@@ -31,11 +30,9 @@ public class StudentListServlet extends HttpServlet {
 			if (request.getParameter("pageSize") != null) {
 				pageSize = Integer.parseInt(request.getParameter("pageSize"));
 			}
-			// -->
 
-			// <-- 정렬 처리
 			String keyword = "no";
-			String align = "asc";
+			String align = "desc";
 
 			if (request.getParameter("keyword") != null) {
 				keyword = request.getParameter("keyword");
@@ -43,31 +40,54 @@ public class StudentListServlet extends HttpServlet {
 			if (request.getParameter("align") != null) {
 				align = request.getParameter("align");
 			}
-			// -->
-
-			response.setContentType("text/plain;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-
-			out.printf("%-3s %-5s %-17s %-13s %-7s\n", 
-					"No", "Name", "E-Mail", "Tel", "ClassID");
 
 			ApplicationContext iocContainer= 
 					(ApplicationContext) this.getServletContext()
-																	 .getAttribute("iocContainer");
+					.getAttribute("iocContainer");
 			
 			StudentDao studentDao = iocContainer.getBean(StudentDao.class);
 
-			for (Student student : studentDao.selectList(pageNo, pageSize, keyword, align)) {
-				out.printf("%3d %-5s %-17s %-13s %7s\n",
-						student.getNo(), 
-						student.getName(),
-						student.getEmail(),
-						student.getTel(),
-						student.getCid());
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("  <meta charset='UTF-8'>");
+			out.println("  <title>학생-목록</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<h1>학생</h1>");
+			
+			out.println("<a href='studentForm.html'>추가</a><br>");
+			
+			out.println("<table border='1'>");
+			out.println("  <tr>");
+			out.println("    <th>번호</th>");
+			out.println("    <th>이름</th>");
+			out.println("    <th>이메일</th>");
+			out.println("    <th>전화번호</th>");
+			out.println("    <th>기수</th>");
+			out.println("  </tr>");
+			
+			for (Student student : studentDao.selectList(
+					pageNo, pageSize, keyword, align)) {
+				out.println("  <tr>");
+				out.printf("    <td>%d</td>\n", student.getNo());
+				out.printf("    <td><a href='update?no=%d'>%s</a></td>\n", student.getNo(), student.getName());
+				out.printf("    <td>%s</td>\n", student.getEmail());
+				out.printf("    <td>%s</td>\n", student.getTel());
+				out.printf("    <td>%s</td>\n", student.getCid());
+				out.println("  </tr>");
 			}
 			
+			out.println("</table>");
+
 			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
 			rd.include(request, response);
+
+			out.println("</body>");
+			out.println("</html>");
 			
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");

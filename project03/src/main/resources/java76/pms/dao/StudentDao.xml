@@ -14,11 +14,11 @@
 		<choose>
 			<when test="keyword == 'email'">email </when>
 			<when test="keyword == 'tel'">tel </when>
-			<otherwise>name </otherwise>
+			<otherwise>sno </otherwise>
 		</choose>
 		<choose>
-			<when test="align == 'desc'">desc </when>
-			<otherwise>asc </otherwise>
+			<when test="align == 'asc'">asc </when>
+			<otherwise>desc </otherwise>
 		</choose>
 		limit #{startIndex}, #{length}
 	</select>
@@ -39,4 +39,10 @@
 		name=#{name}, email=#{email}, tel=#{tel}, cid=#{cid}
 		where sno=#{no}
 	</update>
+	
+	<select id="selectOne" resultMap="studentMap" parameterType="int">
+		select sno, name, email, tel, cid
+		from student
+		where sno=#{no}
+	</select>
 </mapper>

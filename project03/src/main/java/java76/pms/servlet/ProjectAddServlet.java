@@ -19,7 +19,7 @@ public class ProjectAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			Project project = new Project();
@@ -29,9 +29,6 @@ public class ProjectAddServlet extends HttpServlet {
 			project.setEndDate(Date.valueOf(request.getParameter("endDate")));
 			project.setMember(request.getParameter("member"));
 
-			response.setContentType("text/plain;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			
 			ApplicationContext iocContainer= 
 					(ApplicationContext) this.getServletContext()
 																	 .getAttribute("iocContainer");
@@ -39,14 +36,11 @@ public class ProjectAddServlet extends HttpServlet {
 			ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
 			projectDao.insert(project);
 
-			response.setHeader("Refresh", "1;url=list");
-			out.println("저장되었습니다.");
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
-			rd.include(request, response);
+			response.sendRedirect("list");
 			
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");
+			request.setAttribute("error", e);
 			rd.forward(request, response);
 		}
 	}

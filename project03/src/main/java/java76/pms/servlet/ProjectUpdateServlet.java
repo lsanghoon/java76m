@@ -19,7 +19,72 @@ public class ProjectUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int no = Integer.parseInt(request.getParameter("no"));
+
+		ApplicationContext iocContainer = 
+				(ApplicationContext) this.getServletContext()
+				.getAttribute("iocContainer");
+
+		ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
+		Project project = projectDao.selectOne(no);
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<head>");
+		out.println("  <meta charset='UTF-8'>");
+		out.println("  <title>게시판-상세정보</title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<h1>게시물 정보</h1>");
+		if (project != null) {
+			out.println("<form id='form1' action='update' method='post'>");
+			out.println("<table border='1'>");
+			out.println("  <tr>");
+			out.println("    <th>번호</th>");
+			out.printf("    <td><input type='text' name='no' value='%d' readonly></td>", project.getNo());
+			out.println("  </tr>");
+			out.println("  <tr>");
+			out.println("    <th>프로젝트명</th>");
+			out.printf("    <td><input type='text' name='title' value='%s'></td>", project.getTitle());
+			out.println("  </tr>");
+			out.println("  <tr>");
+			out.println("    <th>시작일</th>");
+			out.printf("    <td><input type='text' name='startDate' value='%s'></td>", project.getStartDate());
+			out.println("  </tr>");
+			out.println("  <tr>");
+			out.println("    <th>종료일</th>");
+			out.printf("    <td><input type='text' name='endDate' value='%s'></td>", project.getEndDate());
+			out.println("  </tr>");
+			out.println("  <tr>");
+			out.println("    <th>멤버</th>");
+			out.printf("    <td><input type='text' name='member' value='%s'></td>", project.getMember());
+			out.println("  </tr>");
+			out.println("</table>");
+			
+			out.println("<p>");
+			out.println("<button name='update' type='submit'>변경</button>");
+			out.println("<button name='delete' type='submit' onClick='deleteProject()'>삭제</button>");
+			out.println("</p>");
+
+			out.println("</form>");
+		}
+		else
+			out.println("<p>해당 번호의 프로젝트를 찾을수 없습니다.</p>");
+		
+		out.println("<script>");
+		out.println("function deleteProject() {");
+		out.println("	document.getElementById('form1').action='delete';");
+		out.println("}");
+		out.println("</script>");
+	}
+
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			Project project = new Project();
@@ -30,24 +95,41 @@ public class ProjectUpdateServlet extends HttpServlet {
 			project.setEndDate(Date.valueOf(request.getParameter("endDate")));
 			project.setMember(request.getParameter("member"));
 
-			response.setContentType("text/plain;charset=UTF-8");
-			PrintWriter out = response.getWriter();
 
 			ApplicationContext iocContainer= 
 					(ApplicationContext) this.getServletContext()
-																	 .getAttribute("iocContainer");
-			
+					.getAttribute("iocContainer");
+
 			ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
 
-			projectDao.update(project);
-			response.setHeader("Refresh", "1;url=list");
-			out.println("수정하였습니다.");
-			
+			if(projectDao.update(project) > 0) {
+				response.sendRedirect("list");
+				return;
+			}
+
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("  <meta charset='UTF-8'>");
+			out.println("  <title>프로젝트-변경</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<h1>프로젝트 변경오류</h1>");
+			out.println("<p>해당 프로젝트가 존재하지 않거나 암호가 틀립니다.</p>");
+
 			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
 			rd.include(request, response);
-			
+
+			out.println("</body>");
+			out.println("</html>");
+
+			response.setHeader("Refresh", "2;url=list");
+
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");
+			request.setAttribute("error", e);	// 오류정보를 Error서블릿에게 전달한다.
 			rd.forward(request, response);
 		}
 	}

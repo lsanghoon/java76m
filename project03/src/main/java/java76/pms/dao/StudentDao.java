@@ -64,4 +64,14 @@ public class StudentDao {
 			try {sqlSession.close();} catch (Exception e) {}
 		}
 	}
+	
+	public Student selectOne(int no) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		try {
+			return sqlSession.selectOne("java76.pms.dao.StudentDao.selectOne", no);
+			
+		} finally {
+			try {sqlSession.close();} catch (Exception e) {}
+		}
+	}
 }
