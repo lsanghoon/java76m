@@ -40,9 +40,14 @@
 	<update id="update" parameterType="board">
 		update board set
 		title=#{title},
-		content=#{content},
-		cr_dt=#{createdDate}
+		content=#{content}
 		where bno=#{no}
 		and (pw is null or pw=#{password})
 	</update>
+	
+	<select id="selectOne" resultMap="boardMap" parameterType="int">
+		select bno, title, content, views, cr_dt
+		from board
+		where bno=#{no}
+	</select>
 </mapper>

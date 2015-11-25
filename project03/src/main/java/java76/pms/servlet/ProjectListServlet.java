@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 
 import java76.pms.dao.ProjectDao;
+import java76.pms.domain.Board;
 import java76.pms.domain.Project;
 
 public class ProjectListServlet extends HttpServlet {
@@ -45,19 +46,50 @@ public class ProjectListServlet extends HttpServlet {
 			}
 			// -->
 
-			response.setContentType("text/plain;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-
-			out.printf("%-3s %-13s %-11s %-11s %-40s\n", 
-					"No", "ProjectName", "StartDay", "EndDay", "Member");
-
 			ApplicationContext iocContainer= 
 					(ApplicationContext) this.getServletContext()
-																	 .getAttribute("iocContainer");
+					.getAttribute("iocContainer");
 			
 			ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
 
+			response.setContentType("text/plain;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("  <meta charset='UTF-8'>");
+			out.println("  <title>게시판-목록</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<h1>게시판</h1>");
+			out.println("<table border='1'>");
+			out.println("  <tr>");
+			out.println("    <th>번호</th>");
+			out.println("    <th>프로젝트 제목</th>");
+			out.println("    <th>시작일</th>");
+			out.println("    <th>종료일</th>");
+			out.println("    <th>멤버</th>");
+			out.println("  </tr>");
+			
 			for (Project project : projectDao.selectList(pageNo, pageSize, keyword, align)) {
+				out.println("  <tr>");
+				out.printf("    <td>%s</td>\n", board.getNo());
+				out.printf("    <td><a href='update?no=%d'>%s</a></td>\n", 
+						board.getNo(), board.getTitle());
+				out.printf("    <td>%s</td>\n", board.getViews());
+				out.printf("    <td>%s</td>\n", board.getCreatedDate());
+				out.println("  </tr>");
+			}
+
+			out.println("</table>");
+
+			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+			rd.include(request, response);
+
+			out.println("</body>");
+			out.println("</html>");
+			
 				out.printf("%3d %-13s %3$-11s %4$-11s %5$-40s\n", 
 						project.getNo(), 
 						project.getTitle(),
@@ -65,9 +97,6 @@ public class ProjectListServlet extends HttpServlet {
 						project.getEndDate(),
 						project.getMember());
 			}
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/copyright");
-			rd.include(request, response);
 			
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");
