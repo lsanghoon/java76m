@@ -1,17 +1,21 @@
-[주제: 웹 UI 기술 적용]
-1. HTML table 태그 적용
-  - BoardListServlet, ProjectListServelt, StudentListServlet
-  - CopyrigthtServlet 에도 HTML 적용
+[주제: JSP 기술을 사용하여 자바 코드에서 출력 부분을 분리한다.]
+=> MVC 아키텍처의 완성
+*MVC(Model-View-Controller) 아키텍처
+Model: 데이터 지속성(persistence) 처리
+View: 결과 데이터를 가지고 화면을 준비
+Controller: Model과 View가 사용할 데이터를 가공한다.
+            비즈니스 로직을 수행(업무 관련 작업을 수행).
+
+1. BoardListServlet에 JSP 적용
+  - webapp/board/BoardList.jsp 작성 => 게시물 목록 화면을 출력.
+  - BoardListServlet.java 변경 => 화면 출력과 관련된 코드를 제거.
+
+2. <jsp:useBean> 적용
+  - BoardList.jsp에 적용
   
-2. HTML a 태그 적용
-  - 목록에서 특정 항목(게시물 제목, 학생 이름, 프로젝트 제목)을 상세 정보를 출력 페이지와
-    연결한다.
-    
-3. HTML form 태그 적용
-  - BoardUpdate 에 상세 정보를 출력하는 기능을 추가하라
-  - 이때 상세 정보는 테이블로 정돈하여 출력하라!
-  - ErrorServlet에도 HTML 적용
-  
-4. HTML 파일 적용
-  - 게시물 등록 폼을 위한 form.html 작성
-  - 
+3. CopyrightServlet을 JSP로 전환하기 
+  -
+
+4. <jsp:include> 적용
+
+5. EL적용
