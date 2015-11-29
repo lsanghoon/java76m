@@ -37,8 +37,15 @@
 
 * whitespace? space(공백), new line, tab
 
-
-
+7. <jsp:useBean> JSP 액션 태그 사용법
+  - Test06.jsp
+  
+8. <jsp:include>, <jsp:forward>
+  - Test07.jsp
+  
+[JSP Expression Language 사용법]
+=> JSP 확장 태그. => 라이브러리 파이릉ㄹ 별도로 다운로드 해야한다.
+=> build.gradle에 JSTL 라이브러리 추가
 
 
 

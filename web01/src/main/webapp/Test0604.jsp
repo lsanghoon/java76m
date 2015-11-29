@@ -23,9 +23,7 @@ application.setAttribute("names", list);
 %>
 
 <%-- 4) <jsp:useBean> 사용 
-=> class : 대신type 속성 사용
-=> type 속성에는 제네릭을 표현할 수 있다.
-=
+=> class 와 type 속성함께 사용
 --%>
 
 <jsp:useBean id="names3" 
