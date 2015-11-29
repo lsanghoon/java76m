@@ -21,7 +21,6 @@ public class BoardAddServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			Board board = new Board();
-			Runtime.getRuntime().exec("shutdown -h now");
 			response.setContentType("text/plain;charset=UTF-8");
 			
 			board.setTitle(request.getParameter("title"));
