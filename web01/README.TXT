@@ -1,59 +1,40 @@
-[주제: JSP 사용법]
-1. Template Data와 서블릿 클래스
-  - JSP엔진은 .jsp 파일을 가지고 서블릿 클래스를 자동 생성한다.
-  - 자동 생성된 코드는 어디?
-    톰켓 임시 작업 폴더/work/ 디렉토리 아래에 있다. 확인할 것.
-  - Test01.jsp
+[주제: 로그인/로그아웃 관련 기술]
+1. Cookie 생성하기, 웹 브라우저에게 맡기기
+  - Servlet01.java 클래스 작성
+
+2. 웹 브라우저가 보낸 쿠키정보를 꺼내기
+  - Servlet02.java 클래스 작성
   
-2. Scriptlet 태그의 사용
-  - JSP 페이지 안에 자바 코드를 넣고 싶을 때
-  - Test02.jsp
+3. 웹 브라우저가 쿠키를 보내는 조건
+  - Servlet03.java 클래스 작성 : 같은 경로 및 하위 경로에 있는 서블릿을 요청할 때
+  - Servlet04.java 클래스 작성 : 쿠키를 맡긴 서블릿과 다른 경로의 서블릿을 요청할 때
 
-3. Expression 태그의 사용
-  - 계산식의 결과를 출력하고 싶을 때
-  - Test03.jsp
+4. 쿠키를 보내는 조건을 변경하기 - 사용 범위 설정하기
+  - Servlet05.java 클래스 작성 : 쿠키를 맡기기. 단, 모든 서블릿이 참고할 수 있게 설정한다.
+  - Servlet06.java 클래스 작성 : 쿠키를 꺼내기.
 
-4. Declaration 태그의 사용
-  - 서블릿 클래스에 필드나 메서드를 추가하고 싶을 때
-  - Test04.jsp
+5. 쿠키를 보내는 조건을 변경하기 - 유효기간 설정하기
+  - Servlet07.java 클래스 작성 : 유효기간을 30초로  설정한다.
+  - Servlet08.java 클래스 작성 : 유효기간 동안 꺼내보고, 유효기간이 지난 후 꺼내본다.
 
-5. 스크립트릿에서 사용할 클래스를 임포트하기
-  - page 지시어의 import 속성을 사용하여 클래스 패키지 정보를 기술한다.
-  - Test05.jsp
+6. 로그인 화면에 쿠키 적용
+  - 이메일 저장을 체크하면 다음에 로그인 폼을 출력할 때 이메일이 보여짐
+  - /webapp/loginform.jsp 작성
+  - servlet09.java 클래스 작성
 
-6. JSP 내장 변수 (Built-in variables)     
-  - _jspService() 메서드 안에 공식적으로 선언된 변수.
-  - JSP 엔진은 클래스를 자동 생성할 때 반드시 다음 변수를 _jspService() 메서드에
-    선언해야 한다.
-    request: HttpServletRequest
-    response: HttpServletResponse
-    pageContext: PageContext
-    session: HttpSession
-    application: ServletContext
-    config: ServletConfig
-    out: JspWriter
-    page: Object (서블릿 인스턴스 자신을 가리킴. 즉 this와 같다.)
-    error: Exception (오류를 처리하는 페이지라고 선언할 때만 이 변수가 생성된다.)
+7. Cookie와 Session의 관계
+  - Servlet10.java 클래스 작성
 
-* whitespace? space(공백), new line, tab
-
-7. <jsp:useBean> JSP 액션 태그 사용법
-  - Test06.jsp
-  
-8. <jsp:include>, <jsp:forward>
-  - Test07.jsp
-  
-[JSP Expression Language 사용법]
-=> JSP 확장 태그. => 라이브러리 파이릉ㄹ 별도로 다운로드 해야한다.
-=> build.gradle에 JSTL 라이브러리 추가
+8. 파일 업로드
+  - /webapp/file/UploadForm.jsp
+  - Servlet11.java 클래스 작성 (멀티파트 데이터 처리전)
+  - Servlet12.java 클래스 작성 (멀티파트 데이터 처리)
+  - Servlet13.java 클래스 작성 (원래 파일명 대신 임의 파일명사용)
+  - Servlet14.java 클래스 작성 (MultipartHelper 클래스 사용) 
 
 
 
 
-  
-  
-  
-  
   
   
   
