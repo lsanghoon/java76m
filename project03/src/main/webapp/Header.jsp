@@ -6,16 +6,14 @@
 	<c:if test="${not empty loginUser}">
 		<form action="${pageContext.request.contextPath}/auth/logout"
 			method="get">
-			프로젝트 관리 시스템 - ${loginUser.name}(${loginUser.cid}) - 
+			${loginUser.name}(${loginUser.cid}) 
 			<input type="submit" value="로그아웃">
 		</form>
 	</c:if>
 
 	<c:if test="${empty loginUser}">
-		<form action="${pageContext.request.contextPath}/auth/LoginForm.jsp"
-			method="get">
-			프로젝트 관리 시스템 
-			<input type="submit" value="로그인">
+		<form action="${pageContext.request.contextPath}/auth/LoginForm.jsp" method="get"> 
+			<input type="submit" value="로그인" >
 		</form>
 	</c:if>
 </div>
