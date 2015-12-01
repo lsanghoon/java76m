@@ -10,6 +10,7 @@ public class Student implements Serializable {
 	protected String email;
 	protected String tel;
 	protected String cid; // class ID
+	protected String photo;
 
 	
 
@@ -20,9 +21,19 @@ public class Student implements Serializable {
 		this.tel = tel;
 	}
 	
+	
 	@Override
 	public String toString() {
-	return "Student [no=" + no + ", name=" + name + ", email=" + email + ", tel=" + tel + ", cid=" + cid + "]";
+	return "Student [no=" + no + ", name=" + name + ", email=" + email + ", tel=" + tel + ", cid=" + cid + ", photo="
+	    + photo + "]";
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public int getNo() {

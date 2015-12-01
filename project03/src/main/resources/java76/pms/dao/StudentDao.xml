@@ -5,10 +5,10 @@
 <mapper namespace="java76.pms.dao.StudentDao">
 
 	<resultMap type="student" id="studentMap">
-		<result column="sno" property="no" />
+		<id column="sno" property="no" />
 	</resultMap>
 	<select id="selectList" resultMap="studentMap" parameterType="Map">
-		select sno, name, email, tel, cid
+		select sno, name, email, tel, cid, photo
 		from student
 		order by
 		<choose>
@@ -25,8 +25,8 @@
 
 	<insert id="insert" parameterType="student">
 		insert into
-		student(name,email,tel,cid)
-		values(#{name},#{email},#{tel},#{cid})
+		student(name,email,tel,cid,photo)
+		values(#{name},#{email},#{tel},#{cid},#{photo})
 	</insert>
 
 	<delete id="delete" parameterType="int">
@@ -36,13 +36,26 @@
 
 	<update id="update" parameterType="student">
 		update student set
-		name=#{name}, email=#{email}, tel=#{tel}, cid=#{cid}
+		name=#{name}, 
+		email=#{email}, 
+		tel=#{tel}, 
+		cid=#{cid}
+		<choose>
+		<when test="photo != null">,photo=#{photo}</when>
+		<otherwise> </otherwise>
+		</choose>
 		where sno=#{no}
 	</update>
 	
 	<select id="selectOne" resultMap="studentMap" parameterType="int">
-		select sno, name, email, tel, cid
+		select sno, name, email, tel, cid, photo
 		from student
 		where sno=#{no}
+	</select>
+	
+	<select id="login" resultType="student" parameterType="map">
+		select sno, name, email, tel, cid, photo
+		from student
+		where email=#{email} and pwd=#{password}
 	</select>
 </mapper>
