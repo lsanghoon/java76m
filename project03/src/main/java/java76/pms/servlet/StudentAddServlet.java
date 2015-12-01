@@ -25,7 +25,7 @@ public class StudentAddServlet extends HttpServlet {
 			Map<String,String> paramMap = 
 					MultipartHelper.parseMultiDate(
 							request,
-							this.getServletContext().getRealPath("/uploadfiles"));
+							this.getServletContext().getRealPath("/student"));
 
 			Student student = new Student();
 			student.setName(paramMap.get("name"));
