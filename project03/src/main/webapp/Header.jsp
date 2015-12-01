@@ -12,7 +12,8 @@
 	</c:if>
 
 	<c:if test="${empty loginUser}">
-		<form action="${pageContext.request.contextPath}/auth/LoginForm.jsp" method="get"> 
+		<form action="${pageContext.request.contextPath}/auth/LoginForm.jsp" 
+		  method="get"> 
 			<input type="submit" value="로그인" >
 		</form>
 	</c:if>
