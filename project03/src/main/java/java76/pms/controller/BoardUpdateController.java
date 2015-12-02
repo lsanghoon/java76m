@@ -59,7 +59,6 @@ public class BoardUpdateController implements PageController {
 		}	else if (paramMap.get("attach").length() > 0) {
 			board.setAttachFile(paramMap.get("attach"));
 		}
-		System.out.println("out~~");
 
 		if (boardDao.update(board) <= 0) {
 			request.setAttribute("errorCode", "401");
