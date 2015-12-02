@@ -1,4 +1,4 @@
-package java76.pms.servlet;
+package java76.pms.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContext;
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
 
-public class BoardListServlet extends HttpServlet {
+public class BoardListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override

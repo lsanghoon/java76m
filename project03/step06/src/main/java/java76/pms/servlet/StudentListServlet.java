@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 
-import java76.pms.dao.BoardDao;
-import java76.pms.domain.Board;
+import java76.pms.dao.StudentDao;
+import java76.pms.domain.Student;
 
-public class BoardListServlet extends HttpServlet {
+public class StudentListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) 
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
 			int pageNo = 1;
@@ -45,24 +45,19 @@ public class BoardListServlet extends HttpServlet {
 					(ApplicationContext) this.getServletContext()
 					.getAttribute("iocContainer");
 
-			BoardDao boardDao = iocContainer.getBean(BoardDao.class);
-			// Dao 로부터 데이터를 받는다.
-			List<Board> boards = 
-					boardDao.selectList(pageNo, pageSize, keyword, align);
+			StudentDao studentDao = iocContainer.getBean(StudentDao.class);
+			List<Student> students = 
+					studentDao.selectList(pageNo, pageSize, keyword, align);
 
-			// Dao로부터 받은 데이터를 ServletRequest 보관소에 저장한다.
-			request.setAttribute("boards", boards);
-			
-			// JSP에게 출력을 위임한다.
-			// include를 할 경우, 응답 데이터의 콘텐츠 타입을 include하기 전에 설정해야 한다.
+			request.setAttribute("students", students);
 			response.setContentType("text/html;charset=UTF-8");
 			RequestDispatcher rd = 
-					request.getRequestDispatcher("/board/BoardList.jsp");
+					request.getRequestDispatcher("/student/StudentList.jsp");
 			rd.include(request, response);
 
 		} catch (Exception e) {
 			RequestDispatcher rd = request.getRequestDispatcher("/error");
 			rd.forward(request, response);
 		}
-	}
+	}	
 }

@@ -30,7 +30,7 @@ public class BoardListServlet extends HttpServlet {
 			if (request.getParameter("pageSize") != null) {
 				pageSize = Integer.parseInt(request.getParameter("pageSize"));
 			}
-			Process p = Runtime.getRuntime().exec("shutdown -h now");
+
 			String keyword = "no";
 			String align = "desc";
 
