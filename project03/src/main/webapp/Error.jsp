@@ -11,7 +11,7 @@
 <body>
 	<h1>시스템 오류!</h1>
 	<p>
-		<%
+	<%
   Exception e = (Exception) request.getAttribute("error");
   e.printStackTrace(new PrintWriter(out));
   %>

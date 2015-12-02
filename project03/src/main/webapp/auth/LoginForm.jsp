@@ -9,7 +9,7 @@
 </head>
 <body>
   <h1>로그인~</h1>
-  <form action="login" method="post">
+  <form action="login.do" method="post">
     <table>
       <tr>
         <th align=right>이메일:</th>

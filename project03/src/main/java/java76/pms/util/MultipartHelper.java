@@ -12,8 +12,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import net.coobird.thumbnailator.Thumbnails;
-
 public class MultipartHelper {
 
 	public static Map<String,String> parseMultiDate 
@@ -36,12 +34,12 @@ public class MultipartHelper {
 						item.write(file);
 						map.put(item.getFieldName(), filename);
 						
-						Thumbnails
+						/*Thumbnails
 						.of(file.getPath())
 						//.sourceRegion(Positions.CENTER, 300, 300) // 화면 줄이지않고 부분만 갈취
 						//.outputQuality(1.0)
 						.size(60,60)
-						.toFile(dir + "/thumbnail/s-" + filename);
+						.toFile(dir + "/thumbnail/s-" + filename);*/
 					}
 				}
 			}

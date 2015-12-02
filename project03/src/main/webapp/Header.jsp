@@ -4,7 +4,7 @@
 <div style="boarder: 1px solid gray; background-color: yellow">
 
 	<c:if test="${not empty loginUser}">
-		<form action="${pageContext.request.contextPath}/auth/logout"
+		<form action="${pageContext.request.contextPath}/auth/logout.do"
 			method="get">
 			${loginUser.name}(${loginUser.cid}) 
 			<input type="submit" value="로그아웃">

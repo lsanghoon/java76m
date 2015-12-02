@@ -12,7 +12,7 @@
 </head>
 <body>
   <h1>게시물 새글</h1>
-  <form action='add.do' method='post'>
+  <form action='add.do' method='post' enctype="multipart/form-data">
     <table border='1'>
       <tr>
         <th>제목</th>
@@ -29,7 +29,7 @@
       </tr>
       <tr>
         <th>첨부파일</th>
-        <td><input type="file" name="attachfile"></td>
+        <td><input type="file" name="attachFile"></td>
       </tr>
     </table>
 

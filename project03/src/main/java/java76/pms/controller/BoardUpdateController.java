@@ -1,5 +1,7 @@
 package java76.pms.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
+import java76.pms.util.MultipartHelper;
 
 @Component("/board/update.do")
 public class BoardUpdateController implements PageController {
@@ -30,8 +33,8 @@ public class BoardUpdateController implements PageController {
 		int no = Integer.parseInt(request.getParameter("no"));
 
 		Board board = boardDao.selectOne(no);
+		
 		request.setAttribute("board", board);
-
 		return "/board/BoardDetail.jsp";
 	}
 
@@ -40,12 +43,23 @@ public class BoardUpdateController implements PageController {
 			HttpServletResponse response)
 					throws Exception {
 		
+		Map<String, String> paramMap = 
+				MultipartHelper.parseMultiDate(request, 
+						request.getServletContext().getRealPath("/attachfile"));
+		
 		Board board = new Board();
 
-		board.setNo(Integer.parseInt(request.getParameter("no")));
-		board.setTitle(request.getParameter("title"));
-		board.setContent(request.getParameter("content"));
-		board.setPassword(request.getParameter("password"));
+		board.setNo(Integer.parseInt(paramMap.get("no")));
+		board.setTitle(paramMap.get("title"));
+		board.setContent(paramMap.get("content"));
+		board.setPassword(paramMap.get("password"));
+		
+		if (paramMap.get("attachFile") != null) {
+			board.setAttachFile(paramMap.get("attachFile"));
+		}	else if (paramMap.get("attach").length() > 0) {
+			board.setAttachFile(paramMap.get("attach"));
+		}
+		System.out.println("out~~");
 
 		if (boardDao.update(board) <= 0) {
 			request.setAttribute("errorCode", "401");

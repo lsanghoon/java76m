@@ -18,7 +18,8 @@
 	<h1>게시물 정보(with JSP + EL + JSTL)</h1>
 
 	<c:if test="${not empty board}">
-		<form id='form1' action='update.do' method='post'>
+		<form id='form1' action='update.do' method='post'
+			enctype="multipart/form-data">
 			<table border='1'>
 				<tr>
 					<th>번호</th>
@@ -43,9 +44,16 @@
 				<tr>
 					<th>첨부파일</th>
 					<td>
-					  <a href='../file/afile/${student.attachFile}'>${student.attachFile}</a>
-						<input type='hidden' name='attachFile' value='${student.attachFile}'>
-					</td>
+					  <c:choose>
+							<c:when test="${not empty board.attachFile}">
+								<a href='../attachfile/${board.attachFile}'>${board.attachFile}</a>
+							</c:when>
+							<c:otherwise>
+								<p>파일이 없습니다.</p>
+							</c:otherwise>
+						</c:choose> 
+						<input type='hidden' name='attach' value='${board.attachFile}'>
+				  </td>
 				</tr>
 				<tr>
 					<th>암호</th>
@@ -53,6 +61,7 @@
 				</tr>
 			</table>
 			<p>
+				<input type='file' name='attachFile'> <br><br>
 				<button name='update' type='submit' class='button1'>변경</button>
 				<a id='aDelete' href='delete.do?no=${board.no}' class='button2'
 					onClick='deleteBoard()'>삭제</a>

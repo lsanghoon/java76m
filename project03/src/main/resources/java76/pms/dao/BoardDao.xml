@@ -3,15 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="java76.pms.dao.BoardDao">
-
+	
+	<sql id="select_inc">
+		select bno, title, content, views, cr_dt, aFile
+	</sql>
+	
 	<resultMap type="board" id="boardMap">
 		<id column="bno" property="no" />
 		<result column="cr_dt" property="createdDate" />
 		<result column="pw" property="password" />
+		<result column="aFile" property="attachFile" />		
 	</resultMap>
 
 	<select id="selectList" resultMap="boardMap" parameterType="map">
-    select bno, title, views, cr_dt
+    <include refid="select_inc"/>
 	from board
     order by 
     <choose>
@@ -27,8 +32,8 @@
   </select>
   
   <insert id="insert" parameterType="board">
-    insert into board(title,content,pw,cr_dt) 
-    values(#{title},#{content},#{password},now())
+    insert into board(title,content,pw,cr_dt,aFile) 
+    values(#{title},#{content},#{password},now(),#{attachFile})
   </insert>
   
   <delete id="delete" parameterType="map">
@@ -40,12 +45,13 @@
     update board set 
       title=#{title},
       content=#{content},
-      cr_dt=now()
+      cr_dt=now(),
+  	  aFile=#{attachFile}
     where bno=#{no} and (pw is null or pw=#{password})
   </update>
   
   <select id="selectOne" resultMap="boardMap" parameterType="int">
-    select bno, title, content, views, cr_dt
+    <include refid="select_inc"/>
   	from board
     where bno=#{no}
   </select>
