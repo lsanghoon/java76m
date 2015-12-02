@@ -6,6 +6,7 @@
 <head>
 <meta charset='UTF-8'>
 <title>게시판-상세정보</title>
+<link rel="stylesheet" type="text/css" href="../css/common.css">
 </head>
 <body>
 
@@ -13,7 +14,7 @@
 
 	<h1>게시물 정보</h1>
 	<c:if test="${not empty project}">
-		<form id='form1' action='update' method='post'>
+		<form id='form1' action='update.do' method='post'>
 			<table border='1'>
 				<tr>
 					<th>번호</th>
@@ -38,8 +39,8 @@
 			</table>
 
 			<p>
-				<button name='update' type='submit'>변경</button>
-				<button name='delete' type='submit' onClick='deleteProject()'>삭제</button>
+				<button name='update' type='submit' class='button1'>변경</button>
+        <a href='delete.do?no=${project.no}' class='button2'>삭제</a>
 			</p>
 
 		</form>
@@ -48,10 +49,5 @@
 		<p>해당 번호의 프로젝트를 찾을수 없습니다.</p>
 	</c:if>
 
-	<script>
-		function deleteProject() {
-			document.getElementById('form1').action = 'delete';
-		}
-	</script>
 </body>
 </html>

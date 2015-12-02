@@ -9,5 +9,7 @@
 
 4. 기존의 서블릿 클래스를 페이지 컨트롤러로 전환하기
   - BoardListServlet ---> BoardListController
-  
+
+5. 프론트 컨트롤러 서블릿을 web.xml에 등록한다.
+  - 페이지 컨트롤러로 전환된 서블릿은 제거한다. 
   

@@ -39,7 +39,7 @@ public class MultipartHelper {
 						Thumbnails
 						.of(file.getPath())
 						//.sourceRegion(Positions.CENTER, 300, 300) // 화면 줄이지않고 부분만 갈취
-						.outputQuality(2.0)
+						//.outputQuality(1.0)
 						.size(60,60)
 						.toFile(dir + "/thumbnail/s-" + filename);
 					}

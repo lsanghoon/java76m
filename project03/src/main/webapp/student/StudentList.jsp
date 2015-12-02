@@ -29,9 +29,9 @@
 <c:forEach var="student" items="${students}">
   <tr>
     <td>${student.no}</td>
-    <td><img src="../file/thumbnail/s-${student.photo}" align="center" 
+    <td><img src="../file/thumbnail/s-${(empty student.photo) ? 'default.jpg' : student.photo}" align="center" 
               style="height:50px; width:auto"></td>
-    <td><a href='update?no=${student.no}'>${student.name}</a></td>
+    <td><a href='update.do?no=${student.no}'>${student.name}</a></td>
     <td>${student.email}</td>
     <td>${student.tel}</td>
     <td>${student.cid}</td>

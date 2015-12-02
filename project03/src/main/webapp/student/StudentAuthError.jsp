@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset='UTF-8'>
-<meta http-equiv="Refresh" content="2;url=list">
-<title>학생-오류</title>
+<meta http-equiv="Refresh" content="2;url=list.do">
+<title>학생관리-오류</title>
 </head>
 <body>
 	<h1>실행 오류</h1>

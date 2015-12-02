@@ -16,7 +16,7 @@
 <jsp:include page="/Header.jsp"/>
 
 <h1>게시판(with JSP + JSTL)</h1>
-<a href='boardForm.html'>새글</a><br>
+<a href='boardForm.jsp'>새글</a><br>
 <table border='1'>
   <tr>
     <th>번호</th>
@@ -29,7 +29,7 @@
   
 	<tr>
     <td>${board.no}</td>
-    <td><a href='update?no=${board.no}'>${board.title}</a></td>
+    <td><a href='update.do?no=${board.no}'>${board.title}</a></td>
     <td>${board.views}</td>
     <td>${board.createdDate}</td>
   </tr>

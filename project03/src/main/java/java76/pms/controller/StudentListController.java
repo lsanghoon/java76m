@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java76.pms.dao.BoardDao;
-import java76.pms.domain.Board;
+import java76.pms.dao.StudentDao;
+import java76.pms.domain.Student;
 
-@Component("/board/list.do")
-public class BoardListController implements PageController {
-	@Autowired BoardDao boardDao;
+@Component("/student/list.do")
+public class StudentListController implements PageController {
+	@Autowired StudentDao studentDao;
 	
 	@Override
 	public String execute(HttpServletRequest request, 
@@ -34,9 +34,10 @@ public class BoardListController implements PageController {
 		if (request.getParameter("align") != null)
 			align = request.getParameter("align");
 
-		List<Board> boards = boardDao.selectList(pageNo, pageSize, keyword, align);
-		request.setAttribute("boards", boards);
+		List<Student> students = 
+				studentDao.selectList(pageNo, pageSize, keyword, align);
+		request.setAttribute("students", students);
 
-		return	"/board/BoardList.jsp";
-	}
+		return	"/student/StudentList.jsp";
+	}	
 }
