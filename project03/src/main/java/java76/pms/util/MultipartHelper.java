@@ -12,6 +12,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 public class MultipartHelper {
 
 	public static Map<String,String> parseMultiDate 
@@ -28,12 +30,18 @@ public class MultipartHelper {
 				if (item.isFormField()) {
 					map.put(item.getFieldName(), item.getString("UTF-8"));
 				} else {
-					filename = generatefilename(item.getName());
-					if (filename == "")
-						continue;
-					File file = new File(dir + "/" + filename);
-					item.write(file);
-					map.put(item.getFieldName(), filename);
+					if (item.getSize() > 0) {
+						filename = generatefilename(item.getName());
+						File file = new File(dir + "/" + filename);
+						item.write(file);
+						map.put(item.getFieldName(), filename);
+						
+						Thumbnails
+						.of(file.getPath())
+						//.sourceRegion(Positions.CENTER, 300, 300) // 화면 줄이지않고 부분만 갈취
+						.size(60,60)
+						.toFile(dir + "/thumbnail/s-" + filename);
+					}
 				}
 			}
 
@@ -49,10 +57,9 @@ public class MultipartHelper {
 		String ext = "";
 		if (dot > -1) {
 			ext = name.substring(dot);
-			return String.format("file-%d-%d%s", 
-					System.currentTimeMillis(), count(), ext);
 		}
-		return "";
+		return String.format("file-%d-%d%s", 
+				System.currentTimeMillis(), count(), ext);
 	}
 
 	static int count = 0;

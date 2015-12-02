@@ -46,7 +46,7 @@ public class StudentUpdateServlet extends HttpServlet {
 			Map<String,String> paramMap = 
 					MultipartHelper.parseMultiDate(
 							request,
-							this.getServletContext().getRealPath("/student"));
+							this.getServletContext().getRealPath("/file"));
 
 			Student student = new Student();
 			student.setNo(Integer.parseInt(paramMap.get("no")));
@@ -54,8 +54,13 @@ public class StudentUpdateServlet extends HttpServlet {
 			student.setEmail(paramMap.get("email"));
 			student.setTel(paramMap.get("tel"));
 			student.setCid(paramMap.get("cid"));
-			student.setPhoto(paramMap.get("photo"));
 
+			if (paramMap.get("photofile") != null) {
+				student.setPhoto(paramMap.get("photofile"));
+			} else if (paramMap.get("photo").length() > 0) {
+				student.setPhoto(paramMap.get("photo"));
+			}
+			
 			ApplicationContext iocContainer= 
 					(ApplicationContext) this.getServletContext()
 					.getAttribute("iocContainer");

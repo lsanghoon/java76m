@@ -24,7 +24,7 @@ public class StudentDeleteServlet extends HttpServlet {
 			Map<String,String> paramMap = 
 					MultipartHelper.parseMultiDate(
 							request,
-							this.getServletContext().getRealPath("/student"));
+							this.getServletContext().getRealPath("/file"));
 			int no = Integer.parseInt(paramMap.get("no"));
 
 			ApplicationContext iocContainer= 

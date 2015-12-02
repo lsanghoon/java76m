@@ -19,9 +19,22 @@ Controller: Model과 View가 사용할 데이터를 가공한다.
 4. <jsp:include> 적용
 
 5. EL적용
+  -
   
 6. 프로젝트 및 학생 관리에도 JSP EL JSTL적용
 
 7. 로그인/로그아웃 구현
+  - Student 테이블에 pwd 컬럼추가
   - /webapp/auth/loginform.jsp 작성
   - LoginServlet.java 클래스 작성
+  - LogoutServlet.java 클래스 작성
+  
+8. 파일 업로드 구현
+  - Student 테이블에 photo 컬럼 추가
+  - form.html 수정
+  - Student.java 수정
+  - build.gradle 파일 병경 : 파일 업로드 라이브러리 추가
+  - gradle 빌드 수행 : 이클립스 관련 설정 파일 개정
+  - StudentAddServlet.java 변경 : 파일 업로드 처리
+    => web01의 MultipartHelper 복붙
+  - StudentDao.xml 변경

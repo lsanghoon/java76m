@@ -25,16 +25,14 @@ public class StudentAddServlet extends HttpServlet {
 			Map<String,String> paramMap = 
 					MultipartHelper.parseMultiDate(
 							request,
-							this.getServletContext().getRealPath("/student"));
+							this.getServletContext().getRealPath("/file"));
 
 			Student student = new Student();
 			student.setName(paramMap.get("name"));
 			student.setEmail(paramMap.get("email"));
 			student.setTel(paramMap.get("tel"));
 			student.setCid(paramMap.get("cid"));
-			student.setPhoto("default.jpg");
-			if (paramMap.get("photo") != null)
-				student.setPhoto(paramMap.get("photo"));
+			student.setPhoto(paramMap.get("photofile"));
 
 
 			ApplicationContext iocContainer= 
