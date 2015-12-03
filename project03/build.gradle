@@ -46,6 +46,10 @@ dependencies {
 		//thumbnail
 		compile 'net.coobird:thumbnailator:0.4.8'
 		
+		//reflactions
+		compile 'org.reflections:reflections:0.9.10'
+
+		
 		//java servlet
 		providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 }
