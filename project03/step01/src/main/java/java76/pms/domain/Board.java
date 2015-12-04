@@ -4,70 +4,71 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Board  implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	protected int no;
-	protected String title;
-	protected String content;
-	protected int views;
-	protected Date createdDate;
-	protected String password;
+  private static final long serialVersionUID = 1L;
 
-	public Board() {}
+  protected int       no;
+  protected String    title;
+  protected String    content;
+  protected int       views;
+  protected Date      createdDate;
+  protected String    password;
+  
+  public Board() {}
 
-	@Override
-	public String toString() {
-	return "Board [no=" + no + ", title=" + title + ", content=" + content + ", views=" + views + ", createdDate="
-	    + createdDate + ", password=" + password + "]";
-	}
+  @Override
+  public String toString() {
+    return "Board [no=" + no + ", title=" + title + ", content=" + content + ", views=" + views + ", createdDate="
+        + createdDate + ", password=" + password + "]";
+  }
 
-	public int getViews() {
-		return views;
-	}
+  public int getNo() {
+    return no;
+  }
 
-	public void setViews(int views) {
-		this.views = views;
-	}
+  public void setNo(int no) {
+    this.no = no;
+  }
 
-	public String getPassword() {
-		return password;
-	}
+  public String getTitle() {
+    return title;
+  }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-	public int getNo() {
-		return no;
-	}
+  public String getContent() {
+    return content;
+  }
 
-	public void setNo(int no) {
-		this.no = no;
-	}
+  public void setContent(String content) {
+    this.content = content;
+  }
 
-	public String getTitle() {
-		return title;
-	}
+  public int getViews() {
+    return views;
+  }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+  public void setViews(int views) {
+    this.views = views;
+  }
 
-	public String getContent() {
-		return content;
-	}
+  public Date getCreatedDate() {
+    return createdDate;
+  }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+  public void setCreatedDate(Date createdDate) {
+    this.createdDate = createdDate;
+  }
 
-	public Date getCreatedDate() {
-		return createdDate;
-	}
+  public String getPassword() {
+    return password;
+  }
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-
+  public void setPassword(String password) {
+    this.password = password;
+  }
+  
+  
+  
 }

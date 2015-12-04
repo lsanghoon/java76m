@@ -4,69 +4,65 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Project implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	protected int no;
-	protected String Title;
-	protected Date startDate;
-	protected Date endDate;
-	protected String member;
+  private static final long serialVersionUID = 1L;
+  
+  protected int     no;
+  protected String  title;
+  protected Date    startDate;
+  protected Date    endDate;
+  protected String  member;
+  
+  public Project() {}
+  
+  public Project(String title, Date startDate, Date endDate) {
+    this.title = title;
+    this.startDate = startDate;
+    this.endDate = endDate;
+  }
 
-	public Project() { }
+  @Override
+  public String toString() {
+    return "Project [no=" + no + ", title=" + title + ", startDate=" + startDate + ", endDate=" + endDate + ", member="
+        + member + "]";
+  }
 
-	public Project(String Title, String member) {
-		this.Title = Title;
-		this.member = member;
-	}
+  public int getNo() {
+    return no;
+  }
 
-	@Override
-	public String toString() {
-	return "Project [No=" + no + ", Title=" + Title + ", startDate=" + startDate + ", endDate=" + endDate + ", member="
-	    + member + "]";
-	}
+  public void setNo(int no) {
+    this.no = no;
+  }
 
-	
+  public String getTitle() {
+    return title;
+  }
 
-	public int getNo() {
-		return no;
-	}
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-	public void setNo(int no) {
-		this.no = no;
-	}
+  public Date getStartDate() {
+    return startDate;
+  }
 
-	public String getTitle() {
-		return Title;
-	}
+  public void setStartDate(Date startDate) {
+    this.startDate = startDate;
+  }
 
-	public void setTitle(String title) {
-		Title = title;
-	}
+  public Date getEndDate() {
+    return endDate;
+  }
 
-	public Date getStartDate() {
-		return startDate;
-	}
+  public void setEndDate(Date endDate) {
+    this.endDate = endDate;
+  }
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
+  public String getMember() {
+    return member;
+  }
 
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
-	public String getMember() {
-		return member;
-	}
-
-	public void setMember(String member) {
-		this.member = member;
-	}
-
-	
-
+  public void setMember(String member) {
+    this.member = member;
+  }
 }

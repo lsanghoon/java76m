@@ -3,9 +3,7 @@
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +29,8 @@
 </tr>
 <tr>
   <th>내용</th>
-  <td><textarea rows='10' cols='60' 
-                name='content'>${board.content}</textarea></td>
+  <td><textarea rows='10' name='content' 
+      cols='60'>${board.content}</textarea></td>
 </tr>
 <tr>
   <th>조회수</th>
@@ -49,24 +47,22 @@
 </table>
 <p>
 <button name='update' type='submit'>변경</button>
-<button name='delete' type='submit' onClick='deleteBoard()'>삭제</button>
+<button name='delete' type='submit' onclick='deleteBoard()'>삭제</button>
 </p>
 </form>
 </c:if>
 
 <c:if test="${empty board}">
-  <p>해당 번호의 게시물을 찾을수 없습니다</p>
+<p>해당 번호의 게시물을 찾을 수 없습니다.</p>
 </c:if>
 
 <jsp:include page="/Copyright.jsp"/>
 
 <script>
 function deleteBoard() {
-  document.getElementById('form1').action='delete';
+  document.getElementById('form1').action = 'delete';
 }
 </script>
-
 </body>
 </html>
-
     

@@ -12,25 +12,23 @@ import java76.pms.ContextLoader;
 import java76.pms.dao.ProjectDao;
 import java76.pms.domain.Project;
 
-public class ProjectAddServlet extends GenericServlet {
-	
-	@Override
-	public void service(ServletRequest request, ServletResponse response) 
-			throws ServletException, IOException {
-		Project project = new Project();
-		
-		project.setTitle(request.getParameter("title"));
-		project.setStartDate(Date.valueOf(request.getParameter("startDate")));
-		project.setEndDate(Date.valueOf(request.getParameter("endDate")));
-		project.setMember(request.getParameter("member"));
-			
-		PrintWriter out = response.getWriter();
-		ProjectDao projectDao = ContextLoader.context.getBean(ProjectDao.class);
-		projectDao.insert(project);
-		
-		out.println("저장되었습니다.");
-		out.println();
-	}
-
-
+public class ProjectAddServlet extends GenericServlet {  
+  @Override
+  public void service(ServletRequest request, ServletResponse response) 
+      throws ServletException, IOException {
+    Project project = new Project();
+    project.setTitle(request.getParameter("title"));
+    project.setStartDate(Date.valueOf(request.getParameter("startDate")));
+    project.setEndDate(Date.valueOf(request.getParameter("endDate")));
+    project.setMember(request.getParameter("member"));
+    
+    PrintWriter out = response.getWriter();
+    ProjectDao projectDao = ContextLoader.context.getBean(ProjectDao.class);
+    projectDao.insert(project); 
+    
+    out.println("저장되었습니다.");
+  }
 }
+
+
+

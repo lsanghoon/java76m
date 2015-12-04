@@ -3,6 +3,6 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <p><address>
-** v.이 웹 애플리케이션의 모든 권리는 나에게 있습니다.v  &copy;난! 나나나~ 나에게! **
+** 이 웹 애플리케이션의 모든 권리는 Java76기에 있습니다. &copy; Java76. **
 </address></p>
     

@@ -2,7 +2,6 @@ package java76.pms.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -12,26 +11,20 @@ import java76.pms.ContextLoader;
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
 
-public class BoardAddServlet extends GenericServlet {
-	
-	@Override
-	public void service(ServletRequest request, ServletResponse response) 
-			throws ServletException, IOException {
-		Board board = new Board();
-		
-		board.setTitle(request.getParameter("title"));
-		board.setContent(request.getParameter("content"));
-		board.setCreatedDate(Date.valueOf(request.getParameter("createddate")));
-		board.setPassword(request.getParameter("password"));
-			
-		PrintWriter out = response.getWriter();
+public class BoardAddServlet extends GenericServlet {  
+  @Override
+  public void service(ServletRequest request, ServletResponse response) 
+      throws ServletException, IOException {
+    Board board = new Board();
+    board.setTitle(request.getParameter("title"));
+    board.setContent(request.getParameter("content"));
+    board.setPassword(request.getParameter("password"));
 
-		BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
-		boardDao.insert(board);
-		
-		out.println("저장되었습니다.");
-		out.println();
-	}
-
-
+    BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+    boardDao.insert(board);
+    
+    PrintWriter out = response.getWriter();
+    out.println("저장되었습니다.");
+  }
 }
+

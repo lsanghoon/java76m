@@ -2,60 +2,60 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="java76.pms.dao.StudentDao">
 	<sql id="select_inc">
-		select sno, name, email, tel, cid, photo
+		select name, email, tel, cid, photo
 	</sql>
-	<resultMap type="student" id="studentMap">
-		<id column="sno" property="no" />
-	</resultMap>
 	
-	<select id="selectList" resultMap="studentMap" parameterType="Map">
-		<include refid="select_inc" />
+	<select id="selectList" resultType="student" parameterType="map">
+		<include refid="select_inc"/> 
 		from student
 		order by
 		<choose>
-			<when test="keyword == 'email'">email </when>
-			<when test="keyword == 'tel'">tel </when>
-			<otherwise>sno </otherwise>
-		</choose>
-		<choose>
-			<when test="align == 'asc'">asc </when>
-			<otherwise>desc </otherwise>
-		</choose>
+      <when test="keyword == 'email'"> email </when>
+      <when test="keyword == 'tel'"> tel </when>
+      <otherwise> name </otherwise>
+    </choose>
+    <choose>
+      <when test="align == 'desc'">desc</when>
+      <otherwise>asc</otherwise>
+    </choose>
 		limit #{startIndex}, #{length}
 	</select>
 
 	<insert id="insert" parameterType="student">
-		insert into
-		student(name,email,tel,cid,photo)
-		values(#{name},#{email},#{tel},#{cid},#{photo})
+		insert into student(name,email,tel,cid,photo,pwd)
+		values(#{name},#{email},#{tel},#{cid},#{photo},sha1(#{password}))
 	</insert>
 
-	<delete id="delete" parameterType="int">
-		delete from student where
-		sno=#{no}
+	<delete id="delete" parameterType="string">
+		delete from student where email=#{value}
 	</delete>
 
 	<update id="update" parameterType="student">
 		update student set
-		name=#{name}, 
-		email=#{email}, 
-		tel=#{tel}, 
+		name=#{name},
+		tel=#{tel},
 		cid=#{cid},
 		photo=#{photo}
-		where sno=#{no}
+		where email=#{email}
 	</update>
 	
-	<select id="selectOne" resultMap="studentMap" parameterType="int">
-		<include refid="select_inc" />
+	<select id="selectOne" resultType="student" parameterType="string">
+		<include refid="select_inc"/>
 		from student
-		where sno=#{no}
+		where email=#{email}
 	</select>
 	
 	<select id="login" resultType="student" parameterType="map">
-		<include refid="select_inc" />
+		<include refid="select_inc"/>
 		from student
-		where email=#{email} and pwd=#{password}
+		where email=#{email} and pwd=sha1(#{password})
 	</select>
 </mapper>
+
+
+
+
+

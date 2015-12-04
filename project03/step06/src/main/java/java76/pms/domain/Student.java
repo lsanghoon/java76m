@@ -3,80 +3,77 @@ package java76.pms.domain;
 import java.io.Serializable;
 
 public class Student implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	protected int no;
-	protected String name;
-	protected String email;
-	protected String tel;
-	protected String cid; // class ID
-	protected String photo;
+  private static final long serialVersionUID = 1L;
+  
+  protected String name;
+  protected String email;
+  protected String tel;
+  protected String cid; // class ID
+  protected String photo;
+  protected String password;
+  
+  public Student() {}
+  
+  public Student(String name, String email) {
+    this.email = email;
+    this.name = name;
+  }
+  
+  @Override
+  public String toString() {
+    return this.getName() + "," + this.getEmail() + "," +
+          this.getTel() + "," + this.getCid();
+  }
 
-	
+  public String getName() {
+    return name;
+  }
 
-	public Student() {}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public Student(String name, String tel) {
-		this.name = name;
-		this.tel = tel;
-	}
-	
-	
-	@Override
-	public String toString() {
-	return "Student [no=" + no + ", name=" + name + ", email=" + email + ", tel=" + tel + ", cid=" + cid + ", photo="
-	    + photo + "]";
-	}
+  public String getEmail() {
+    return email;
+  }
 
-	public String getPhoto() {
-		return photo;
-	}
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
+  public String getTel() {
+    return tel;
+  }
 
-	public int getNo() {
-		return no;
-	}
+  public void setTel(String tel) {
+    this.tel = tel;
+  }
 
-	public void setNo(int no) {
-		this.no = no;
-	}
+  public String getCid() {
+    return cid;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public void setCid(String cid) {
+    this.cid = cid;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public String getPhoto() {
+    return photo;
+  }
 
-	public String getEmail() {
-		return email;
-	}
+  public void setPhoto(String photo) {
+    this.photo = photo;
+  }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+  public String getPassword() {
+    return password;
+  }
 
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
-	public String getCid() {
-		return cid;
-	}
-
-	public void setCid(String cid) {
-		this.cid = cid;
-	}
-
-
+  public void setPassword(String password) {
+    this.password = password;
+  }
+  
+  
 }
 
 

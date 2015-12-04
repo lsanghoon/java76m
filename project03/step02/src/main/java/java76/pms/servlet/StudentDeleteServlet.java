@@ -12,28 +12,26 @@ import org.springframework.context.ApplicationContext;
 
 import java76.pms.dao.StudentDao;
 
-public class StudentDeleteServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class StudentDeleteServlet extends HttpServlet {  
+  private static final long serialVersionUID = 1L;
 
-	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		try {
-			int no = Integer.parseInt(request.getParameter("no"));
-
-			ApplicationContext iocContainer= 
-					(ApplicationContext) this.getServletContext()
-																	 .getAttribute("iocContainer");
-			
-			StudentDao studentDao = iocContainer.getBean(StudentDao.class);
-
-			studentDao.delete(no);
-			response.sendRedirect("list");
-			
-		} catch (Exception e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/error");
-			rd.forward(request, response);
-		}
-	}
-
+  @Override
+  public void doGet(
+      HttpServletRequest request, HttpServletResponse response) 
+      throws ServletException, IOException {
+    try {
+      String email = request.getParameter("email");
+  
+      ApplicationContext iocContainer = 
+          (ApplicationContext)this.getServletContext()
+                                  .getAttribute("iocContainer");
+      StudentDao studentDao = iocContainer.getBean(StudentDao.class);
+      
+      studentDao.delete(email);
+      response.sendRedirect("list");
+    } catch (Exception e) {
+      RequestDispatcher rd = request.getRequestDispatcher("/error");
+      rd.forward(request, response);
+    }
+  }
 }

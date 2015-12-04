@@ -1,7 +1,6 @@
 package java76.pms.util;
 
 public class MultipartHelper {
-
   public static String generateFilename(String originFilename) {
     int dotPos = originFilename.lastIndexOf(".");
     String ext = "";
@@ -10,7 +9,7 @@ public class MultipartHelper {
     }
     
     return String.format("file-%d-%d%s", 
-    				System.currentTimeMillis(), count(), ext); 
+            System.currentTimeMillis(), count(), ext); 
   }
   
   static int count = 0;
