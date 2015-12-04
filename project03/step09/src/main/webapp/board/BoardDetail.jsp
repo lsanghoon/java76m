@@ -52,7 +52,7 @@
 								<p>파일이 없습니다.</p>
 							</c:otherwise>
 						</c:choose> 
-						<input type='hidden' name='attach' value='${board.attachFile}'>
+						<input type='hidden' name='attachFile' value='${board.attachFile}'>
 				  </td>
 				</tr>
 				<tr>
@@ -61,7 +61,7 @@
 				</tr>
 			</table>
 			<p>
-				<input type='file' name='attachFile'> <br><br>
+				<input type='file' name='file'> <br><br>
 				<button name='update' type='submit' class='button1'>변경</button>
 				<a id='aDelete' href='delete.do?no=${board.no}' class='button2'
 					onClick='deleteBoard()'>삭제</a>

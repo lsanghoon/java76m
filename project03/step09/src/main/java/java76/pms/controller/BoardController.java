@@ -1,11 +1,12 @@
 package java76.pms.controller;
 
+import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,120 +16,122 @@ import java76.pms.domain.Board;
 import java76.pms.util.MultipartHelper;
 
 @Component
-public class BoardController {
-	@Autowired BoardDao boardDao;
+public class BoardController { 
+  public static final String SAVED_DIR = "/attachfile";
+  @Autowired BoardDao boardDao;
+  
+  @RequestMapping("/board/list.do")
+  public String list(
+      int pageNo,
+      int pageSize,
+      String keyword,
+      String align,
+      HttpServletRequest request) throws Exception {
+    
+    // 파라미터 값이 넘어오지 않으면 기본 값으로 설정한다.
+    if (pageNo < 0) pageNo = 1;
+    if (pageSize < 0) pageSize = 10;
+    if (keyword == null) keyword = "no";
+    if (align == null) align = "desc";
+    
+    List<Board> boards = boardDao.selectList(
+                 pageNo, pageSize, keyword, align);
+    
+    request.setAttribute("boards", boards);
+    
+    return "/board/BoardList.jsp";
+  }
+  
+  @RequestMapping("/board/add.do")
+  public String add(
+      String title, 
+      String content, 
+      String password,
+      FileItem file,
+      HttpServletRequest request) throws Exception {
+    
+    String newFileName = null;
+    
+    if (file != null) {
+      newFileName = MultipartHelper.generateFilename(file.getName());  
+      File attachfile = new File(
+          request.getServletContext().getRealPath(SAVED_DIR) 
+          + "/" + newFileName);
+      file.write(attachfile);
+    }
+    
+    Board board = new Board();
+    board.setTitle(title);
+    board.setContent(content);
+    board.setPassword(password);
+    board.setAttachFile(newFileName);
 
-	@RequestMapping("/board/list.do")
-	public String list(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
+    boardDao.insert(board);
+    
+    return "redirect:list.do";
+  }
+  
+  @RequestMapping("/board/detail.do")
+  public String detail(
+      int no,
+      HttpServletRequest request) throws Exception {
+    
+    Board board = boardDao.selectOne(no);
+    
+    request.setAttribute("board", board);
+    return "/board/BoardDetail.jsp";
+    
+  }
 
-		int pageNo = 1;
-		int pageSize = 10;
-		if (request.getParameter("pageNo") != null)
-			pageNo = Integer.parseInt(request.getParameter("pageNo"));
-		if (request.getParameter("pageSize") != null)
-			pageSize = Integer.parseInt(request.getParameter("pageSize"));
+  @RequestMapping("/board/update.do")
+  public String update(
+      int no, 
+      String title, 
+      String content, 
+      String password,
+      String attachFile, /* 원래 파일 명 */
+      FileItem file,
+      HttpServletRequest request) throws Exception {
+    
+    String newFileName = null;
+    
+    if (file != null) {
+      newFileName = MultipartHelper.generateFilename(file.getName());  
+      File attachfile = new File(
+          request.getServletContext().getRealPath(SAVED_DIR) 
+          + "/" + newFileName);
+      file.write(attachfile);
+    }
+    
+    Board board = new Board();
+    board.setNo(no);
+    board.setTitle(title);
+    board.setContent(content);
+    board.setPassword(password);
+    
+    if (newFileName != null) {
+      board.setAttachFile(newFileName);
+    } else if (newFileName == null && attachFile.length() > 0) {
+      board.setAttachFile(attachFile);
+    }
+    
+    if (boardDao.update(board) <= 0) {
+      request.setAttribute("errorCode", "401");
+      return "/board/BoardAuthError.jsp";
+    } 
+    return "redirect:list.do";
+  }
+  
+  @RequestMapping("/board/delete.do")
+  public String delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    int no = Integer.parseInt(request.getParameter("no"));
+    String password = request.getParameter("password");
 
-		String keyword = "no";
-		String align = "desc";
-		if (request.getParameter("keyword") != null)
-			keyword = request.getParameter("keyword");
-		if (request.getParameter("align") != null)
-			align = request.getParameter("align");
+    if (boardDao.delete(no, password) <= 0) {
+      request.setAttribute("errorCode", "401");
+      return "/board/BoardAuthError.jsp";
+    } 
 
-		List<Board> boards = boardDao.selectList(pageNo, pageSize, keyword, align);
-		request.setAttribute("boards", boards);
-
-		return	"/board/BoardList.jsp";
-	}
-
-	@RequestMapping("/board/add.do")
-	public String execute(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
-
-		Map<String,String> paramMap =
-				MultipartHelper.parseMultiDate(
-						request, request.getServletContext().getRealPath("/attachfile"));
-
-		Board board = new Board();
-		response.setContentType("text/plain;charset=UTF-8");
-
-		board.setTitle(paramMap.get("title"));
-		board.setContent(paramMap.get("content"));
-		board.setPassword(paramMap.get("password"));
-		board.setAttachFile(paramMap.get("attachFile"));
-
-		boardDao.insert(board);
-		return	"redirect:list.do";
-	}
-
-	@RequestMapping("/board/update.do")
-	public String update(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
-		if (request.getMethod().equals("GET"))
-			return get(request, response);
-		else
-			return post(request, response);
-	}
-
-	private String get(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
-
-		int no = Integer.parseInt(request.getParameter("no"));
-
-		Board board = boardDao.selectOne(no);
-
-		request.setAttribute("board", board);
-		return "/board/BoardDetail.jsp";
-	}
-
-	private String post(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
-
-		Map<String, String> paramMap = 
-				MultipartHelper.parseMultiDate(request, 
-						request.getServletContext().getRealPath("/attachfile"));
-
-		Board board = new Board();
-
-		board.setNo(Integer.parseInt(paramMap.get("no")));
-		board.setTitle(paramMap.get("title"));
-		board.setContent(paramMap.get("content"));
-		board.setPassword(paramMap.get("password"));
-
-		if (paramMap.get("attachFile") != null) {
-			board.setAttachFile(paramMap.get("attachFile"));
-		}	else if (paramMap.get("attach").length() > 0) {
-			board.setAttachFile(paramMap.get("attach"));
-		}
-
-		if (boardDao.update(board) <= 0) {
-			request.setAttribute("errorCode", "401");
-			return "/board/BoardAuthError.jsp";
-		}
-
-		return "redirect:list.do";
-	}
-
-	@RequestMapping("/board/delete.do")
-	public String delete(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
-
-		int no = Integer.parseInt(request.getParameter("no"));
-		String password = request.getParameter("password");
-
-		if (boardDao.delete(no, password) <= 0) {
-			request.setAttribute("errorCode", "401");
-			return "/board/BoardAuthError.jsp";
-		}
-
-		return "redirect:list.do";
-
-	}
+    return "redirect:list.do";
+  }
 }

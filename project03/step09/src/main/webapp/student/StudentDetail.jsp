@@ -44,15 +44,15 @@
 					<td colspan="2">
 					  <img src="../file/${(empty student.photo) ? 'default.jpg' : student.photo}"
 						     style="width: 313px; heigth: auto"> 
-						<input type='hidden' name='photo' value='${student.photo}'>
+						<input type='hidden' name='photoFile' value='${student.photo}'>
 					</td>
 				</tr>
 			</table>
 
 			<p>
+				<input type="file" name="photo"> <br><br>
 				<button name='update' type='submit' class='button1'>변경</button>
 				<a href='delete.do?no=${student.no}' class='button2'>삭제</a>
-				<input type="file" name="photofile">
 			</p>
 
 		</form>

@@ -29,7 +29,7 @@
   
 	<tr>
     <td>${board.no}</td>
-    <td><a href='update.do?no=${board.no}'>${board.title}</a></td>
+    <td><a href='detail.do?no=${board.no}'>${board.title}</a></td>
     <td>${board.views}</td>
     <td>${board.createdDate}</td>
   </tr>

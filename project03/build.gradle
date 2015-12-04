@@ -29,10 +29,12 @@ dependencies {
 		//mybatis
     compile 'org.mybatis:mybatis-spring:1.2.3'
 		
-		//spring
-    compile 'org.springframework:spring-context:4.2.2.RELEASE'
+		//spring webmvc
+		compile 'org.springframework:spring-webmvc:4.2.3.RELEASE'
+		//spring 위에꺼 의존라이브러리라 주석으로 막아도된다.
+    //compile 'org.springframework:spring-context:4.2.3.RELEASE'
 		//oracle jdbc
-    compile 'org.springframework:spring-jdbc:4.2.2.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.2.3.RELEASE'
 		
 		//dbcp
     compile 'commons-dbcp:commons-dbcp:1.4'

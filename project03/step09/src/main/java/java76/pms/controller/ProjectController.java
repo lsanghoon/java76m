@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,25 +15,19 @@ import java76.pms.domain.Project;
 @Component
 public class ProjectController {
 	@Autowired ProjectDao projectDao;
-	
+
 	@RequestMapping("/project/list.do")
-	public String list(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
+	public String list(
+			int pageNo,
+			int pageSize,
+			String keyword,
+			String align,
+			HttpServletRequest request) throws Exception {
 
-		int pageNo = 1;
-		int pageSize = 10;
-		if (request.getParameter("pageNo") != null)
-			pageNo = Integer.parseInt(request.getParameter("pageNo"));
-		if (request.getParameter("pageSize") != null)
-			pageSize = Integer.parseInt(request.getParameter("pageSize"));
-
-		String keyword = "no";
-		String align = "desc";
-		if (request.getParameter("keyword") != null)
-			keyword = request.getParameter("keyword");
-		if (request.getParameter("align") != null)
-			align = request.getParameter("align");
+		if (pageNo < 0) pageNo = 1;
+		if (pageSize < 0)	pageSize = 10;
+		if (keyword == null) keyword = "no";
+		if (align == null) align = "desc";
 
 		List<Project> projects = 
 				projectDao.selectList(pageNo, pageSize, keyword, align);
@@ -42,38 +35,29 @@ public class ProjectController {
 
 		return	"/project/ProjectList.jsp";
 	}
-	
+
 	@RequestMapping("/project/add.do")
-	public String add(HttpServletRequest request, 
-			HttpServletResponse response)
-			throws Exception {
-			Project project = new Project();
+	public String add(
+			String title,
+			String startDate,
+			String endDate,
+			String member) throws Exception {
 
-			project.setTitle(request.getParameter("title"));
-			project.setStartDate(Date.valueOf(request.getParameter("startDate")));
-			project.setEndDate(Date.valueOf(request.getParameter("endDate")));
-			project.setMember(request.getParameter("member"));
+		Project project = new Project();
+		project.setTitle(title);
+		project.setStartDate(Date.valueOf(startDate));
+		project.setEndDate(Date.valueOf(endDate));
+		project.setMember(member);
 
-			projectDao.insert(project);
+		projectDao.insert(project);
 
-			return "redirect:list.do";
-	}
-	
-	@RequestMapping("/project/update.do")
-	public String update(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
-		if (request.getMethod().equals("GET"))
-			return get(request, response);
-		else
-			return post(request, response);
+		return "redirect:list.do";
 	}
 
-	private String get(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
-
-		int no = Integer.parseInt(request.getParameter("no"));
+	@RequestMapping("/project/detail.do")
+	public String detail(
+			int no,
+			HttpServletRequest request) throws Exception {
 
 		Project project = projectDao.selectOne(no);
 		request.setAttribute("project", project);
@@ -81,33 +65,35 @@ public class ProjectController {
 		return "/project/ProjectDetail.jsp";
 	}
 
-	private String post(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
+	@RequestMapping("/project/update.do")
+	public String update(
+			int no,
+			String title,
+			String startDate,
+			String endDate,
+			String member,
+			HttpServletRequest request) throws Exception {
 
 		Project project = new Project();
-
-		project.setNo(Integer.parseInt(request.getParameter("no")));
-		project.setTitle(request.getParameter("title"));
-		project.setStartDate(Date.valueOf(request.getParameter("startDate")));
-		project.setEndDate(Date.valueOf(request.getParameter("endDate")));
-		project.setMember(request.getParameter("member"));
+		project.setNo(no);
+		project.setTitle(title);
+		project.setStartDate(Date.valueOf(startDate));
+		project.setEndDate(Date.valueOf(endDate));
+		project.setMember(member);
 
 
 		if(projectDao.update(project) <= 0) {
 			request.setAttribute("errorCode", "401");
 			return "/project/ProjectAuthError";
 		}
-		
+
 		return "redirect:list.do";
 	}
-	
-	@RequestMapping("/project/delete.do")
-	public String delete(HttpServletRequest request, 
-			HttpServletResponse response)
-					throws Exception {
 
-		int no = Integer.parseInt(request.getParameter("no"));
+	@RequestMapping("/project/delete.do")
+	public String delete(
+			int no,
+			HttpServletRequest request) throws Exception {
 
 		if(projectDao.delete(no) <= 0) {
 			request.setAttribute("errorCode", "401");

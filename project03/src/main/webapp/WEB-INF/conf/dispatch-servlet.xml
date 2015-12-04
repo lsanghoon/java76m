@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		    http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+  <!-- 페이지 컨트롤러를 찾아 객체를 생성한다. 
+       단, DAO와 Service 관련 객체는 제외해야한다. -->
+	<context:component-scan base-package="java76.pms.controller" />
+	
+  <!-- @RequestMapping 등 웹 관련 애노테이션을 처리할 객체를  -->
+  <mvc:annotation-driven/>
+  
+  <!-- 멀티 파트 요청 파라미터를 처리할 객체 등록 -->
+  <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+    <!-- one of the properties available; the maximum file size in bytes -->
+    <property name="maxUploadSize" value="10000000"/>
+  </bean>
+
+</beans>

@@ -1,30 +1,28 @@
-[주제: 애노테이션을 이용한 페이지 컨트롤러의 요청 핸들러 관리]
-* 요청 핸들러(request handler)?
-  - 요청이 들어왔을 때 호출되는 메서드.
-    예) 페이지 컨트롤러의 execute() 메서드
+[주제: Spring Web MVC 프레임워크 적용]
 
-* 목표
-1) CRUD 코드를 한 클래스에 모은다.
-  - 예) AuthController.java
-2) 요청 핸들러에 URL을 지정한다.
-  - RequestMapping 애노테이션 사용
-
-1. AuthController 클래스 작성
-  - LoginController, LogoutController를 합친다.
-
-2. RequestMapping애노테이션 작성
-  - AuthController의 login(), logout()메서드에 적용
+* 실습
+1. Spring WebMVC 라이브러리 추가한다.
+  - build.gradle 파일 변경
+2. ContextLoaderListener를 스프링 클래스로 대체한다.
+  - web.xml 변경
+3. 요청 파라미터의 문자집합을 설정하는 필터를 스프링 필터로 대체한다.
+  - web.xml변경
+4. 프론트 컨트롤러를 스프링 클래스로 대체한다.
+  - web.xml 변경
+5. 페이지 컨트롤러를 스프링 규격에 맞추어 변경한다.
+  - @RequestMapping을 스프링 애노테이션으로 대체한다.
+6. 기존의 애노테이션, 리스너, 필터, 서블릿 삭제한다.
+7. 스프링 프론트 컨트롤러(DispatcherServlet)을 위한 설정을 추가한다.
+  - 역할을 분담.
+    => ContextLoaderListener 는 페이지 컨트롤러가 사용할 객체를 준비한다.
+       예) DAO, Servlet, 트랜잭션 등
+    => DispatcherServlet은 페이지 컨트롤러와 웹 관련 개체를 준비한다.
+       예) 페이지 컨트롤러, 파일 업로드 처리 객체 등
+  - WEB-INF/conf/dispatch-servlet.xml 생성
+    => 페이지 컨트롤러 객체를 준비한다.
+  - java76/pms/application-context.xml 변경
+    => 페이지 컨트롤러 객체를 제외한다.
+8. 스프링 멀티파트 데이터 처리
+  - dispatch-servlet.xml파일에 멀티파트 데이터를 처리하는 객체를 등록한다.
+  - 페이지 컨트롤러에서는 멀티파트 파일을 받기 위해 MultipartFile 클래스를 사용한다.
   
-3. ContextLoaderListener 클래스 변경
-  - 각 객체에서 RequestMapping애노테이션이 붙은 메소드를 찾아서,
-    별도 테이블에 관리한다.
-  1) 인스턴스와 메서드를 담을 새로운 타입을 정의한다.
-    => RequestHandler
-  2) 작업 내용은 클래스 주석 참조할 것!
-  
-4. DispatcherServlet 클래스 변경
-  - iocContainer에서 페이지 컨트롤러를 찾는 것이 아니라,
-    handlerMap에서 요청을 처리할 메서드를 찾는다.
-    
-5. BoardController, StudentController 작성
-  - 기존 페이지 컨트롤러의 기능을 합친다. 
