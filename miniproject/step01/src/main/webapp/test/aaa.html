@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-1.5.js"></script>
+</head>
+<body>
+<button id='enableButton'>Enable</button>
+<input type="text" readonly value="can't edit this" />
+<button id='enableButton'>Enable</button>
+<input type="file" disabled="disabled" value="can't edit this" />
+<script>
+$("button").click(function is() {
+  $(this).next().removeAttr("readonly")
+  .focus()
+  .val("");
+  $(this).next().removeAttr("disabled");
+});
+</script>
+
+</body>
+</html>

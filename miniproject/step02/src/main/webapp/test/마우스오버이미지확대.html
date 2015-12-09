@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html> 
+
+<head> 
+
+    <title>Untitled Page</title> 
+
+
+
+  <script type="text/javascript"> 
+
+    var over = null; 
+
+    var mouseOffset = null; 
+
+    document.onmousemove = mouseMove; 
+
+
+
+    function mousePoint(x, y){ 
+
+        this.x = x; 
+
+        this.y = y; 
+
+    } 
+
+
+
+
+    function getMousePosition(event){ 
+
+        event = event ? event : window.event; 
+
+        var x = parseInt(event.clientX); 
+
+        var y = parseInt(event.clientY); 
+
+        mouseOffset = new mousePoint(x, y); 
+
+    } 
+
+
+
+    function mouseOver(){ 
+
+        over = true; 
+
+        createImage(); 
+
+    } 
+
+
+
+    function mouseOut(){ 
+
+        over = false; 
+
+        elem1.innerHTML = ""; 
+
+    } 
+
+
+
+    function mouseMove(){ 
+
+        if(over){ 
+
+        var elem1 = document.getElementById("elem1"); 
+
+            getMousePosition(); 
+
+        elem1.style.position = "absolute"; 
+
+            elem1.style.left = (mouseOffset.x + 2) + "px"; 
+
+        elem1.style.top = (mouseOffset.y + 2) + "px"; 
+
+        } 
+
+    } 
+
+
+
+    function createImage(){ 
+
+        var elem1 = document.getElementById("elem1"); 
+
+        elem1.innerHTML = "<img src='http://cfs6.tistory.com/upload_control/download.blog?fhandle=YmxvZzEwNTIzOUBmczYudGlzdG9yeS5jb206L2F0dGFjaC8wLzI3LmJtcA=='/>"; 
+
+    } 
+
+  </script> 
+
+</head> 
+
+<body> 
+
+  <img id="img1" onmouseover="mouseOver();" onmouseout="mouseOut();" width="40" height="40" src="http://cfs6.tistory.com/upload_control/download.blog?fhandle=YmxvZzEwNTIzOUBmczYudGlzdG9yeS5jb206L2F0dGFjaC8wLzI3LmJtcA==" /> 
+
+  <div id="elem1"></div> 
+
+</body>
+
+</html>

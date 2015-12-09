@@ -13,8 +13,8 @@ html {
 }
 
 body {
-  background: -webkit-linear-gradient(45deg, #2b2f3a 0%, #2b2f3a 100%);
-  background: linear-gradient(45deg, #2b2f3a 0%, #2b2f3a 100%);
+  background: -webkit-linear-gradient(45deg, #0082b3 0%, #0082b3 100%);
+  background: linear-gradient(45deg, #0082b3 0%, #2b2f3a 100%);
   color: rgba(0, 0, 0, 0.6);
   font-family: "Roboto", sans-serif;
   font-size: 14px;
@@ -151,7 +151,7 @@ body {
 }
 .form-group button {
   outline: none;
-  background: #2b2f3a;
+  background: #0082b3;
   width: 100%;
   border: 0;
   border-radius: 4px;

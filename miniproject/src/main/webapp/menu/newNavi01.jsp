@@ -20,7 +20,7 @@ body {
 }
 .menu {
   position: relative;
-  background: #2b2f3a;
+  background: #0082b3;
 }
 .menu ul {
   list-style: none;
@@ -32,7 +32,7 @@ body {
   position: relative;
   display: block;
   text-align:center;
-  background: #2b2f3a;
+  background: #0082b3;
   width: 100%;
   z-index: 500;
 }
@@ -221,23 +221,31 @@ body {
 <div id='layer_fixed' class='menu'>
 	<ul>
 		<li><a href='${pageContext.request.contextPath}/article/list.do'>Home</a></li>
+		 <input id=inputContent type="text" name="search">
 		<li>
-      <input type="text" name="search">
-      <button>검색</button>
+     <a id='aSearch' href='search.do' onclick='searchArticle()'>검색</a>
+      
     </li>
     <c:choose>
 	    <c:when test="${not empty loginUser}">
-		    <li><a href='add.do'>새 게시글</a></li>
+		    <li><a href='${pageContext.request.contextPath}/article/add.do'>새 게시글</a></li>
 		
 				<li class='active sub'>
 		    <a href='#'>${loginUser.name}</a>
 		    <ul>
+		    
 		    <li>
-		    <a href='${pageContext.request.contextPath}/member/detail.do?email=${loginUser.email}'>내정보 변경</a>
+          <a href='${pageContext.request.contextPath}/article/gall.do?email=${loginUser.email}'>내 사진</a>
+        </li>
+		    
+		    <li>
+		      <a href='${pageContext.request.contextPath}/member/detail.do?email=${loginUser.email}'>내정보 변경</a>
 		    </li>
+		    
 		    <li class='last'>
 		      <a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a>
 		    </li>
+		    
 		    </ul>
 				</li>
 	    </c:when>
@@ -253,3 +261,13 @@ body {
 	</ul>
 	
 </div>
+<script>
+function searchArticle() {
+  var content = document.getElementById('inputContent').value;
+  
+  var href = document.getElementById('aSearch').href 
+             + "?content=" + content;
+  
+  document.getElementById('aSearch').href=href;
+}
+</script>
