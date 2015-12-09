@@ -68,77 +68,43 @@ p {
 </style>
 
 
+      <c:forEach var="article" items="${articles}">
 <div class="archive">
   <div id="content">
 
     <div class="post type-post status-publish format-standard hentry category-uncategorized entry">
-      <%-- <h2 class="entry-title"><a href="#">a ${article.name}</a></h2> --%> 
       <div class="entry-content">
-      <c:forEach var="article" items="${articles}">
-        <table align="center" width="350px">
+        <form method="get" enctype="multipart/form-data">
+        <table border="1" align="center" width="350px">
           <tr>
-            <td rowspan="2" width="60px" height="60px">${article.photo}</td>
-            <td>&nbsp;&nbsp;${article.name}</td>
+            <td>&nbsp;&nbsp;작성자 : ${article.name}</td>
           </tr>
           <tr>
-            <td>&nbsp;&nbsp;${article.createdDate}</td>
+            <td>&nbsp;&nbsp;작성일 : ${article.createdDate}</td>
           </tr>
+          
+          <c:choose>
+          <c:when test="${not empty article.photo}">
+	          <tr>
+	            <td height="30px">
+	              <img src="../attachfile/${article.photo}" style="width:350px; height:auto">
+	            </td>
+	          </tr>
+          </c:when>
+          <c:otherwise>
+            <tr></tr>
+          </c:otherwise>
+          
+          </c:choose>
           <tr>
-            <td colspan="2" height="30px">attachphotofile</td>
-          </tr>
-          <tr>
-            <td colspan="2">${article.content}</td>
+            <td>${article.content}</td>
           </tr>
         </table>
-        </c:forEach> 
+            <a href='detail.do?email=${article.email}' style="text-decoration: none;">수정</a>
+            <a href="delete.do?no=${article.no}" style="text-decoration: none;">삭제</a>
+        </form>
       </div><!-- end .entry-content -->
     </div><!-- end .entry -->
   </div>
 </div><!-- end .archive -->
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-  var closeHeight = '8em'; /* Default "closed" height */
-  var moreText  = '더보기'; /* Default "Read More" text */
-  var lessText  = '닫기'; /* Default "Read Less" text */
-  var duration  = '1000'; /* Animation duration */
-  var easing = 'linear'; /* Animation easing option */
-
-  // Limit height of .entry-content div
-  $('.page-template-page_blog-php #content .entry, .archive #content .entry').each(function() {
-    
-    // Set data attribute to record original height
-    var current = $(this).children('.entry-content');
-    current.data('fullHeight', current.height()).css('height', closeHeight);
-
-    // Insert "Read More" link
-    current.after('<a href="javascript:void(0);" class="more-link closed">' + moreText + '</a>');
-
-  });
-  
-  // Link functinoality
-  var openSlider = function() {
-    link = $(this);
-    var openHeight = link.prev('.entry-content').data('fullHeight') + 'px';
-    link.prev('.entry-content').animate({'height': openHeight}, {duration: duration }, easing);
-    link.text(lessText).addClass('open').removeClass('closed');
-      link.unbind('click', openSlider);
-    link.bind('click', closeSlider);
-  }
-
-  var closeSlider = function() {
-    link = $(this);
-      link.prev('.entry-content').animate({'height': closeHeight}, {duration: duration }, easing);
-    link.text(moreText).addClass('closed').removeClass('open');
-    link.unbind('click');
-    link.bind('click', openSlider);
-  }
-  
-    // Attach link click functionality
-  $('.more-link').bind('click', openSlider);
-  
-});
-</script>
-
+        </c:forEach> 

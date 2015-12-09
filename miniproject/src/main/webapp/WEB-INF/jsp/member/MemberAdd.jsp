@@ -175,7 +175,7 @@ body {
 </style>
 </head>
 <body>
-
+<jsp:include page="/menu/newNavi01.jsp"/>
 
 <!-- Form-->
 <div class="form">

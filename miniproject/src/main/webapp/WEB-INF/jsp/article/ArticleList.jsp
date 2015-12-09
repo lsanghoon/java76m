@@ -14,11 +14,9 @@
 
 <jsp:include page="/menu/newNavi01.jsp"/>
 
-<c:forEach var="article" items="${articles}">
 
 <jsp:include page="/menu/moretext.jsp"/>
 
-</c:forEach>  
 
 <jsp:include page="/Copyright.jsp"/>
 

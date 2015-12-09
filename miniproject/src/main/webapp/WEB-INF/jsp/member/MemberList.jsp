@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<jsp:include page="/Header.jsp"/>
+<jsp:include page="/menu/newNavi01.jsp"/>
 
 
 <h1>학생2</h1>

@@ -5,13 +5,13 @@
 
 <mapper namespace="java76.pms.dao.MemberDao">
 	<select id="selectList" resultType="member" parameterType="map">
-		select email, name, tel, photo
+		select email, name, tel, photo, joindate
 		from member
 	</select>
 
 	<insert id="insert" parameterType="member">
-		insert into member(name,email,tel,photo,pwd)
-		values(#{name},#{email},#{tel},#{photo},sha1(#{password}))
+		insert into member(name,email,tel,photo,pwd,joindate)
+		values(#{name},#{email},#{tel},#{photo},sha1(#{password}),now())
 	</insert>
 
 	<delete id="delete" parameterType="string">
@@ -26,7 +26,7 @@
 	</update>
 	
 	<select id="selectOne" resultType="member" parameterType="string">
-		select email, name, tel, photo
+		select email, name, tel, photo, joindate
 		from member
 		where email=#{email}
 	</select>

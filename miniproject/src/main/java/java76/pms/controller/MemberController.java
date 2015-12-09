@@ -1,10 +1,10 @@
 package java76.pms.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java76.pms.dao.MemberDao;
 import java76.pms.domain.Member;
 import java76.pms.util.MultipartHelper;
-import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/member/*")
@@ -58,9 +57,10 @@ public class MemberController {
 	@RequestMapping("detail")
 	public String detail(
 			String email,
-			Model model) 
-					throws Exception {
+			Model model,
+			HttpSession session) throws Exception {
 
+		System.out.println(email);
 		Member member = memberDao.selectOne(email);
 		model.addAttribute("member", member);
 
@@ -80,10 +80,6 @@ public class MemberController {
 			
 			photofile.transferTo(attachfile);
 			member.setPhoto(newFileName);
-			
-			makeThumbnailImage(
-					servletContext.getRealPath(SAVED_DIR) + "/" + newFileName, 
-					servletContext.getRealPath(SAVED_DIR) + "/s-" + newFileName);
 
 		} else if (member.getPhoto().length() == 0) {
 			member.setPhoto(null);
@@ -94,7 +90,7 @@ public class MemberController {
 			return "member/MemberAuthError";
 		} 
 
-		return "redirect:list.do";
+		return "redirect:../article/list.do";
 	}
 
 	@RequestMapping("delete")
@@ -106,15 +102,7 @@ public class MemberController {
 			model.addAttribute("errorCode", "401");
 			return "member/MemberAuthError";
 		}
-		return "redirect:list.do";
+		return "redirect:../article/list.do";
 	}
 	
-	private void makeThumbnailImage(String originPath, String thumbPath) 
-			throws IOException {
-		Thumbnails.of(new File(originPath))
-		.size(60,60)
-		.outputQuality(1.0)
-		.toFile(new File(thumbPath));
-	}
-
 }

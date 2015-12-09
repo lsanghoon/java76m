@@ -1,7 +1,6 @@
 package java76.pms.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class Member implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -11,7 +10,6 @@ public class Member implements Serializable {
   protected String name;
   protected String tel;
   protected String photo;
-  protected Date	 joinDate;
   
   public Member() {}
   
@@ -25,12 +23,6 @@ public class Member implements Serializable {
 	    + "]";
 	}
 	
-	public Date getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(Date joindate) {
-		this.joinDate = joindate;
-	}
 	public String getEmail() {
 		return email;
 	}

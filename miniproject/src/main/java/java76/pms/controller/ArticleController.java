@@ -50,7 +50,7 @@ public class ArticleController {
 			MultipartFile photofile,
 			HttpSession session
 			) throws Exception {
-		System.out.println("in");
+		
 		if (photofile.getSize() > 0) {
 			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
@@ -60,10 +60,17 @@ public class ArticleController {
 		}
 		
 		member = (Member) session.getAttribute("loginUser");
+		
 		article.setName(member.getName());
-		article.setMphoto(member.getPhoto());
+		String mp = member.getPhoto();
+		
+		System.out.println(member.getPhoto());
+		
+		article.setMphoto(mp);
+
+		article.setEmail(member.getEmail());
+		
 		articleDao.insert(article);
-		System.out.println("insert");
 		return "redirect:list.do";
 	}
 
@@ -80,22 +87,32 @@ public class ArticleController {
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(
+			HttpSession session,
+			Member member,
 			Article article,
-			MultipartFile file,
+			MultipartFile photofile,
 			Model model) throws Exception {
 
 
-		if (file.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+		if (photofile.getSize() > 0) {
+			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
 																	+ "/" + newFileName);
-			file.transferTo(attachfile);
+			photofile.transferTo(attachfile);
 			article.setPhoto(newFileName);
 			
 		}	else if (article.getPhoto().length() == 0) {
 			article.setPhoto(null);
 		}
-
+		
+		member = (Member) session.getAttribute("loginUser");
+		article.setName(member.getName());
+		String mp = member.getPhoto();
+		
+		System.out.println(member.getPhoto() + "_2");
+		
+		article.setMphoto(mp);
+		
 		if (articleDao.update(article) <= 0) {
 			model.addAttribute("errorCode", "401");
 			return "article/ArticleAuthError";

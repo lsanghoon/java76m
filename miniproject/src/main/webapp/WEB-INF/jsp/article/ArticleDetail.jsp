@@ -1,83 +1,146 @@
-<%-- 게시물 상세정보 및 변경 폼 --%>
-<%@ page language="java" 
-    contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    trimDirectiveWhitespaces="true"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset='UTF-8'>
-  <title>게시판-상세정보</title>
-  <link rel="stylesheet" type="text/css" href="../css/common.css">
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>게시물 등록</title>
+
+<style>
+body {
+  background: #2b2f3a;
+}
+
+.form {
+  z-index: 15;
+  position: relative;
+  background: #FFFFFF;
+  width: 400px;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin: 35px auto 10px;
+  overflow: hidden;
+}
+.form-group {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 0 20px;
+}
+.form-group:last-child {
+  margin: 0;
+}
+.form-group label {
+  display: block;
+  margin: 0 0 10px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+}
+.form-group textarea {
+  resize:none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.form-group input {
+  font-family: inherit;
+  text-transform: lowercase;
+  box-shadow: 0 0 0px #000000
+  
+}
+.form-group button {
+  outline: none;
+  background: #2b2f3a;
+  width: 100%;
+  border: 0;
+  border-radius: 4px;
+  padding: 12px 20px;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+
+.archive {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.entry {
+  position: relative;
+  overflow: hidden;
+  margin: 100px 0;
+  padding: 20px 20px 4em 20px;
+  background: #FFF;
+  font-family: "Open Sans", sans-serif;
+  box-shadow: 0 0 15px #999;
+}
+
+.entry-title,
+.entry-title a {
+  margin-top: 0;
+  font-family: Oswald, sans-serif;
+  color: #333;
+  text-decoration: none;
+}
+
+</style>
 </head>
 <body>
+<jsp:include page="/menu/newNavi01.jsp"/>
+<div class="archive">
+  <div id="content">
 
-<jsp:include page="/Header.jsp"/>
+    <div class="post type-post status-publish format-standard hentry category-uncategorized entry">
+      <h2 class="entry-title">게시물 내용</h2> 
+      <div class="entry-content">
+      <div class="form">
+        <form action="update.do" method="post" enctype="multipart/form-data">
+      
+          <div class="form-group">
+          <textarea name="content" cols='70' rows='20'>${article.content}</textarea>
+          </div>
+        
+          <div class="form-group">
+          <img src="../file/${(empty article.photo)?'default.png':article.photo}"
+            style="width:450px; height:450px">
+          <input type='file' name='photofile'>
+          <input type='hidden' name='photo' value='${article.photo}'>
+          </div>
+        
+          <div class="form-group">
+            <button name='update' type='submit'>변경</button>
+          </div>
+        
+        </form>
+      </div>
+      </div><!-- end .entry-content -->
+    </div><!-- end .entry -->
+  </div>
+</div><!-- end .archive -->
 
-<h1>게시물 정보(with JSP + EL + JSTL)</h1>
 
-<c:if test="${not empty board}">
-<form id='form1' action='update.do' method='post'
-      enctype="multipart/form-data">
-<table border='1'>
-<tr>
-  <th>번호</th>
-  <td><input type='text' name='no' value='${board.no}' readonly></td>
-</tr>
-<tr>
-  <th>제목</th>
-  <td><input type='text' name='title' value='${board.title}'></td>
-</tr>
-<tr>
-  <th>내용</th>
-  <td><textarea rows='10' name='content' 
-      cols='60'>${board.content}</textarea></td>
-</tr>
-<tr>
-  <th>조회수</th>
-  <td>${board.views}</td>
-</tr>
-<tr>
-  <th>등록일</th>
-  <td>${board.createdDate}</td>
-</tr>
-<tr>
-  <th>첨부파일</th>
-  <td><a href='../attachfile/${board.attachFile}'>${board.attachFile}</a><br>
-      <input type='file' name='file'>
-      <input type='hidden' name='attachFile' value='${board.attachFile}'></td>
-</tr>
-<tr>
-  <th>암호</th>
-  <td><input id='inputPassword' type='password' name='password'></td>
-</tr>
-</table>
-<p>
-<button name='update' type='submit' class='button1'>변경</button>
-<a id='aDelete' href='delete.do?no=${board.no}' class='button2' onclick='deleteBoard()'>삭제</a>
-</p>
-</form>
-</c:if>
-
-<c:if test="${empty board}">
-<p>해당 번호의 게시물을 찾을 수 없습니다.</p>
-</c:if>
-
-<jsp:include page="/Copyright.jsp"/>
-<script>
-function deleteBoard() {
-  // 암호 텍스트 상자에 입력된 내용을 가져온다.
-  var password = document.getElementById('inputPassword').value;
-  
-  // a 태그의 href 값을 가져와서 "&password=암호" 문자열을 붙인다.
-  var href = document.getElementById('aDelete').href 
-             + "&password=" + password;
-  
-  // a 태그의 href 값을 암호 파라미터가 붙은 값으로 변경한다. 
-  document.getElementById('aDelete').href = href;
-}
-</script>
 </body>
 </html>
-    
+
+
+
+

@@ -105,7 +105,7 @@ body {
 </style>
 </head>
 <body>
-
+<jsp:include page="/menu/newNavi01.jsp"/>
 <div class="archive">
   <div id="content">
 

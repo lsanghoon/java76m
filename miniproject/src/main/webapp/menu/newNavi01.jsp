@@ -220,7 +220,7 @@ body {
 
 <div id='layer_fixed' class='menu'>
 	<ul>
-		<li><a href='#'>Home</a></li>
+		<li><a href='${pageContext.request.contextPath}/article/list.do'>Home</a></li>
 		<li>
       <input type="text" name="search">
       <button>검색</button>
@@ -232,7 +232,9 @@ body {
 				<li class='active sub'>
 		    <a href='#'>${loginUser.name}</a>
 		    <ul>
-		    <li><a href='#'>내정보 변경</a></li>
+		    <li>
+		    <a href='${pageContext.request.contextPath}/member/detail.do?email=${loginUser.email}'>내정보 변경</a>
+		    </li>
 		    <li class='last'>
 		      <a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a>
 		    </li>

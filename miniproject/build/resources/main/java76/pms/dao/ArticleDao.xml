@@ -17,15 +17,14 @@
       content,
       cr_dt,
   	  photo,
-  	  email,
   	  mphoto
     from article
-    order by cr_dt desc
+    order by ano asc
   </select>
   
   <insert id="insert" parameterType="article">
-    insert into article(name,content,cr_dt,photo,email,mphoto) 
-    values(#{name},#{content},now(),#{photo},#{email},#{mphoto})
+    insert into article(name,content,cr_dt,photo,mphoto) 
+    values(#{name},#{content},now(),#{photo},#{mphoto})
   </insert>
   
   <delete id="delete" parameterType="int">
@@ -36,8 +35,9 @@
   <update id="update" parameterType="article">
     update article set 
       content=#{content},
+      cr_dt=now(),
   	  photo=#{photo}
-    where email=#{email}
+    where ano=#{no}
   </update>
   
   <select id="selectMy" resultMap="articleMap" parameterType="string">

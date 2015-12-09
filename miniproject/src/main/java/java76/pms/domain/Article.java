@@ -11,7 +11,8 @@ public class Article  implements Serializable {
   protected String    content;
   protected Date      createdDate;
   protected String    photo; // 컬럼명 = photo
-  protected String		mphoto;
+  protected String 		email;
+  protected String 	  mphoto;
   
   public Article() {}
 
@@ -27,6 +28,12 @@ public class Article  implements Serializable {
 	}
 	public void setMphoto(String mphoto) {
 		this.mphoto = mphoto;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public int getNo() {
 		return no;
