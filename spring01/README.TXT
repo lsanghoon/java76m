@@ -24,9 +24,30 @@ Test06.java
   
 Test07.java
   - 요청 핸들러의 파라미터 다루기
+  
+Test08.java
+  - 요청 핸들러의 파라미터로 선언할 수 있는 타입들.
+  
+Test09.java
+  - 요청 핸들러의 리턴 가능한 값의 타입.
+  
+Test10.java
+  - 문자열을 primitive type, String 이외의 타입으로 변환하는 방법
 
-
-
+Test11.java
+  - JSP를 클라이언트로 부터 감추기
+  
+Test12.java
+  - @CookieValue 애노테이션 사용하기
+  
+Test13.java
+  - GET/POST 구분하기
+  
+Test14.java
+  - ServletContext
+  
+  
+  
 
 
 

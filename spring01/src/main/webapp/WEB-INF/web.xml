@@ -48,6 +48,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     <param-value>/WEB-INF/dispatch-servlet.xml</param-value>
     </init-param>
      -->
+     <load-on-startup>1</load-on-startup>
   </servlet>
 
 

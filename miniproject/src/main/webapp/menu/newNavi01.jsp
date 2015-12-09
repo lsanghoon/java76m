@@ -20,7 +20,7 @@ body {
 }
 .menu {
   position: relative;
-  background: #0082b3;
+  background: #00B0FF;
 }
 .menu ul {
   list-style: none;
@@ -32,7 +32,7 @@ body {
   position: relative;
   display: block;
   text-align:center;
-  background: #0082b3;
+  background: #00B0FF;
   width: 100%;
   z-index: 500;
 }

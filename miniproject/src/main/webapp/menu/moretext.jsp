@@ -100,7 +100,7 @@ p {
             <td>${article.content}</td>
           </tr>
         </table>
-            <a href='detail.do?email=${article.email}' style="text-decoration: none;">수정</a>
+            <a href='detail.do?email=${article.email}' style="text-decoration: none; color: black;">수정</a>
             <a href="delete.do?no=${article.no}" style="text-decoration: none;">삭제</a>
         </form>
       </div><!-- end .entry-content -->

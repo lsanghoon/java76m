@@ -81,6 +81,7 @@ public class ArticleController {
 			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
 																  + "/" + newFileName);
+			
 			photofile.transferTo(attachfile);
 			article.setPhoto(newFileName);
 		}
@@ -124,6 +125,7 @@ public class ArticleController {
 			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
 																	+ "/" + newFileName);
+			
 			photofile.transferTo(attachfile);
 			article.setPhoto(newFileName);
 			
@@ -157,5 +159,5 @@ public class ArticleController {
 
 		return "redirect:list.do";
 	}
-
+	
 }

@@ -1,6 +1,6 @@
 -- 게시판 테이블 생성
 create table board2(
-  bno       int not null,
+  bno       int not null primary key auto_increment,
   title     varchar(255) not null,
   context   text not null,
   views     int default 0,

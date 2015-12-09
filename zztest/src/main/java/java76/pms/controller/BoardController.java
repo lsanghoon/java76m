@@ -77,6 +77,7 @@ public class BoardController {
     return "redirect:list.do";
   }
   
+  
   @RequestMapping("/board/detail.do")
   public String detail(
       int no,
