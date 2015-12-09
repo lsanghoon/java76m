@@ -31,12 +31,6 @@
 		where email=#{email}
 	</select>
 	
-	<select id="check" resultType="member" parameterType="string">
-		select count(email)
-		from member
-		where email=#{email}
-	</select>
-	
 	<select id="login" resultType="member" parameterType="map">
 		select email, name, tel, photo
 		from member

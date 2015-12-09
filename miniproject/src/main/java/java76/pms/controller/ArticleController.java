@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,24 +39,29 @@ public class ArticleController {
 	
 	@RequestMapping(value="add", method=RequestMethod.GET)
 	public String add() {
-		return "article/ArticleForm";
+			return "article/ArticleForm";
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String add(
 			Article article,
-			MultipartFile file) throws Exception {
-
-		if (file.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+			//Member member,
+			HttpSession session,
+			MultipartFile photo) throws Exception {
+		System.out.println("in");
+		if (photo.getSize() > 0) {
+			String newFileName = MultipartHelper.generateFilename(photo.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
 																  + "/" + newFileName);
-			file.transferTo(attachfile);
+			photo.transferTo(attachfile);
 			article.setPhoto(newFileName);
 		}
-
+		
+		//member = (Member) session.getAttribute("loginUser");
+		//article.setName(member.getName());
+		//article.setMphoto(member.getPhoto());
 		articleDao.insert(article);
-
+		System.out.println("insert");
 		return "redirect:list.do";
 	}
 

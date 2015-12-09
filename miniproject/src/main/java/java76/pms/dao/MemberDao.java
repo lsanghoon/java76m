@@ -16,8 +16,6 @@ public interface MemberDao {
 
   Member selectOne(String email);
   
-  int check(String email);
-
   Member login(Map<String,Object> paramMap);
 }
 

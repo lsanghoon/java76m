@@ -11,6 +11,7 @@ public class Article  implements Serializable {
   protected String    content;
   protected Date      createdDate;
   protected String    photo; // 컬럼명 = photo
+  protected String		mphoto;
   
   public Article() {}
 
@@ -20,6 +21,13 @@ public class Article  implements Serializable {
 	    + photo + "]";
 	}
 
+	
+	public String getMphoto() {
+		return mphoto;
+	}
+	public void setMphoto(String mphoto) {
+		this.mphoto = mphoto;
+	}
 	public int getNo() {
 		return no;
 	}

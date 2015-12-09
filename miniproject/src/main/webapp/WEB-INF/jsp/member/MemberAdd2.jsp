@@ -44,6 +44,55 @@ body {
   margin: 100px auto 10px;
   overflow: hidden;
 }
+.form-toggle {
+  z-index: 10;
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  background: #FFFFFF;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: translate(0, -25%) scale(0);
+      -ms-transform: translate(0, -25%) scale(0);
+          transform: translate(0, -25%) scale(0);
+  opacity: 0;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+}
+.form-toggle:before, .form-toggle:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 4px;
+  background: #4285F4;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.form-toggle:before {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+      -ms-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+}
+.form-toggle:after {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+      -ms-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+}
+.form-toggle.visible {
+  -webkit-transform: translate(0, -25%) scale(1);
+      -ms-transform: translate(0, -25%) scale(1);
+          transform: translate(0, -25%) scale(1);
+  opacity: 1;
+}
 .form-group {
   display: -webkit-box;
   display: -webkit-flex;
@@ -94,6 +143,12 @@ body {
 .form-group input:focus {
   color: rgba(0, 0, 0, 0.8);
 }
+.two .form-group input {
+  color: #FFFFFF;
+}
+.two .form-group input:focus {
+  color: #FFFFFF;
+}
 .form-group button {
   outline: none;
   background: #2b2f3a;
@@ -108,6 +163,22 @@ body {
   line-height: inherit;
   text-transform: uppercase;
   cursor: pointer;
+}
+.form-group .form-remember {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.form-group .form-remember input[type='checkbox'] {
+  display: inline-block;
+  width: auto;
+  margin: 0 10px 0 0;
+}
+.form-group .form-recovery {
+  color: #4285F4;
+  font-size: 12px;
+  text-decoration: none;
 }
 .form-panel {
   padding: 60px calc(5% + 60px) 60px 60px;
@@ -137,6 +208,12 @@ body {
   font-weight: 700;
   text-transform: uppercase;
 }
+.two .form-header h1 {
+  position: relative;
+  z-index: 40;
+  color: #FFFFFF;
+}
+
 .pen-footer {
   display: -webkit-box;
   display: -webkit-flex;
@@ -179,6 +256,7 @@ body {
 
 <!-- Form-->
 <div class="form">
+  <div class="form-toggle"></div>
   <div class="form-panel one">
     <div class="form-header">
       <h1>회원가입</h1>
@@ -209,5 +287,38 @@ body {
   </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+  var panelOne = $('.form-panel.two').height(),
+    panelTwo = $('.form-panel.two')[0].scrollHeight;
+
+  $('.form-panel.two').not('.form-panel.two.active').on('click', function(e) {
+    e.preventDefault();
+
+    $('.form-toggle').addClass('visible');
+    $('.form-panel.one').addClass('hidden');
+    $('.form-panel.two').addClass('active');
+    $('.form').animate({
+      'height': panelTwo
+    }, 200);
+  });
+
+  $('.form-toggle').on('click', function(e) {
+    e.preventDefault();
+    $(this).removeClass('visible');
+    $('.form-panel.one').removeClass('hidden');
+    $('.form-panel.two').removeClass('active');
+    $('.form').animate({
+      'height': panelOne
+    }, 200);
+  });
+});
+</script>
 </body>
 </html>
+
+
+
+
+

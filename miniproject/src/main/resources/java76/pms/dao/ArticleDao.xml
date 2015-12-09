@@ -16,14 +16,15 @@
   	  name,
       content,
       cr_dt,
-  	  photo
+  	  photo,
+  	  mphoto
     from article
     order by ano asc
   </select>
   
   <insert id="insert" parameterType="article">
-    insert into article(name,content,cr_dt,photo) 
-    values(#{name},#{content},now(),#{photo})
+    insert into article(name,content,cr_dt,photo,mphoto) 
+    values(#{name},#{content},now(),#{photo},#{mphoto})
   </insert>
   
   <delete id="delete" parameterType="int">
@@ -45,7 +46,8 @@
   	  name,
   	  content,
       cr_dt,
-  	  photo 
+  	  photo,
+  	  mphoto
     from article
     where email=#{email}
   </select>
