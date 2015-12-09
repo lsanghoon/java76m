@@ -22,7 +22,7 @@ import java76.pms.util.MultipartHelper;
 @RequestMapping("/article/*")
 public class ArticleController { 
 	public static final String SAVED_DIR = "/attachfile";
-	
+
 	@Autowired ArticleDao articleDao;
 	@Autowired ServletContext servletContext;
 
@@ -31,44 +31,48 @@ public class ArticleController {
 			Model model) throws Exception {
 
 		List<Article> articles = articleDao.selectList();
-		
+
 		model.addAttribute("articles", articles);
 
 		return "article/ArticleList";
 	}
 
 	@RequestMapping(value="search", method=RequestMethod.GET)
-  public String search(
-        String content,
-        Model model) throws Exception {
+	public String search(
+			String content,
+			Model model) throws Exception {
 
-     List<Article> articles = articleDao.search(content);
-     
-     model.addAttribute("articles", articles);
+		List<Article> articles = articleDao.search(content);
 
-     for (Article article : articles) {
-        System.out.println("search : " + article.getContent());
-     }
-     return "article/ArticleSearchList";
-  }
-	
+		model.addAttribute("articles", articles);
+
+		for (Article article : articles) {
+			System.out.println("search : " + article.getContent());
+		}
+		return "article/ArticleSearchList";
+	}
+
 	@RequestMapping("gall")
 	public String gall(
 			String email,
 			Model model) throws Exception {
 
-		List<Article> galls = articleDao.selectMy(email);
-		
-		model.addAttribute("galls", galls);
+		List<Article> articles = articleDao.selectMy(email);
 
-		return "lightgallery-master/demo/gall";
+		model.addAttribute("articles", articles);
+
+		for (Article article : articles) {
+			System.out.println(article.getName() + " : " + article.getPhoto());
+		}
+
+		return "article/ArticleMyList";
 	}
-	
+
 	@RequestMapping(value="add", method=RequestMethod.GET)
 	public String add() {
-			return "article/ArticleForm";
+		return "article/ArticleForm";
 	}
-	
+
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String add(
 			Article article,
@@ -76,88 +80,86 @@ public class ArticleController {
 			MultipartFile photofile,
 			HttpSession session
 			) throws Exception {
-		
+
 		if (photofile.getSize() > 0) {
 			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-																  + "/" + newFileName);
-			
+					+ "/" + newFileName);
+
 			photofile.transferTo(attachfile);
 			article.setPhoto(newFileName);
 		}
-		
+
 		member = (Member) session.getAttribute("loginUser");
-		
+
 		article.setName(member.getName());
 		String mp = member.getPhoto();
-		
-		System.out.println(member.getPhoto());
-		
+
 		article.setMphoto(mp);
 
 		article.setEmail(member.getEmail());
-		
+
 		articleDao.insert(article);
 		return "redirect:list.do";
 	}
 
 	@RequestMapping("detail")
 	public String detail(
+			int no,
 			String email,
 			Model model) throws Exception {
 
-		List<Article> articles = articleDao.selectMy(email);
-		model.addAttribute("articles", articles);
-		
-		return "article/ArticleDetail";
+		Article article = articleDao.selectOne(no);
+		System.out.println(article.getEmail());
+		System.out.println(email);
+		if (article.getEmail().equals(email)) {
+
+			model.addAttribute("article", article);
+			return "article/ArticleDetail";
+		}
+		return "redirect:list.do";
 	}
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(
-			HttpSession session,
-			Member member,
 			Article article,
 			MultipartFile photofile,
 			Model model) throws Exception {
 
-
 		if (photofile.getSize() > 0) {
 			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-																	+ "/" + newFileName);
-			
+					+ "/" + newFileName);
+
 			photofile.transferTo(attachfile);
 			article.setPhoto(newFileName);
-			
+
 		}	else if (article.getPhoto().length() == 0) {
 			article.setPhoto(null);
 		}
-		
-		member = (Member) session.getAttribute("loginUser");
-		article.setName(member.getName());
-		String mp = member.getPhoto();
-		
-		article.setMphoto(mp);
-		
+
 		if (articleDao.update(article) <= 0) {
 			model.addAttribute("errorCode", "401");
 			return "article/ArticleAuthError";
 		} 
-		
 		return "redirect:list.do";
 	}
 
 	@RequestMapping("delete")
 	public String delete(
 			int no,
+			String email,
 			Model model) throws Exception {
 
-		if (articleDao.delete(no) <= 0) {
-			model.addAttribute("errorCode", "401");
-			return "article/ArticleAuthError";
-		} 
+		Article article = articleDao.selectOne(no);
 
+		if (article.getEmail().equals(email)) {
+			if (articleDao.delete(no) <= 0) {
+				model.addAttribute("errorCode", "401");
+				return "article/ArticleAuthError";
+			} 
+		}
 		return "redirect:list.do";
 	}
-	
+
 }

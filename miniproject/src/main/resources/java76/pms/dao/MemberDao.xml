@@ -20,6 +20,7 @@
 
 	<update id="update" parameterType="member">
 		update member set
+		name=#{name},
 		tel=#{tel},
 		photo=#{photo}
 		where email=#{email}

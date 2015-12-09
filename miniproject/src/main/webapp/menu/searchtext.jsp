@@ -18,7 +18,7 @@ p {
   position: relative;
   overflow: hidden;
   margin: 30px 0;
-  padding: 20px 20px 4em 20px;
+  padding: 20px 20px 1em 20px;
   background: #FFF;
   font-family: "Open Sans", sans-serif;
   box-shadow: 0 0 15px #999;
@@ -77,10 +77,10 @@ p {
         <form method="get" enctype="multipart/form-data">
         <table border="0" align="center" width="350px">
           <tr>
-            <td>&nbsp;&nbsp;작성자 : ${article.name}</td>
+            <td>&nbsp;작성자 : ${article.name}</td>
           </tr>
           <tr>
-            <td>&nbsp;&nbsp;작성일 : ${article.createdDate}</td>
+            <td>&nbsp;작성일 : ${article.createdDate}</td>
           </tr>
           
           <c:choose>
@@ -100,8 +100,12 @@ p {
             <td>${article.content}</td>
           </tr>
         </table>
-            <a href='detail.do?email=${article.email}' style="text-decoration: none;">수정</a>
-            <a href="delete.do?no=${article.no}" style="text-decoration: none;">삭제</a>
+        <br><br>
+        <p align="right">
+            <a href='detail.do?email=${loginUser.email}&no=${article.no}' style="text-decoration: none; color: black;">수정</a>
+            &nbsp;
+            <a href="delete.do?no=${article.no}&email=${loginUser.email}" style="text-decoration: none; color: black;">삭제</a>
+        </p>
         </form>
       </div><!-- end .entry-content -->
     </div><!-- end .entry -->

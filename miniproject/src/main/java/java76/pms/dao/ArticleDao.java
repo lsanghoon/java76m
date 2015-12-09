@@ -15,6 +15,8 @@ public interface ArticleDao {
 
   List<Article> selectMy(String email);
   
+  Article selectOne(int no);
+  
   List<Article> search(String content);
 }
 

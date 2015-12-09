@@ -113,18 +113,16 @@ body {
       <h2 class="entry-title">게시물 내용</h2> 
       <div class="entry-content">
       <div class="form">
-        <form action="update.do" method="post" enctype="multipart/form-data">
-      
+        <form action="update.do?no=${article.no}" method="post" enctype="multipart/form-data">
+          <div align="center" >C O N T E N T</div>
           <div class="form-group">
           <textarea name="content" cols='70' rows='20'>${article.content}</textarea>
           </div>
-        
+          
           <div class="form-group">
-          <img src="../file/${(empty article.photo)?'default.png':article.photo}"
-            style="width:450px; height:450px">
           <input type='file' name='photofile'>
           <input type='hidden' name='photo' value='${article.photo}'>
-          </div>
+          </div>      
         
           <div class="form-group">
             <button name='update' type='submit'>변경</button>

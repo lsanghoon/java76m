@@ -37,16 +37,31 @@
     update article set 
       content=#{content},
   	  photo=#{photo}
-    where email=#{email}
+    where ano=#{no}
   </update>
   
   <select id="selectMy" resultMap="articleMap" parameterType="map">
     select 
+  	  ano,
   	  name,
   	  content,
-  	  photo
+  	  photo,
+  	  email
     from article
     where email=#{email}
+  </select>
+  
+  <select id="selectOne" resultMap="articleMap" parameterType="int">
+  	select 
+      ano,
+       name,
+       content,
+      cr_dt,
+       photo,
+       mphoto,
+  		email
+    from article
+  	where ano=#{no}
   </select>
   
   <select id="search" resultMap="articleMap" parameterType="string">
@@ -56,7 +71,8 @@
        content,
       cr_dt,
        photo,
-       mphoto
+       mphoto,
+  		email
     from article
     where content like CONCAT('%',#{content},'%')
 

@@ -114,7 +114,7 @@ body {
       <div class="entry-content">
       <div class="form">
         <form action="add.do" method="post" enctype="multipart/form-data">
-      
+          <div align="center" >C O N T E N T</div>
           <div class="form-group">
           <textarea name="content" cols='70' rows='20'></textarea>
           </div>

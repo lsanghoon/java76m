@@ -73,8 +73,8 @@ p {
   <div id="content">
 
     <div class="post type-post status-publish format-standard hentry category-uncategorized entry">
-      <div class="entry-content">
         <form method="get" enctype="multipart/form-data">
+      <div class="entry-content">
         <table border="0" align="center" width="350px">
           <tr>
             <td>&nbsp;작성자 : ${article.name}</td>
@@ -87,7 +87,7 @@ p {
           <c:when test="${not empty article.photo}">
 	          <tr>
 	            <td height="30px">
-	              <img src="../attachfile/${article.photo}" style="width:350px; height:auto">
+	              <img src="../attachfile/${(empty article.photo)?'anonymous.png':article.photo}" style="width:350px; height:auto">
 	            </td>
 	          </tr>
           </c:when>
@@ -97,7 +97,7 @@ p {
           
           </c:choose>
           <tr>
-            <td>${article.content}</td>
+            <td><div align="center">- content -</div><br>${article.content}</td>
           </tr>
         </table>
         <br><br>
@@ -106,8 +106,8 @@ p {
             &nbsp;
             <a href="delete.do?no=${article.no}&email=${loginUser.email}" style="text-decoration: none; color: black;">삭제</a>
         </p>
-        </form>
       </div><!-- end .entry-content -->
+        </form>
     </div><!-- end .entry -->
   </div>
 </div><!-- end .archive -->

@@ -14,7 +14,7 @@
 
 <jsp:include page="/menu/newNavi01.jsp"/>
 
-<jsp:include page="/menu/moretext.jsp"/>
+<jsp:include page="/menu/moreboard.jsp"/>
 
 </body>
 </html>

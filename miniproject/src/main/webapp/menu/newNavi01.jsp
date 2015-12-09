@@ -235,7 +235,7 @@ body {
 		    <ul>
 		    
 		    <li>
-          <a href='${pageContext.request.contextPath}/article/gall.do?email=${loginUser.email}'>내 사진</a>
+          <a href='${pageContext.request.contextPath}/article/gall.do?email=${loginUser.email}'>내가올린 게시물</a>
         </li>
 		    
 		    <li>

@@ -95,6 +95,7 @@ public class MemberController {
 
 	@RequestMapping("delete")
 	public String delete(
+			HttpSession session,
 			String email,
 			Model model) throws Exception {
 
@@ -102,6 +103,7 @@ public class MemberController {
 			model.addAttribute("errorCode", "401");
 			return "member/MemberAuthError";
 		}
+		session.invalidate();
 		return "redirect:../article/list.do";
 	}
 	
