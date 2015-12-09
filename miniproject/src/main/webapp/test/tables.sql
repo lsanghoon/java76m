@@ -18,3 +18,6 @@ create table article (
 
 alter table member add column joindate datetime not null;
 alter table article add column mphoto varchar(255);
+
+insert into article(name,content,cr_dt,photo,mphoto) 
+    values('이강현미밥','aefawegqweqwefcqewq',now(),null,null);

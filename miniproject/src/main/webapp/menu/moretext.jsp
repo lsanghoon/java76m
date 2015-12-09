@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <style>
 body {
 }
@@ -72,22 +74,23 @@ p {
     <div class="post type-post status-publish format-standard hentry category-uncategorized entry">
       <%-- <h2 class="entry-title"><a href="#">a ${article.name}</a></h2> --%> 
       <div class="entry-content">
-      
-        <table border="1" align="center" width="350px">
+      <c:forEach var="article" items="${articles}">
+        <table align="center" width="350px">
           <tr>
-            <td rowspan="2" width="60px" height="60px">photo ${article.photo}</td>
-            <td>&nbsp;&nbsp;name ${article.name}</td>
+            <td rowspan="2" width="60px" height="60px">${article.photo}</td>
+            <td>&nbsp;&nbsp;${article.name}</td>
           </tr>
           <tr>
-            <td>&nbsp;&nbsp;date ${article.createdDate}</td>
+            <td>&nbsp;&nbsp;${article.createdDate}</td>
           </tr>
           <tr>
             <td colspan="2" height="30px">attachphotofile</td>
           </tr>
           <tr>
-            <td colspan="2">content ${article.content}</td>
+            <td colspan="2">${article.content}</td>
           </tr>
         </table>
+        </c:forEach> 
       </div><!-- end .entry-content -->
     </div><!-- end .entry -->
   </div>

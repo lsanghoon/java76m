@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java76.pms.dao.ArticleDao;
 import java76.pms.domain.Article;
+import java76.pms.domain.Member;
 import java76.pms.util.MultipartHelper;
 
 @Controller
@@ -45,21 +46,22 @@ public class ArticleController {
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String add(
 			Article article,
-			//Member member,
-			HttpSession session,
-			MultipartFile photo) throws Exception {
+			Member member,
+			MultipartFile photofile,
+			HttpSession session
+			) throws Exception {
 		System.out.println("in");
-		if (photo.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(photo.getOriginalFilename());  
+		if (photofile.getSize() > 0) {
+			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
 																  + "/" + newFileName);
-			photo.transferTo(attachfile);
+			photofile.transferTo(attachfile);
 			article.setPhoto(newFileName);
 		}
 		
-		//member = (Member) session.getAttribute("loginUser");
-		//article.setName(member.getName());
-		//article.setMphoto(member.getPhoto());
+		member = (Member) session.getAttribute("loginUser");
+		article.setName(member.getName());
+		article.setMphoto(member.getPhoto());
 		articleDao.insert(article);
 		System.out.println("insert");
 		return "redirect:list.do";
