@@ -10,8 +10,8 @@
 	</select>
 
 	<insert id="insert" parameterType="member">
-		insert into member(name,email,tel,photo,pwd)
-		values(#{name},#{email},#{tel},#{photo},sha1(#{password}))
+		insert into member(name,email,tel,photo,pwd,joindate)
+		values(#{name},#{email},#{tel},#{photo},sha1(#{password}),now())
 	</insert>
 
 	<delete id="delete" parameterType="string">

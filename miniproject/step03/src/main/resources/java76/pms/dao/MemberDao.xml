@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java76.pms.dao.MemberDao">
+	<select id="selectList" resultType="member" parameterType="map">
+		select email, name, tel, photo
+		from member
+	</select>
+
+	<insert id="insert" parameterType="member">
+		insert into member(name,email,tel,photo,pwd)
+		values(#{name},#{email},#{tel},#{photo},sha1(#{password}))
+	</insert>
+
+	<delete id="delete" parameterType="string">
+		delete from member where email=#{email}
+	</delete>
+
+	<update id="update" parameterType="member">
+		update member set
+		name=#{name},
+		tel=#{tel},
+		photo=#{photo}
+		where email=#{email}
+	</update>
+	
+	<select id="selectOne" resultType="member" parameterType="string">
+		select email, name, tel, photo
+		from member
+		where email=#{email}
+	</select>
+	
+	<select id="login" resultType="member" parameterType="map">
+		select email, name, tel, photo
+		from member
+		where email=#{email} and pwd=sha1(#{password})
+	</select>
+</mapper>
+
+
+
+
+

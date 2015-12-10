@@ -31,7 +31,7 @@ public class ArticleController {
 			Model model) throws Exception {
 
 		List<Article> articles = articleDao.selectList();
-
+		
 		model.addAttribute("articles", articles);
 
 		return "article/ArticleList";

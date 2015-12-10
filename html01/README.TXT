@@ -45,7 +45,9 @@
 
 5. 서버 애플리케이션과 연동하는 태그
 1) form, input, textarea, select, button - 입력폼을 만들 때 사용하는 태그
+2) span - 특정 데이터를 분류할 때 사용하는 태그
 
+[2단계 - css]
 
 
 
