@@ -4,7 +4,7 @@ import java.util.List;
 
 import java76.pms.domain.Product;
 
-public interface ArticleDao {
+public interface CartDao {
   List<Product> selectList();
   
   int insert(Product article);

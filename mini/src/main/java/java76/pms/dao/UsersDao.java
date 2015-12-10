@@ -5,7 +5,7 @@ import java.util.Map;
 
 import java76.pms.domain.Users;
 
-public interface MemberDao {
+public interface UsersDao {
   List<Users> selectList();
 
   int insert(Users member);

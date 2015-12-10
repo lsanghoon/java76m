@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import java76.pms.dao.ArticleDao;
+import java76.pms.dao.ProductDao;
 import java76.pms.domain.Product;
 import java76.pms.domain.Users;
 import java76.pms.util.MultipartHelper;
 
 @Controller
 @RequestMapping("/article/*")
-public class ArticleController { 
+public class ProductController { 
 	public static final String SAVED_DIR = "/attachfile";
 
-	@Autowired ArticleDao articleDao;
+	@Autowired ProductDao articleDao;
 	@Autowired ServletContext servletContext;
 
 	@RequestMapping("list")

@@ -11,13 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java76.pms.dao.MemberDao;
+import java76.pms.dao.UsersDao;
 import java76.pms.domain.Users;
 
 @Controller
 @RequestMapping("/auth/*")
 public class AuthController {  
-  @Autowired MemberDao memberDao;
+  @Autowired UsersDao memberDao;
 
   @RequestMapping(value="login", method=RequestMethod.GET)
   public String loginform() {

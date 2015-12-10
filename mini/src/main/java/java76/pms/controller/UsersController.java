@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
-import java76.pms.dao.MemberDao;
+import java76.pms.dao.UsersDao;
 import java76.pms.domain.Users;
 import java76.pms.util.MultipartHelper;
 
 @Controller
 @RequestMapping("/member/*")
-public class MemberController {
+public class UsersController {
 	public static final String SAVED_DIR = "/file";
 	
-	@Autowired MemberDao memberDao;
+	@Autowired UsersDao memberDao;
 	@Autowired ServletContext servletContext;
 
 	@RequestMapping("list")
