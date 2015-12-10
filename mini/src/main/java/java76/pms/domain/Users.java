@@ -1,7 +1,6 @@
 package java76.pms.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class Users implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -9,22 +8,22 @@ public class Users implements Serializable {
   protected String email;
   protected String password;
   protected String name;
+  protected String addr;
   protected String tel;
-  protected String photo;
-  protected Date	 joindate;
+  protected int		 point;
+  protected String pphoto;
   
   public Users() {}
   
-  public Users(String email) {
+  @Override
+	public String toString() {
+	return "Users [email=" + email + ", password=" + password + ", name=" + name + ", addr=" + addr + ", tel=" + tel
+	    + ", point=" + point + ", pphoto=" + pphoto + "]";
+	}
+
+	public Users(String email) {
     this.email = email;
   }
-
-	@Override
-	public String toString() {
-	return "Member [email=" + email + ", password=" + password + ", name=" + name + ", tel=" + tel + ", photo=" + photo
-	    + "]";
-	}
-	
 	public String getEmail() {
 		return email;
 	}
@@ -43,19 +42,31 @@ public class Users implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
 	public String getTel() {
 		return tel;
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getPhoto() {
-		return photo;
+	public int getPoint() {
+		return point;
 	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setPoint(int point) {
+		this.point = point;
 	}
-  
+	public String getPphoto() {
+		return pphoto;
+	}
+	public void setPphoto(String pphoto) {
+		this.pphoto = pphoto;
+	}
+
 }
 
 
