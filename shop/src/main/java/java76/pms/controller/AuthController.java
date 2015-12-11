@@ -19,6 +19,11 @@ import java76.pms.domain.Users;
 public class AuthController {  
   @Autowired UsersDao memberDao;
 
+  @RequestMapping(value="list", method=RequestMethod.GET)
+  public String list() {
+  	return "product/adminList";
+  }
+  
   @RequestMapping(value="login", method=RequestMethod.POST)
   public String login(
       String email,
@@ -41,14 +46,18 @@ public class AuthController {
     paramMap.put("email", email);
     paramMap.put("password", password);
     
-    Users member = memberDao.login(paramMap);
+    Users users = memberDao.login(paramMap);
 
-    if (member == null) { // 로그인 실패!
+    if (users == null) { // 로그인 실패!
       session.invalidate(); // 세션을 무효화시킴. => 새로 세션 객체 생성!
       return "auth/LoginFail";
     }
+    
+    session.setAttribute("loginUser", users);
 
-    session.setAttribute("loginUser", member);
+    if (users.getEmail().equals("admin@a.com"))
+    	return "redirect:list.do";
+    
     return "redirect:../product/list.do";
   }
   

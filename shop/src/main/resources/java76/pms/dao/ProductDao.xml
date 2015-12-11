@@ -24,8 +24,8 @@
   </select>
   
   <insert id="insert" parameterType="product">
-    insert into product(pstock,pcost,pcate,pname,pphoto,pcontent) 
-    values(#{pstock},#{pcost},#{pcate},#{pname},#{pphoto},#{pcontent})
+    insert into product(pstock,pcost,pcate,pname,pphoto,fimage,simage) 
+    values(#{pstock},#{pcost},#{pcate},#{pname},#{pphoto},#{fimage},#{simage})
   </insert>
   
   <delete id="delete" parameterType="int">
@@ -47,8 +47,9 @@
   	  pcate,
       pname,
   	  pphoto,
-  	  pcontent,
-  	  pviews
+  	  pviews,
+  	  fimage,
+  	  simage
     from product
   	where pno=#{no}
   </select>
@@ -61,7 +62,6 @@
   	  pcate,
       pname,
   	  pphoto,
-  	  pcontent,
   	  pviews
     from product
     where content like CONCAT('%',#{pname},'%')

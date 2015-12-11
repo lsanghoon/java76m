@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Off-canvas Push Menu For Bootstrap 3</title>
+<title>쇼핑몰~</title>
 
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
@@ -502,29 +502,21 @@ body a:hover { color: #ffffff; }
 
       <li> <a href="#"><i class="fa fa-fw fa fa-female"></i> Category four</a> </li>
       
-      <c:choose>
-        <c:when test="${not empty loginUser}">
         
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i>환영합니다~ ${loginUser.name}님<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header">회원 정보 관리</li>
-              <li><a href='${pageContext.request.contextPath}/users/detail.do?email=${loginUser.email}'>개인정보 변경</a></li>
-              <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
-            </ul>
-          </li>
+	      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i>${loginUser.name}님<span class="caret"></span></a>
+	        <ul class="dropdown-menu" role="menu">
+	          <li class="dropdown-header">물품 관리</li>
+	          <li><a href="${pageContext.request.contextPath}/auth/logout.do">회원목록</a></li>
+	          <li><a data-toggle="modal" data-target="#squareProAddModal">상품 추가</a></li>
+	          <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
+	        </ul>
+	      </li>
         
-        </c:when>
-        <c:otherwise>
-		      <li> <a data-toggle="modal" data-target="#squareloginModal"><i class="fa fa-fw fa fa-power-off"></i> Sing In</a> </li>
-		      <li> <a data-toggle="modal" data-target="#squarespaceModal"><i class="fa fa-fw fa fa-power-off"></i> Sign Up</a> </li>
-        </c:otherwise>
-      </c:choose>
     </ul>
   </nav>
   
-  <!-- --------------------회원가입 구간--------------------- -->
-  
-  <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <!-- --------------------상품추가 구간-------------------- -->
+   <div class="modal fade" id="squareProAddModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content">
          
@@ -532,94 +524,7 @@ body a:hover { color: #ffffff; }
                <button type="button" class="close" data-dismiss="modal">
                   <span aria-hidden="true">×</span><span class="sr-only">Close</span>
                </button>
-               <h3 class="modal-title" id="lineModalLabel">회원가입</h3>
-            </div>
-            
-            <div class="modal-body">
-							<section>
-								<article>
-									<fieldset class="row div div-join">
-									   
-										<form action='../users/add.do' method='post' enctype="multipart/form-data">
-											<div class="panel panel-default">
-											     
-												<div class="panel-heading">
-												  <label>필수 입력 사항</label>
-												</div>
-												      
-												<div class="panel-body">
-													<div id="emailForm" class="form-group has-feedback">
-														<label for="email">이메일</label> 
-														<input type="text" class="form-control" id="email" name="email" maxlength="30"
-														  placeholder="이메일을 입력해주세요" autofocus="true" onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="emailMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
-													</div>
-													       
-													<hr>
-													<div id="passwordForm" class="form-group has-feedback">
-														<label for="password">비밀번호</label> 
-														<input type="password" class="form-control" id="password" name="password"
-														 maxlength="20" placeholder="비밀번호를 입력하세요." onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="passwordMsg" style="display: none;">필수 정보입니다.</div>
-													</div>
-													       
-													<div id="password2Form" class="form-group has-feedback">
-														<label for="password2">비밀번호 재입력</label> 
-														<input type="password" class="form-control" id="password2" name="password2" maxlength="20"
-														  placeholder="비밀번호를 재입력하세요." onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="password2Msg" style="display: none;">필수 정보입니다.</div>
-													</div>
-													       
-													<hr>
-													<div id="playerNameForm" class="form-group has-feedback">
-														<label for="playerName">이름</label> 
-														<input type="text" class="form-control" id="playerName" name="name" maxlength="20"
-														  autofocus="true" placeholder="이름을 입력하세요." onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="playerNameMsg" style="display: none;">필수 정보입니다.</div>
-													</div>
-													       
-													<div id="addrForm" class="form-group has-feedback">
-														<label for="addr">주소</label>
-														<input type="text" class="form-control" id="addr" name="addr" maxlength="50"
-														  autofocus="true" placeholder="주소를 입력해 주세요" onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="addrMsg" style="display: none;">필수 정보입니다.</div>
-													</div>
-													       
-													<div id="phoneForm" class="form-group has-feedback">
-														<label for="phone">휴대전화번호</label>
-														<input type="text" class="form-control" id="phone" name="tel" maxlength="13"
-														  placeholder="휴대전화번호를 입력해주세요 (예) 010-1234-5678" onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="phoneMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
-													</div>
-													       
-													<div class="div-center">
-													 <button type="submit" id="joinBtn" class="btn btn-lg btn-primary btn-join">가입</button>
-													 <a type="button" class="btn btn-lg btn-danger btn-cancel" href="list.do">취소</a>
-													</div>
-												</div>
-											      
-											</div>
-										</form>
-									    
-									</fieldset>
-								</article>
-							</section>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- --------------------/회원가입 구간-------------------- -->
-   
-   <!-- --------------------로그인 구간-------------------- -->
-   <div class="modal fade" id="squareloginModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-         
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal">
-                  <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-               </button>
-               <h3 class="modal-title" id="lineModalLabel">로그인</h3>
+               <h3 class="modal-title" id="lineModalLabel">상품추가</h3>
             </div>
             
             <div class="modal-body">
@@ -627,35 +532,78 @@ body a:hover { color: #ffffff; }
                 <article>
                   <fieldset class="row div div-join">
                      
-                    <form action='../auth/login.do' method='post' enctype="multipart/form-data">
+                    <form action='../product/add.do' method='post' enctype="multipart/form-data">
                       <div class="panel panel-default">
                            
-	                      <div class="panel-heading">
-	                        <label>환영합니다~ 이메일과 패스워드를 입력해주세요!</label>
-	                      </div>
-	                            
-	                      <div class="panel-body">
-	                      
-	                        <div id="emailForm" class="form-group has-feedback">
-	                          <label for="email">이메일</label> 
-	                          <input type=email class="form-control" id="email" name="email" value='${cookie.email.value}' maxlength="30" required="required"/>
-	                        </div>
-	                        
-	                        <div id="passwordForm" class="form-group has-feedback">
-                            <label for="password">비밀번호</label> 
-                            <input type="password" class="form-control" id="password" name="password" maxlength="30" required="required"/>
+                        <div class="panel-heading">
+                          <label>상품을 추가해주세요~</label>
+                        </div>
+                              
+                        <div class="panel-body">
+                        
+                          <div id="pcateForm" class="form-group has-feedback">
+                            <label for="pcate">카테고리</label> 
+                            <select name="pcate" style="text-align: center;">
+                              <option value=" ">선택하세요</option>
+                              <option value=" ">--Outer--</option>
+															<option value='cardigan'>가디건</option>
+															<option value='jacket'>자켓</option>
+															<option value='coat'>코트</option>
+															<option value='jumper'>점퍼/야상</option>
+															
+                              <option value=" ">---Top---</option>
+															<option value='longT'>긴팔</option>
+															<option value='shortT'>반팔</option>
+
+                              <option value=" ">--Dress--</option>
+															<option value='slim'>슬림</option>
+															<option value='loose'>루즈</option>
+
+                              <option value=" ">--Pants--</option>
+															<option value='longP'>롱팬츠</option>
+															<option value='shortP'>숏팬츠</option>
+
+                              <option value=" ">---Bag---</option>
+															<option value='shoulder'>숄더백</option>
+															<option value='clutch'>클러치백</option>
+                            </select>
                           </div>
                           
-                          <%-- <div id="passwordForm" class="form-group has-feedback">
-                            <label for="saveEmail">이메일 저장</label>
-                            <input type="checkbox" name="saveEmail" ${(empty cookie.email)?"":"checked"}>
-                          </div> --%>
+                          <div id="pnameForm" class="form-group has-feedback">
+                            <label for="pname">상품명</label> 
+                            <input type="text" class="form-control" id="pname" name="pname" maxlength="30" required="required"/>
+                          </div>
                           
-		                      <div class="div-center">
-	                          <button type="submit" id="joinBtn" class="btn btn-lg btn-primary btn-join">로그인</button>
-	                        </div>
+                          <div id="pcostForm" class="form-group has-feedback">
+                            <label for="pcost">가격</label> 
+                            <input type="text" class="form-control" id="pcost" name="pcost" maxlength="30" required="required"/>
+                          </div>
+                          
+                          <div id="pstockForm" class="form-group has-feedback">
+                            <label for="pstock">재고</label> 
+                            <input type="text" class="form-control" id="pstock" name="pstock" maxlength="30" required="required"/>
+                          </div>
+                          
+                          <div id="pphotoForm" class="form-group has-feedback">
+                            <label for="pphoto">메인이미지</label> 
+                            <input type="file" class="form-control" id="pphoto" name="pphotofile"/>
+                          </div>
+                          
+                          <div id="fimageForm" class="form-group has-feedback">
+                            <label for="fimage">이미지1</label> 
+                            <input type="file" class="form-control" id="fimage" name="fimagefile"/>
+                          </div>
+                          
+                          <div id="simageForm" class="form-group has-feedback">
+                            <label for="simage">이미지2</label> 
+                            <input type="file" class="form-control" id="simage" name="simagefile"/>
+                          </div>
+                          
+                          <div class="div-center">
+                            <button type="submit" id="joinBtn" class="btn btn-lg btn-primary btn-join">등록</button>
+                          </div>
                         </div>
-	                      
+                        
                       </div> 
                     </form>
                       
@@ -666,8 +614,8 @@ body a:hover { color: #ffffff; }
          </div>
       </div>
    </div>
-   <!-- --------------------/로그인 구간-------------------- -->
-   
+   <!-- --------------------/상품추가 구간-------------------- -->
+  
   <!-- /#sidebar-wrapper --> 
   
   <!-- Page Content -->

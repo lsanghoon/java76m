@@ -9,6 +9,8 @@ public class Product  implements Serializable {
 	protected String    pname;
 	protected int    		pcost;
 	protected String 	  pphoto;
+	protected String 	  fimage;
+	protected String 	  simage;
 	protected int				pstock;
 	protected String		pcate;
 	protected int				pviews;
@@ -17,10 +19,22 @@ public class Product  implements Serializable {
 
 	@Override
 	public String toString() {
-	return "Product [no=" + no + ", pname=" + pname + ", pcost=" + pcost + ", pphoto=" + pphoto + ", pstock=" + pstock
-	    + ", pcate=" + pcate + ", pviews=" + pviews + "]";
+	return "Product [no=" + no + ", pname=" + pname + ", pcost=" + pcost + ", pphoto=" + pphoto + ", fimage=" + fimage
+	    + ", simage=" + simage + ", pstock=" + pstock + ", pcate=" + pcate + ", pviews=" + pviews + "]";
 	}
 
+	public String getFimage() {
+		return fimage;
+	}
+	public void setFimage(String fimage) {
+		this.fimage = fimage;
+	}
+	public String getSimage() {
+		return simage;
+	}
+	public void setSimage(String simage) {
+		this.simage = simage;
+	}
 	public int getPviews() {
 		return pviews;
 	}

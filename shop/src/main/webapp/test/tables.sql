@@ -27,14 +27,21 @@ create table product (
   pcate varchar(255),
   pphoto varchar(255) not null,
   pcontent text,
-  pviews int default 0;
+  pviews int default 0,
   constraint cart_pk primary key (pno)
 );
 
 
 
 alter table users drop point;
+
+alter table users drop fimage;
+alter table users drop simage;
+
 alter table users add column point int default 0;
+
+alter table product add column fimage varchar(255);
+alter table product add column simage varchar(255);
 
 insert into users(email,pwd,name,addr,tel) 
 values('admin@admin.admin','1111','admin','admin-address','000-0000-0000');

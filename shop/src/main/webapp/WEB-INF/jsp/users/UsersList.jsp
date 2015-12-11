@@ -8,12 +8,9 @@
 <html>
 <head>
   <meta charset='UTF-8'>
-  <title>학생-목록</title>
+  <title>회원목록</title>
 </head>
 <body>
-
-<jsp:include page="/menu/newNavi01.jsp"/>
-
 
 <h1>학생2</h1>
 <a href='add.do'>새 학생</a><br>
@@ -24,7 +21,7 @@
     <th>이름</th>
     <th>전화</th>
   </tr>
-<c:forEach var="member" items="${members}">    
+<c:forEach var="users" items="${users}">    
 
   
   <tr>

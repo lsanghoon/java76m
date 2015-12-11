@@ -32,6 +32,8 @@
 
 <ui>
 
+<c:forEach var="article" items="${articles}">
+
 <li>
 <div class="imgteaser">
 <a href="#">

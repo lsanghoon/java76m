@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Off-canvas Push Menu For Bootstrap 3</title>
+<title>쇼핑몰</title>
 
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
@@ -505,7 +505,7 @@ body a:hover { color: #ffffff; }
       <c:choose>
         <c:when test="${not empty loginUser}">
         
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i>환영합니다~ ${loginUser.name}님<span class="caret"></span></a>
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i>${loginUser.name}님<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">회원 정보 관리</li>
               <li><a href='${pageContext.request.contextPath}/users/detail.do?email=${loginUser.email}'>개인정보 변경</a></li>

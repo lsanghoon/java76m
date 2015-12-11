@@ -31,15 +31,10 @@ public class ProductController {
 			HttpSession session,
 			Model model) throws Exception {
 
-		Users users = (Users) session.getAttribute("loginUser");
 		
 		List<Product> products = productDao.selectList();
 		model.addAttribute("products", products);
 		
-		if (users.getEmail().equals("admin@a.com")){
-			return "redirect:adminList.do";
-		}
-
 		return "product/ProductList";
 	}
 
@@ -64,17 +59,33 @@ public class ProductController {
 	public String add(
 			Product product,
 			Users member,
-			MultipartFile photofile,
-			HttpSession session
-			) throws Exception {
+			MultipartFile pphotofile,
+			MultipartFile fimagefile,
+			MultipartFile simagefile) throws Exception {
 
-		if (photofile.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
+		if (pphotofile.getSize() > 0) {
+			String newFileName = MultipartHelper.generateFilename(pphotofile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
 					+ "/" + newFileName);
 
-			photofile.transferTo(attachfile);
+			pphotofile.transferTo(attachfile);
 			product.setPphoto(newFileName);
+		}
+		if (fimagefile.getSize() > 0) {
+			String newFileName = MultipartHelper.fimageFilename(fimagefile.getOriginalFilename());  
+			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+					+ "/" + newFileName);
+
+			fimagefile.transferTo(attachfile);
+			product.setFimage(newFileName);
+		}
+		if (simagefile.getSize() > 0) {
+			String newFileName = MultipartHelper.simageFilename(simagefile.getOriginalFilename());  
+			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+					+ "/" + newFileName);
+
+			simagefile.transferTo(attachfile);
+			product.setSimage(newFileName);
 		}
 
 		productDao.insert(product);

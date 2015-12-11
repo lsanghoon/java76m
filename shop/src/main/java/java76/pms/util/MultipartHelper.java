@@ -8,7 +8,29 @@ public class MultipartHelper {
       ext = originFilename.substring(dotPos);
     }
     
-    return String.format("file-%d-%d%s", 
+    return String.format("photo-%d-%d%s", 
+            System.currentTimeMillis(), count(), ext); 
+  }
+  
+  public static String fimageFilename(String originFilename) {
+    int dotPos = originFilename.lastIndexOf(".");
+    String ext = "";
+    if (dotPos != -1) {
+      ext = originFilename.substring(dotPos);
+    }
+    
+    return String.format("fimage-%d-%d%s", 
+            System.currentTimeMillis(), count(), ext); 
+  }
+  
+  public static String simageFilename(String originFilename) {
+    int dotPos = originFilename.lastIndexOf(".");
+    String ext = "";
+    if (dotPos != -1) {
+      ext = originFilename.substring(dotPos);
+    }
+    
+    return String.format("simage-%d-%d%s", 
             System.currentTimeMillis(), count(), ext); 
   }
   
