@@ -29,100 +29,29 @@
 <div id="wrap"> 
 <div id="main-content">
 <div class="vertalign">
-
-<ui>
-
-<c:forEach var="article" items="${articles}">
-
-<li>
-<div class="imgteaser">
-<a href="#">
-  <img src="../img/logout2.png" width="256px" height="256px" alt="Daim Graffiti" />
-  <span class="desc">
-    <h2>슬랙스</h2>
-    <h3>20,000원</h3>
-    <p>
-    새벽녁...후배와 술한잔을 하다 보니 금새 날이 밝아 올랐다.
-    동이 트는 새벽에 느껴오는 이슬은 느껴본자만이 알 수 있는 피곤함과 자괴감, 그리고 후회라는걸..
-    </p>
-  </span>
-</a>
-</div>
-</li>
-
-<li>
-<div class="imgteaser">
-<a href="#">
-  <img src="../img/a\logout2.png" width="256px" height="256px" alt="Daim Graffiti" />
-  <span class="desc">
-    <h2>설현이라네</h2>
-    <h3>50,000원</h3>
-    <p>
-    새벽녁...후배와 술한잔을 하다 보니 금새 날이 밝아 올랐다.
-    </p>
-  </span>
-</a>
-</div>
-</li>
-
-<li>
-<div class="imgteaser">
-<a href="#">
-  <img src="../img/logout2.png" width="256px" height="256px" alt="Daim Graffiti" />
-  <span class="desc">
-    <h2>황혼에서 새벽까지..</h2>
-    <p>
-    새벽녁...후배와 술한잔을 하다 보니 금새 날이 밝아 올랐다.
-    </p>
-  </span>
-</a>
-</div>
-</li>
-
-<li>
-<div class="imgteaser">
-<a href="#">
-  <img src="../img/logout2.png" width="256px" height="256px" alt="Daim Graffiti" />
-  <span class="desc">
-    <h2>황혼에서 새벽까지..</h2>
-    <p>
-    새벽녁...후배와 술한잔을 하다 보니 금새 날이 밝아 올랐다.
-    </p>
-  </span>
-</a>
-</div>
-</li>
-
-<li>
-<div class="imgteaser">
-<a href="#">
-  <img src="../img/logout2.png" width="256px" height="256px" alt="Daim Graffiti" />
-  <span class="desc">
-    <h2>황혼에서 새벽까지..</h2>
-    <p>
-    새벽녁...후배와 술한잔을 하다 보니 금새 날이 밝아 올랐다.
-    </p>
-  </span>
-</a>
-</div>
-</li>
-
-<li>
-<div class="imgteaser">
-<a href="#">
-  <img src="../img/logout2.png" width="256px" height="256px" alt="Daim Graffiti" />
-  <span class="desc">
-    <h2>황혼에서 새벽까지..</h2>
-    <p>
-    새벽녁...후배와 술한잔을 하다 보니 금새 날이 밝아 올랐다.
-    </p>
-  </span>
-</a>
-</div>
-</li>
-
-</ui>
-
+	<ui>
+	
+	<c:forEach var="article" items="${articles}">
+	
+	<li>
+	<div class="imgteaser">
+	<a href="#">
+	  <img src="../img/logout2.png" width="256px" height="256px" alt="Daim Graffiti" />
+	  <span class="desc">
+	    <h2>슬랙스</h2>
+	    <h3>20,000원</h3>
+	    <p>
+	    새벽녁...후배와 술한잔을 하다 보니 금새 날이 밝아 올랐다.
+	    동이 트는 새벽에 느껴오는 이슬은 느껴본자만이 알 수 있는 피곤함과 자괴감, 그리고 후회라는걸..
+	    </p>
+	  </span>
+	</a>
+	</div>
+	</li>
+	
+	</c:forEach>
+	
+	</ui>
 </div>
 </div>
 </div>
