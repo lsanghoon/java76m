@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,9 +27,7 @@ public class ProductController {
 
 	@RequestMapping("list")
 	public String list(
-			HttpSession session,
 			Model model) throws Exception {
-
 		
 		List<Product> products = productDao.selectList();
 		model.addAttribute("products", products);
@@ -89,7 +86,7 @@ public class ProductController {
 		}
 
 		productDao.insert(product);
-		return "redirect:list.do";
+		return "redirect:../auth/list.do";
 	}
 
 	@RequestMapping("detail")

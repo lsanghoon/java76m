@@ -1,6 +1,7 @@
 package java76.pms.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -8,19 +9,27 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java76.pms.dao.ProductDao;
 import java76.pms.dao.UsersDao;
+import java76.pms.domain.Product;
 import java76.pms.domain.Users;
 
 @Controller
 @RequestMapping("/auth/*")
 public class AuthController {  
-  @Autowired UsersDao memberDao;
+  @Autowired UsersDao usersDao;
+  @Autowired ProductDao productDao;
 
   @RequestMapping(value="list", method=RequestMethod.GET)
-  public String list() {
+  public String list(Model model) {
+  	
+  	List<Product> products = productDao.selectList();
+		model.addAttribute("products", products);
+  	
   	return "product/adminList";
   }
   
@@ -46,7 +55,7 @@ public class AuthController {
     paramMap.put("email", email);
     paramMap.put("password", password);
     
-    Users users = memberDao.login(paramMap);
+    Users users = usersDao.login(paramMap);
 
     if (users == null) { // 로그인 실패!
       session.invalidate(); // 세션을 무효화시킴. => 새로 세션 객체 생성!
