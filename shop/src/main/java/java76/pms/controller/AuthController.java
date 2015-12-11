@@ -19,11 +19,6 @@ import java76.pms.domain.Users;
 public class AuthController {  
   @Autowired UsersDao memberDao;
 
-  @RequestMapping(value="login", method=RequestMethod.GET)
-  public String loginform() {
-  	return "auth/LoginForm";
-  }
-  
   @RequestMapping(value="login", method=RequestMethod.POST)
   public String login(
       String email,
@@ -54,14 +49,14 @@ public class AuthController {
     }
 
     session.setAttribute("loginUser", member);
-    return "redirect:../article/list.do";
+    return "redirect:../product/list.do";
   }
   
   @RequestMapping("logout")
   public String logout(HttpSession session) {
     
     session.invalidate();
-    return "redirect:../article/list.do";
+    return "redirect:../product/list.do";
   }
 }
 

@@ -21,18 +21,24 @@ import java76.pms.util.MultipartHelper;
 @Controller
 @RequestMapping("/product/*")
 public class ProductController { 
-	public static final String SAVED_DIR = "/attachfile";
+	public static final String SAVED_DIR = "/productfile";
 
 	@Autowired ProductDao productDao;
 	@Autowired ServletContext servletContext;
 
 	@RequestMapping("list")
 	public String list(
+			HttpSession session,
 			Model model) throws Exception {
 
+		Users users = (Users) session.getAttribute("loginUser");
+		
 		List<Product> products = productDao.selectList();
-
 		model.addAttribute("products", products);
+		
+		if (users.getEmail().equals("admin@a.com")){
+			return "redirect:adminList.do";
+		}
 
 		return "product/ProductList";
 	}

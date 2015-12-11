@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>hh</title>
 
-<link rel="stylesheet" type="text/css" href="../css/style2.css" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" />
 <style>
   #wrap{width:1200px;margin:0 auto;position:relative;}
   #main-content li{
@@ -23,7 +26,6 @@
 </head>
 
 <body>
-<div id="a">
 <div id="wrap"> 
 <div id="main-content">
 <div class="vertalign">
@@ -119,7 +121,6 @@
 
 </ui>
 
-</div>
 </div>
 </div>
 </div>
