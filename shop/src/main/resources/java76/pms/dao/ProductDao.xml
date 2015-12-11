@@ -49,8 +49,14 @@
   </delete>
   
   <update id="update" parameterType="product">
-    update product set 
-  	  pviews=#{pviews}
+    update product set
+  	  pname=#{pname},
+  	  pcost=#{pcost},
+  	  pstock=#{pstock},
+  	  pcate=#{pcate},
+  	  pphoto=#{pphoto},
+  	  fimage=#{fimage},
+  	  simage=#{simage}
     where pno=#{no}
   </update>
   

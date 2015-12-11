@@ -35,11 +35,21 @@
   
   <li>
   <div class="imgteaser">
-  <a href="#">
+  <a href="detail.do?no=${product.no}">
     <img src="../productfile/${product.pphoto}" width="256px" height="256px" />
     <span class="desc">
       <h2>${product.pname}</h2>
-      <h3>${product.pcost} 원</h3>
+      
+      <c:choose>
+        <c:when test="${product.pstock == 0}">
+          <h3>Sold Out!</h3>
+          <h3 style="text-decoration:line-through;">${product.pcost} 원</h3>
+        </c:when>
+        <c:otherwise>
+          <h3>${product.pcost} 원</h3>
+        </c:otherwise>
+      </c:choose>
+      
     </span>
   </a>
   </div>

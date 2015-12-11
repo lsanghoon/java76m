@@ -1,6 +1,5 @@
 package java76.pms.controller;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -11,17 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 
 import java76.pms.dao.CartDao;
 import java76.pms.domain.Cart;
 import java76.pms.domain.Users;
-import java76.pms.util.MultipartHelper;
 
 @Controller
 @RequestMapping("/cart/*")
 public class CartController { 
-	public static final String SAVED_DIR = "/attachfile";
+	public static final String SAVED_DIR = "/productfile";
 
 	@Autowired CartDao cartDao;
 	@Autowired ServletContext servletContext;
@@ -46,21 +43,10 @@ public class CartController {
 	public String add(
 			Cart cart,
 			Users user,
-			MultipartFile photofile,
 			HttpSession session
 			) throws Exception {
 
-		if (photofile.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
-			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-					+ "/" + newFileName);
-
-			photofile.transferTo(attachfile);
-			cart.setCpphoto(newFileName);
-		}
-
 		user = (Users) session.getAttribute("loginUser");
-
 		cart.setCemail(user.getEmail());
 
 		cartDao.insert(cart);
@@ -81,20 +67,7 @@ public class CartController {
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(
 			Cart cart,
-			MultipartFile photofile,
 			Model model) throws Exception {
-
-		if (photofile.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
-			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-					+ "/" + newFileName);
-
-			photofile.transferTo(attachfile);
-			cart.setCpphoto(newFileName);
-
-		}	else if (cart.getCpphoto().length() == 0) {
-			cart.setCpphoto(null);
-		}
 
 		if (cartDao.update(cart) <= 0) {
 			model.addAttribute("errorCode", "401");
@@ -108,7 +81,6 @@ public class CartController {
 			int no,
 			String email,
 			Model model) throws Exception {
-
 
 		if (cartDao.delete(no) <= 0) {
 			model.addAttribute("errorCode", "401");

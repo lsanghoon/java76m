@@ -35,7 +35,7 @@
   
   <li>
   <div class="imgteaser">
-  <a href="#">
+  <a href="detail.do?no=${product.no}">
     <img src="../productfile/${product.pphoto}" width="256px" height="256px" />
     <span class="desc">
       <h2>${product.pname}</h2>

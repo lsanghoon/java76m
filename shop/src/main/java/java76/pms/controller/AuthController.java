@@ -41,7 +41,18 @@ public class AuthController {
 		List<Product> products = productDao.selectCate(pcate);
 		model.addAttribute("products", products);
 		
-		return "product/ProductList";
+		return "product/adminList";
+	}
+  
+  @RequestMapping("detail")
+	public String detail(
+			int no,
+			Model model) throws Exception {
+
+		Product product = productDao.selectOne(no);
+
+		model.addAttribute("product", product);
+		return "product/adminDetail";
 	}
   
   @RequestMapping(value="login", method=RequestMethod.POST)

@@ -103,7 +103,6 @@ public class ProductController {
 	@RequestMapping("detail")
 	public String detail(
 			int no,
-			String email,
 			Model model) throws Exception {
 
 		Product product = productDao.selectOne(no);
@@ -115,26 +114,49 @@ public class ProductController {
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(
 			Product product,
-			MultipartFile photofile,
+			MultipartFile pphotofile,
+			MultipartFile fimagefile,
+			MultipartFile simagefile,
 			Model model) throws Exception {
 
-		if (photofile.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
+		if (pphotofile.getSize() > 0) {
+			String newFileName = MultipartHelper.generateFilename(pphotofile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
 					+ "/" + newFileName);
 
-			photofile.transferTo(attachfile);
+			pphotofile.transferTo(attachfile);
 			product.setPphoto(newFileName);
-
-		}   else if (product.getPphoto().length() == 0) {
+		} else if (product.getPphoto().length() == 0) {
 			product.setPphoto(null);
+		}
+		
+		if (fimagefile.getSize() > 0) {
+			String newFileName = MultipartHelper.fimageFilename(fimagefile.getOriginalFilename());  
+			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+					+ "/" + newFileName);
+
+			fimagefile.transferTo(attachfile);
+			product.setFimage(newFileName);
+		} else if (product.getFimage().length() == 0) {
+			product.setFimage(null);
+		}
+		
+		if (simagefile.getSize() > 0) {
+			String newFileName = MultipartHelper.simageFilename(simagefile.getOriginalFilename());  
+			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+					+ "/" + newFileName);
+
+			simagefile.transferTo(attachfile);
+			product.setSimage(newFileName);
+		} else if (product.getSimage().length() == 0) {
+			product.setSimage(null);
 		}
 
 		if (productDao.update(product) <= 0) {
 			model.addAttribute("errorCode", "401");
 			return "product/ProductAuthError";
 		} 
-		return "redirect:list.do";
+		return "redirect:../auth/list.do";
 	}
 
 	@RequestMapping("delete")
