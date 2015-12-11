@@ -61,9 +61,7 @@ public class CartController {
 
 		user = (Users) session.getAttribute("loginUser");
 
-		cart.setCpname(user.getName());
 		cart.setCemail(user.getEmail());
-		cart.setCpphoto(user.getPphoto());
 
 		cartDao.insert(cart);
 		return "redirect:list.do";
@@ -71,11 +69,10 @@ public class CartController {
 
 	@RequestMapping("detail")
 	public String detail(
-			int no,
 			String email,
 			Model model) throws Exception {
 
-		Cart cart = cartDao.selectOne(no);
+		List<Cart> cart = cartDao.selectMy(email);
 
 		model.addAttribute("cart", cart);
 		return "cart/CartDetail";

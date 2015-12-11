@@ -4,7 +4,7 @@ create table users (
   name varchar(255) not null,
   addr varchar(255) not null,
   tel varchar(20) not null,
-  point int,
+  point int default 0,
   pphoto varchar(255) not null,
   constraint users_pk primary key (email)
 );
@@ -27,16 +27,14 @@ create table product (
   pcate varchar(255),
   pphoto varchar(255) not null,
   pcontent text,
+  pviews int default 0;
   constraint cart_pk primary key (pno)
 );
 
 
-alter table member add column joindate datetime not null;
-alter table article add column mphoto varchar(255);
 
-alter table product add column pphoto varchar(255) not null;
-alter table cart add column cpname varchar(255) not null;
-alter table product add column pcontent text;
+alter table users drop point;
+alter table users add column point int default 0;
 
 insert into users(email,pwd,name,addr,tel) 
 values('admin@admin.admin','1111','admin','admin-address','000-0000-0000');

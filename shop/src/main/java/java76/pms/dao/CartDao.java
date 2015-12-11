@@ -15,7 +15,6 @@ public interface CartDao {
 
   List<Cart> selectMy(String email);
   
-  Cart selectOne(int no);
 }
 
 

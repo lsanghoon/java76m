@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,7 +8,6 @@
 
 <link rel="stylesheet" type="text/css" href="../css/style2.css" />
 <style>
-  #a{align-content:center;margin:30px}
   #wrap{width:1200px;margin:0 auto;position:relative;}
   #main-content li{
 	border-width:0 1px 1px 0;

@@ -8,11 +8,13 @@ import java76.pms.domain.Users;
 public interface UsersDao {
   List<Users> selectList();
 
-  int insert(Users member);
+  int insert(Users users);
 
   int delete(String email);
   
-  int update(Users member);
+  int update(Users users);
+  
+  int updatePoint(Users users);
 
   Users selectOne(String email);
   

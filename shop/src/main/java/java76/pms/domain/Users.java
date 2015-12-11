@@ -11,14 +11,13 @@ public class Users implements Serializable {
   protected String addr;
   protected String tel;
   protected int		 point;
-  protected String pphoto;
   
   public Users() {}
   
   @Override
 	public String toString() {
 	return "Users [email=" + email + ", password=" + password + ", name=" + name + ", addr=" + addr + ", tel=" + tel
-	    + ", point=" + point + ", pphoto=" + pphoto + "]";
+	    + ", point=" + point + "]";
 	}
 
 	public Users(String email) {
@@ -59,12 +58,6 @@ public class Users implements Serializable {
 	}
 	public void setPoint(int point) {
 		this.point = point;
-	}
-	public String getPphoto() {
-		return pphoto;
-	}
-	public void setPphoto(String pphoto) {
-		this.pphoto = pphoto;
 	}
 
 }

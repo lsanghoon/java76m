@@ -21,126 +21,107 @@ import java76.pms.util.MultipartHelper;
 @Controller
 @RequestMapping("/product/*")
 public class ProductController { 
-   public static final String SAVED_DIR = "/attachfile";
+	public static final String SAVED_DIR = "/attachfile";
 
-   @Autowired ProductDao productDao;
-   @Autowired ServletContext servletContext;
+	@Autowired ProductDao productDao;
+	@Autowired ServletContext servletContext;
 
-   @RequestMapping("list")
-   public String list(
-         Model model) throws Exception {
+	@RequestMapping("list")
+	public String list(
+			Model model) throws Exception {
 
-      List<Product> products = productDao.selectList();
-      
-      model.addAttribute("products", products);
+		List<Product> products = productDao.selectList();
 
-      return "product/ProductList";
-   }
+		model.addAttribute("products", products);
 
-   @RequestMapping(value="search", method=RequestMethod.GET)
-   public String search(
-         String content,
-         Model model) throws Exception {
+		return "product/ProductList";
+	}
 
-      List<Product> products = productDao.search(content);
+	@RequestMapping(value="search", method=RequestMethod.GET)
+	public String search(
+			String content,
+			Model model) throws Exception {
 
-      model.addAttribute("products", products);
+		List<Product> products = productDao.search(content);
 
-      return "product/ProductSearchList";
-   }
+		model.addAttribute("products", products);
 
-   @RequestMapping(value="add", method=RequestMethod.GET)
-   public String add() {
-      return "product/ProductForm";
-   }
+		return "product/ProductSearchList";
+	}
 
-   @RequestMapping(value="add", method=RequestMethod.POST)
-   public String add(
-         Product product,
-         Users member,
-         MultipartFile photofile,
-         HttpSession session
-         ) throws Exception {
+	@RequestMapping(value="add", method=RequestMethod.GET)
+	public String add() {
+		return "product/ProductForm";
+	}
 
-      if (photofile.getSize() > 0) {
-         String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
-         File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-               + "/" + newFileName);
+	@RequestMapping(value="add", method=RequestMethod.POST)
+	public String add(
+			Product product,
+			Users member,
+			MultipartFile photofile,
+			HttpSession session
+			) throws Exception {
 
-         photofile.transferTo(attachfile);
-         product.setPhoto(newFileName);
-      }
+		if (photofile.getSize() > 0) {
+			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
+			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+					+ "/" + newFileName);
 
-      member = (Users) session.getAttribute("loginUser");
+			photofile.transferTo(attachfile);
+			product.setPphoto(newFileName);
+		}
 
-      product.setName(member.getName());
-      String mp = member.getPhoto();
+		productDao.insert(product);
+		return "redirect:list.do";
+	}
 
-      product.setMphoto(mp);
+	@RequestMapping("detail")
+	public String detail(
+			int no,
+			String email,
+			Model model) throws Exception {
 
-      product.setEmail(member.getEmail());
+		Product product = productDao.selectOne(no);
 
-      productDao.insert(product);
-      return "redirect:list.do";
-   }
+		model.addAttribute("product", product);
+		return "product/ProductDetail";
+	}
 
-   @RequestMapping("detail")
-   public String detail(
-         int no,
-         String email,
-         Model model) throws Exception {
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public String update(
+			Product product,
+			MultipartFile photofile,
+			Model model) throws Exception {
 
-      Product product = productDao.selectOne(no);
-      System.out.println(product.getEmail());
-      System.out.println(email);
-      if (product.getEmail().equals(email)) {
+		if (photofile.getSize() > 0) {
+			String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
+			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+					+ "/" + newFileName);
 
-         model.addAttribute("product", product);
-         return "product/ProductDetail";
-      }
-      return "redirect:list.do";
-   }
+			photofile.transferTo(attachfile);
+			product.setPphoto(newFileName);
 
-   @RequestMapping(value="update", method=RequestMethod.POST)
-   public String update(
-         Product product,
-         MultipartFile photofile,
-         Model model) throws Exception {
+		}   else if (product.getPphoto().length() == 0) {
+			product.setPphoto(null);
+		}
 
-      if (photofile.getSize() > 0) {
-         String newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
-         File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-               + "/" + newFileName);
+		if (productDao.update(product) <= 0) {
+			model.addAttribute("errorCode", "401");
+			return "product/ProductAuthError";
+		} 
+		return "redirect:list.do";
+	}
 
-         photofile.transferTo(attachfile);
-         product.setPhoto(newFileName);
+	@RequestMapping("delete")
+	public String delete(
+			int no,
+			Model model) throws Exception {
 
-      }   else if (product.getPhoto().length() == 0) {
-         product.setPhoto(null);
-      }
-
-      if (productDao.update(product) <= 0) {
-         model.addAttribute("errorCode", "401");
-         return "product/ProductAuthError";
-      } 
-      return "redirect:list.do";
-   }
-
-   @RequestMapping("delete")
-   public String delete(
-         int no,
-         String email,
-         Model model) throws Exception {
-
-      Product product = productDao.selectOne(no);
-
-      if (product.getEmail().equals(email)) {
-         if (productDao.delete(no) <= 0) {
-            model.addAttribute("errorCode", "401");
-            return "product/ProductAuthError";
-         } 
-      }
-      return "redirect:list.do";
-   }
+		if (productDao.delete(no) <= 0) {
+			model.addAttribute("errorCode", "401");
+			return "product/ProductAuthError";
+		}
+		return "redirect:list.do";
+	}
 
 }

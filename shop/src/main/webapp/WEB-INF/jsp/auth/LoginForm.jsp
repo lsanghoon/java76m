@@ -253,7 +253,18 @@ body {
 </head>
 <body>
 
-
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+         
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+               </button>
+               <h3 class="modal-title" id="lineModalLabel">회원가입</h3>
+            </div>
+            
+            <div class="modal-body">
 <!-- Form-->
 <div class="form">
   <div class="form-toggle"></div>
@@ -284,6 +295,12 @@ body {
     </div>
   </div>
 </div>
+
+ </div>
+         </div>
+      </div>
+   </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 <script type="text/javascript">
 $(document).ready(function() {

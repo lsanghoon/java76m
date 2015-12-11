@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Refresh" content="2;url=login.do">
+<meta http-equiv="Refresh" content="2;url=../product/list.do">
 <title>로그인 실패</title>
 
 <style rel="stylesheet">

@@ -11,15 +11,22 @@ public class Product  implements Serializable {
 	protected String 	  pphoto;
 	protected int				pstock;
 	protected String		pcate;
+	protected int				pviews;
 
 	public Product() {}
 
 	@Override
 	public String toString() {
 	return "Product [no=" + no + ", pname=" + pname + ", pcost=" + pcost + ", pphoto=" + pphoto + ", pstock=" + pstock
-	    + ", pcate=" + pcate + "]";
+	    + ", pcate=" + pcate + ", pviews=" + pviews + "]";
 	}
 
+	public int getPviews() {
+		return pviews;
+	}
+	public void setPviews(int pviews) {
+		this.pviews = pviews;
+	}
 	public int getNo() {
 		return no;
 	}

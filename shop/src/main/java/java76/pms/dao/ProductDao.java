@@ -7,17 +7,15 @@ import java76.pms.domain.Product;
 public interface ProductDao {
   List<Product> selectList();
   
-  int insert(Product article);
+  int insert(Product product);
   
   int delete(int no);
   
-  int update(Product article);
+  int update(Product product);
 
-  List<Product> selectMy(String email);
-  
   Product selectOne(int no);
   
-  List<Product> search(String content);
+  List<Product> search(String name);
 }
 
 
