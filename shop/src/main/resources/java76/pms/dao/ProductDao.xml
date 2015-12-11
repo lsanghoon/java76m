@@ -23,6 +23,21 @@
     order by pviews desc
   </select>
   
+  <select id="selectCate" resultMap="productMap" parameterType="map">
+    select 
+      pno,
+  	  pstock,
+      pcost,
+  	  pcate,
+      pname,
+  	  pphoto,
+  	  pcontent,
+  	  pviews
+    from product
+  	where pcate=#{pcate}
+    order by pviews desc
+  </select>
+  
   <insert id="insert" parameterType="product">
     insert into product(pstock,pcost,pcate,pname,pphoto,fimage,simage) 
     values(#{pstock},#{pcost},#{pcate},#{pname},#{pphoto},#{fimage},#{simage})

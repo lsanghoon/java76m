@@ -35,6 +35,17 @@ public class ProductController {
 		return "product/ProductList";
 	}
 
+	@RequestMapping("catelist")
+	public String catelist(
+			String pcate,
+			Model model) throws Exception {
+		
+		List<Product> products = productDao.selectCate(pcate);
+		model.addAttribute("products", products);
+		
+		return "product/ProductList";
+	}
+	
 	@RequestMapping(value="search", method=RequestMethod.GET)
 	public String search(
 			String content,

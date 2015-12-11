@@ -33,12 +33,6 @@ public class UsersController {
 
 	}
 	
-/*	@RequestMapping(value="add", method=RequestMethod.GET)
-	public String add() {
-
-		return "users/UsersAdd";
-	}
-*/
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String add(Users users) throws Exception {
 		

@@ -7,6 +7,8 @@ import java76.pms.domain.Product;
 public interface ProductDao {
   List<Product> selectList();
   
+  List<Product> selectCate(String pcate);
+  
   int insert(Product product);
   
   int delete(int no);

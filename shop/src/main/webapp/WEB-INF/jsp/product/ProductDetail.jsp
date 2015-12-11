@@ -674,7 +674,7 @@ body a:hover { color: #ffffff; }
   <div id="page-content-wrapper">
     <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"> <span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
 
-    <jsp:include page="/use/imageHover.jsp"/>
+    <jsp:include page="/use/imageHoverForCategory.jsp"/>
     
   </div>
   <!-- /#page-content-wrapper --> 

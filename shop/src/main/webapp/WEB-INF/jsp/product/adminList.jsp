@@ -483,34 +483,58 @@ body a:hover { color: #ffffff; }
   <!-- Sidebar -->
   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
-      <li class="sidebar-brand"> <a href="#"> SHOP NAME </a> </li>
-      <li> <a href="list.do"><i class="fa fa-fw fa-home"></i> Home</a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa fa-power-off"></i> Category one</a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa fa-shopping-cart"></i> Category two</a> </li>
-      <li> <a href="#"><i class="fa fa-fw fa fa-male"></i> Category there</a> </li>
+      <li class="sidebar-brand"> <a href="../auth/list.do"> SHOP NAME </a> </li>
       
-      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Dropdown <span class="caret"></span></a>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Outer <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
-          <li class="dropdown-header">Dropdown heading</li>
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li><a href="#">Separated link</a></li>
-          <li><a href="#">One more separated link</a></li>
+          <li class="dropdown-header">Outer menu</li>
+          <li><a href="catelist.do?pcate=cardigan">가디건</a></li>
+          <li><a href="catelist.do?pcate=jacket">자켓</a></li>
+          <li><a href="catelist.do?pcate=coat">코트</a></li>
+          <li><a href="catelist.do?pcate=jumper">점퍼/야상</a></li>
+        </ul>
+      </li>
+      
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Top <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li class="dropdown-header">Top menu</li>
+          <li><a href="catelist.do?pcate=longT">긴팔</a></li>
+          <li><a href="catelist.do?pcate=shortT">반팔</a></li>
+        </ul>
+      </li>
+      
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Pants <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li class="dropdown-header">Pants menu</li>
+          <li><a href="catelist.do?pcate=longP">롱 팬츠</a></li>
+          <li><a href="catelist.do?pcate=shortP">숏 팬츠</a></li>
+        </ul>
+      </li>
+      
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Dress <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li class="dropdown-header">Dress menu</li>
+          <li><a href="catelist.do?pcate=slim">슬림</a></li>
+          <li><a href="catelist.do?pcate=loose">루즈</a></li>
         </ul>
       </li>
 
-      <li> <a href="#"><i class="fa fa-fw fa fa-female"></i> Category four</a> </li>
-      
-        
-	      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i>${loginUser.name}님<span class="caret"></span></a>
-	        <ul class="dropdown-menu" role="menu">
-	          <li class="dropdown-header">물품 관리</li>
-	          <li><a href="${pageContext.request.contextPath}/users/list.do">회원목록</a></li>
-	          <li><a data-toggle="modal" data-target="#squareProAddModal">상품 추가</a></li>
-	          <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
-	        </ul>
-	      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Bag <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li class="dropdown-header">Bag menu</li>
+          <li><a href="catelist.do?pcate=shoulder">숄더백</a></li>
+          <li><a href="catelist.do?pcate=clutch">클러치백 action</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i>${loginUser.name}님<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li class="dropdown-header">물품 관리</li>
+          <li><a href="${pageContext.request.contextPath}/users/list.do">회원목록</a></li>
+          <li><a data-toggle="modal" data-target="#squareProAddModal">상품 추가</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
+        </ul>
+      </li>
         
     </ul>
   </nav>
@@ -622,7 +646,7 @@ body a:hover { color: #ffffff; }
   <div id="page-content-wrapper">
     <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"> <span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
     
-    <jsp:include page="/use/imageHover.jsp"/>
+    <jsp:include page="/use/imageHoverForAdmin.jsp"/>
     
   </div>
   <!-- /#page-content-wrapper --> 

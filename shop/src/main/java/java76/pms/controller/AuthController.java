@@ -33,6 +33,17 @@ public class AuthController {
   	return "product/adminList";
   }
   
+  @RequestMapping("catelist")
+	public String catelist(
+			String pcate,
+			Model model) throws Exception {
+		
+		List<Product> products = productDao.selectCate(pcate);
+		model.addAttribute("products", products);
+		
+		return "product/ProductList";
+	}
+  
   @RequestMapping(value="login", method=RequestMethod.POST)
   public String login(
       String email,
