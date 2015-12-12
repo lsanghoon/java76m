@@ -17,6 +17,53 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <style>
+.button {
+   border: 2px solid #4f4f4f;
+   background: #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, from(#a3a3a3), to(#ffffff));
+   background: -webkit-linear-gradient(top, #a3a3a3, #ffffff);
+   background: -moz-linear-gradient(top, #a3a3a3, #ffffff);
+   background: -ms-linear-gradient(top, #a3a3a3, #ffffff);
+   background: -o-linear-gradient(top, #a3a3a3, #ffffff);
+   background-image: -ms-linear-gradient(top, #a3a3a3 0%, #ffffff 100%);
+   padding: 6px 12px;
+   -webkit-border-radius: 13px;
+   -moz-border-radius: 13px;
+   border-radius: 13px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0;
+   color: #000000;
+   font-size: 15px;
+   /* font-family: helvetica, serif; */
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border: 2px solid #000000;
+   text-shadow: #1e4158 0 1px 0;
+   background: #cfcfcf;
+   background: -webkit-gradient(linear, left top, left bottom, from(#707070), to(#cfcfcf));
+   background: -webkit-linear-gradient(top, #707070, #cfcfcf);
+   background: -moz-linear-gradient(top, #707070, #cfcfcf);
+   background: -ms-linear-gradient(top, #707070, #cfcfcf);
+   background: -o-linear-gradient(top, #707070, #cfcfcf);
+   background-image: -ms-linear-gradient(top, #707070 0%, #cfcfcf 100%);
+   color: #fff;
+   }
+.button:active {
+   text-shadow: #1e4158 0 1px 0;
+   border: 2px solid #000000;
+   background: #949294;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#cfcfcf));
+   background: -webkit-linear-gradient(top, #474747, #949294);
+   background: -moz-linear-gradient(top, #474747, #949294);
+   background: -ms-linear-gradient(top, #474747, #949294);
+   background: -o-linear-gradient(top, #474747, #949294);
+   background-image: -ms-linear-gradient(top, #474747 0%, #949294 100%);
+   color: #fff;
+   }
 /*-------------------------------*/
 /*           VARIABLES           */
 /*-------------------------------*/
@@ -624,7 +671,7 @@ body a:hover { color: #ffffff; }
                           </div>
                           
                           <div class="div-center">
-                            <button type="submit" id="joinBtn" class="btn btn-lg btn-primary btn-join">등록</button>
+                            <button type="submit" id="joinBtn" class="button" style="height: 45px; width: 100px;">등록</button>
                           </div>
                         </div>
                         

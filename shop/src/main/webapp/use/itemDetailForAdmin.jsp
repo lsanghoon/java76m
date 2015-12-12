@@ -23,7 +23,7 @@
   </tr>
   <tr>
     <td height="50"></td>
-    <td style="font-size: 23px;">개수: <input type="number" name="cstock" value="0" style="width: 35px;"/></td>
+    <td style="font-size: 22px;">재고: <input type="text" name="cstock" value="${product.pstock}" style="width: 35px;border:none;" readonly/></td>
   </tr>
   <tr>
     <td></td>
