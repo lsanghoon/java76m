@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+  <TITLE>BLUE-B</TITLE>
+<style type="text/css">
+<!--
+#sponsorAdDiv {position:absolute; height:1; width:1px; top:0; left:0;}
+-->
+</style>
+
+<script type="text/javascript">
+<!--
+adTime=2;  // 보여질 시간 (초)
+chanceAd=1;
+
+var ns=(document.layers);
+var ie=(document.all);
+var w3=(document.getElementById && !ie);
+var calunit=ns? "" : "px"
+  adCount=0;
+function initAd(){
+  if(!ns && !ie && !w3) return;
+  if(ie)    adDiv=eval('document.all.sponsorAdDiv.style');
+  else if(ns) adDiv=eval('document.layers["sponsorAdDiv"]');
+  else if(w3) adDiv=eval('document.getElementById("sponsorAdDiv").style');
+  randAd=Math.ceil(Math.random()*chanceAd);
+        if (ie||w3)
+        adDiv.visibility="visible";
+        else
+        adDiv.visibility ="show";
+  if(randAd==1) showAd();
+}
+function showAd(){
+if(adCount<adTime*10){adCount+=1;
+  if (ie){documentWidth  =truebody().offsetWidth/2+truebody().scrollLeft-20;
+    documentHeight =truebody().offsetHeight/2+truebody().scrollTop-20;} 
+  else if (ns){documentWidth=window.innerWidth/2+window.pageXOffset-20;
+    documentHeight=window.innerHeight/2+window.pageYOffset-20;} 
+  else if (w3){documentWidth=self.innerWidth/2+window.pageXOffset-20;
+    documentHeight=self.innerHeight/2+window.pageYOffset-20;} 
+    adDiv.left=documentWidth-200+calunit;adDiv.top =documentHeight-200+calunit;
+    setTimeout("showAd()",100);}else closeAd();
+  }
+function closeAd(){
+  if (ie||w3)
+    adDiv.display="none";
+  else
+    adDiv.visibility ="hide";
+  }
+
+function truebody(){
+  return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+}
+
+onload=initAd;
+//-->
+</script>
+
+</HEAD>
+<BODY>
+공지사항 내용을 다시 보실려면 새로고침하세요..
+<div id="sponsorAdDiv" style="visibility:hidden">
+<table width="450px" height="350px" bgcolor="#008000"><tr><td>
+  <table width="445px" height="345px" bgcolor="#F0FFF0"><tr><td align="center" valign="middle">
+
+  이곳에 공지사항 작성, 본 공지창은 5초동안 보여집니다..<br>
+  5초후에는 사라집니다..<br>
+  시간설정은 스크립트 주석부분을 참고하세요..
+
+  </td></tr>
+  </table>
+
+</td></tr>
+</table>
+</div>
+</BODY>
+</HTML>

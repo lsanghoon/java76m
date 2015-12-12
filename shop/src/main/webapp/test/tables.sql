@@ -31,6 +31,24 @@ create table product (
   constraint cart_pk primary key (pno)
 );
 
+create table purchase (
+  bno int auto_increment,
+  bDate DATETIME,
+  bpname varchar(255),
+  bpsum int,
+  buname varchar(255),
+  buemail varchar(255),
+  constraint purchase_pk primary key (bno)
+);
+
+select date_format(bDate,'%Y-%m')m,count(*) as a from purchase group by m;
+
+
+insert into purchase(bDate,bpname,bpsum,buname,buemail)
+values('2014-5-6','바지2',1000300,'aaa','a@a.aaa');
+
+
+alter table purchase drop bpcost;
 
 
 alter table users drop point;

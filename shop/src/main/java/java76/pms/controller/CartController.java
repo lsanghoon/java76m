@@ -34,12 +34,14 @@ public class CartController {
 		List<Cart> cart = cartDao.selectMy(email);
 
 		int sum = 0;
+		String names = "";
 		for (Cart cat : cart) {
-			sum = sum + cat.getCpcost();
+			sum += cat.getCpcost();
+			names = names + "/" + cat.getCpname();
 		}
-		car.setSum(sum);
 		
 		model.addAttribute("sum", sum);
+		model.addAttribute("names", names);
 		model.addAttribute("cart", cart);
 
 		return "cart/CartList";

@@ -628,6 +628,7 @@ body a:hover { color: #ffffff; }
               <li class="dropdown-header">회원 정보 관리</li>
               <li><a href='${pageContext.request.contextPath}/cart/list.do?email=${loginUser.email}'>장바구니</a></li>
               <li><a href='${pageContext.request.contextPath}/users/detail.do?email=${loginUser.email}'>개인정보 변경</a></li>
+              <li><a href='${pageContext.request.contextPath}/purchase/listone.do?email=${loginUser.email}'>구매 목록</a></li>
               <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
             </ul>
           </li>

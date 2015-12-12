@@ -483,47 +483,47 @@ body a:hover { color: #ffffff; }
   <!-- Sidebar -->
   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
-      <li class="sidebar-brand"> <a href="#"> SHOP NAME </a> </li>
+      <li class="sidebar-brand"> <a href="${pageContext.request.contextPath}/auth/list.do"> SHOP NAME </a> </li>
       
       <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Outer <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li class="dropdown-header">Outer menu</li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=cardigan">가디건</a></li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=jacket">자켓</a></li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=coat">코트</a></li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=jumper">점퍼/야상</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=cardigan">가디건</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=jacket">자켓</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=coat">코트</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=jumper">점퍼/야상</a></li>
         </ul>
       </li>
       
       <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Top <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li class="dropdown-header">Top menu</li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=longT">긴팔</a></li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=shortT">반팔</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=longT">긴팔</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=shortT">반팔</a></li>
         </ul>
       </li>
       
       <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Pants <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li class="dropdown-header">Pants menu</li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=longP">롱 팬츠</a></li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=shortP">숏 팬츠</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=longP">롱 팬츠</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=shortP">숏 팬츠</a></li>
         </ul>
       </li>
       
       <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Dress <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li class="dropdown-header">Dress menu</li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=slim">슬림</a></li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=loose">루즈</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=slim">슬림</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=loose">루즈</a></li>
         </ul>
       </li>
 
       <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Bag <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li class="dropdown-header">Bag menu</li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=shoulder">숄더백</a></li>
-          <li><a href="${pageContext.request.contextPath}/product/catelist.do?pcate=clutch">클러치백 action</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=shoulder">숄더백</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=clutch">클러치백 action</a></li>
         </ul>
       </li>
         
@@ -532,6 +532,7 @@ body a:hover { color: #ffffff; }
           <li class="dropdown-header">물품 관리</li>
           <li><a href="${pageContext.request.contextPath}/users/list.do">회원목록</a></li>
           <li><a data-toggle="modal" data-target="#squareProAddModal">상품 추가</a></li>
+          <li><a href="${pageContext.request.contextPath}/purchase/list.do">판매 리스트</a></li>
           <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
         </ul>
       </li>

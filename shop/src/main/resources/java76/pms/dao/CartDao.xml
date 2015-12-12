@@ -31,6 +31,11 @@
   	where cno=#{no}
   </delete>
   
+  <delete id="deleteall" parameterType="string">
+    delete from cart 
+  	where cemail=#{cemail}
+  </delete>
+  
   <update id="update" parameterType="cart">
     update cart set 
       cstock=#{cstock}

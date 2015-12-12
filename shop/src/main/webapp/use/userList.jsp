@@ -11,8 +11,8 @@
   <thead>
     <tr>
       <th scope="col" width="80px">Name</th>
-      <th scope="col" width="200px">Email</th>
-      <th scope="col" width="150px">PhoneNo</th>
+      <th scope="col" width="150px">Email</th>
+      <th scope="col" width="180px">PhoneNo</th>
       <th scope="col" width="300px">Address</th>
       <th scope="col" width="80px" align="center">Point</th>
       <th scope="col" width="80px">Delete</th>
@@ -26,8 +26,8 @@
         <td>${user.email}</td>
         <td>${user.tel}</td>
         <td>${user.addr}</td>
-        <td align="center">${user.point}</td>
-        <td><a class="button" href='delete?email=${user.email}'>삭제</a></td>
+        <td align="right">${user.point} P</td>
+        <td><a class="button" href='delete.do?email=${user.email}'>삭제</a></td>
       </tr>
     </c:forEach>
     

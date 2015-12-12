@@ -11,6 +11,8 @@ public interface CartDao {
   
   int delete(int no);
   
+  int deleteall(String email);
+  
   int update(Cart cart);
 
   List<Cart> selectMy(String email);

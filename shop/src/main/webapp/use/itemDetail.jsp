@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <link rel="stylesheet" type="text/css" href="../css/chartStyle.css" />
 
-<form action="../cart/add.do" method="post" enctype="multipart/form-data">
+<form name="myForm" method="post" enctype="multipart/form-data">
 	<table style="background-color: white;margin-left: auto; margin-right: auto;">
 	  <tr>
 	    <td rowspan="5" width="400px">
@@ -19,6 +19,7 @@
 	    <td>
 	     <h1>
 	       <input type="text" name="cpname" value="${product.pname}" style="border:none;">
+	       <input type="hidden" name="bpname" value="${product.pname}">
 	      </h1>
 	     <hr>
 	    </td>
@@ -43,9 +44,9 @@
 	
 	<hr>
 	  <p style="text-align: center;">
-	    <a href="#" class="button1" style="text-decoration:none;">즉시구매</a>
+	    <button type="submit" class="button" onclick='mySubmit(1)'>즉시구매</button>
 	    &nbsp; &nbsp; &nbsp; &nbsp;
-	    <button type="submit" class="button">장바구니</button>
+	    <button type="submit" class="button" onclick='mySubmit(2)'>장바구니</button>
 	  </p>
 	<hr>
 </form>
@@ -58,3 +59,16 @@
   <td><img src="../productfile/${product.simage}"></td>
 </tr>
 </table>
+
+
+<script type="text/javascript">
+  function mySubmit(index) {
+    if (index == 1) {
+      document.myForm.action='../purchase/adddir.do';
+    }
+    if (index == 2) {
+      document.myForm.action='../cart/add.do';
+    }
+    document.myForm.submit();
+  }
+</script>
