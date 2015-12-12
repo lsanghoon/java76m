@@ -10,12 +10,12 @@
 <table id="hor-minimalist-b" summary="Employee Pay Sheet">
   <thead>
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">PhoneNo</th>
-      <th scope="col">Address</th>
-      <th scope="col">Point</th>
-      <th scope="col">Delete</th>
+      <th scope="col" width="80px">Name</th>
+      <th scope="col" width="200px">Email</th>
+      <th scope="col" width="150px">PhoneNo</th>
+      <th scope="col" width="300px">Address</th>
+      <th scope="col" width="80px" align="center">Point</th>
+      <th scope="col" width="80px">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -25,9 +25,9 @@
         <td>${user.name}</td>
         <td>${user.email}</td>
         <td>${user.tel}</td>
-        <td align="center">${user.addr}</td>
-        <td>${user.point}</td>
-        <td align="center"><a href='delete?email=${user.email}'>삭제</a></td>
+        <td>${user.addr}</td>
+        <td align="center">${user.point}</td>
+        <td><a class="button" href='delete?email=${user.email}'>삭제</a></td>
       </tr>
     </c:forEach>
     
