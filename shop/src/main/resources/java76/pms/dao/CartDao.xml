@@ -33,7 +33,7 @@
   
   <update id="update" parameterType="cart">
     update cart set 
-      cstock=#{cstock},
+      cstock=#{cstock}
     where cno=#{no}
   </update>
   

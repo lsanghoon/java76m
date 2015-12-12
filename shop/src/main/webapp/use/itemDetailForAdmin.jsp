@@ -5,7 +5,7 @@
 
 <table border="0" style="background-color: white;margin-left: auto; margin-right: auto;">
   <tr>
-    <td rowspan="5" width="400px"><img name="cpphoto" src="../productfile/${product.pphoto}"></td>
+    <td rowspan="5" width="400px"><img name="cpphoto" src="../productfile/${product.pphoto}" width="400px" height="400px"></td>
     <td width="100px"></td>
     <td width="500px" height="50"></td>
   </tr>
@@ -35,7 +35,7 @@
   <p style="text-align: center; font-size: 30px;">
     <a data-toggle="modal" data-target="#squareProUpdateModal" style="color: black; text-decoration: none;">변경</a>
     &nbsp; &nbsp; &nbsp; &nbsp;
-    <a href="" style="color: black; text-decoration: none;">삭제</a>
+    <a href="../product/delete.do?no=${product.no}" style="color: black; text-decoration: none;">삭제</a>
   </p>
 <hr>
 

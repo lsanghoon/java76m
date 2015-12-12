@@ -168,7 +168,7 @@ public class ProductController {
 			model.addAttribute("errorCode", "401");
 			return "product/ProductAuthError";
 		}
-		return "redirect:list.do";
+		return "redirect:../auth/list.do";
 	}
 
 }

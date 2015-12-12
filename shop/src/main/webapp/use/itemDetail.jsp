@@ -5,7 +5,7 @@
 
 <table style="background-color: white;margin-left: auto; margin-right: auto;">
   <tr>
-    <td rowspan="5" width="400px"><img name="cpphoto" src="../productfile/${product.pphoto}"></td>
+    <td rowspan="5" width="400px"><img name="cpphoto" src="../productfile/${product.pphoto}" width="400px" height="400px"></td>
     <td width="100px"></td>
     <td width="500px" height="50"></td>
   </tr>
