@@ -46,7 +46,7 @@
   	  cemail,
   	  cstock
     from cart
-    where email=#{email}
+    where cemail=#{cemail}
   </select>
   
 </mapper>

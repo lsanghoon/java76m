@@ -104,9 +104,9 @@ public class ProductController {
 	public String detail(
 			int no,
 			Model model) throws Exception {
-
+		
 		Product product = productDao.selectOne(no);
-
+		productDao.views(no);
 		model.addAttribute("product", product);
 		return "product/ProductDetail";
 	}

@@ -23,7 +23,7 @@
   </tr>
   <tr>
     <td height="50"></td>
-    <td style="font-size: 22px;">재고: <input type="text" name="cstock" value="${product.pstock}" style="width: 35px;border:none;" readonly/></td>
+    <td style="font-size: 22px;">재고: <input type="text" name="cstock" value="${product.pstock}" style="width: 160px;border:none;" readonly/></td>
   </tr>
   <tr>
     <td></td>
@@ -79,7 +79,7 @@
                           <div id="pcateForm" class="form-group has-feedback">
                             <label for="pcate">카테고리</label> 
                             <select name="pcate" style="text-align: center;">
-                              <option value=" ">선택하세요</option>
+                              <option>선택하세요</option>
                               <option value=" ">--Outer--</option>
                               <option value='cardigan'>가디건</option>
                               <option value='jacket'>자켓</option>
@@ -117,7 +117,7 @@
                           
                           <div id="pstockForm" class="form-group has-feedback">
                             <label for="pstock">재고</label> 
-                            <input type="text" class="form-control" value="${product.pstock}" id="pstock" name="pstock" maxlength="30" required="required"/>
+                            <input type="text" class="form-control" value="${product.pstock}" id="pstock" name="pstock" min="1" max="999" required="required"/>
                           </div>
                           
                           <div id="pphotoForm" class="form-group has-feedback">

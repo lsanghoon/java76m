@@ -48,11 +48,17 @@
   	where pno=#{no}
   </delete>
   
+  <update id="views" parameterType="int">
+  	update product set
+  	  pviews=pviews+1
+  	where pno=#{no}
+  </update>
+  
   <update id="update" parameterType="product">
     update product set
   	  pname=#{pname},
   	  pcost=#{pcost},
-  	  pstock=#{pstock},
+  	  pstock=pstock+#{pstock},
   	  pcate=#{pcate},
   	  pphoto=#{pphoto},
   	  fimage=#{fimage},

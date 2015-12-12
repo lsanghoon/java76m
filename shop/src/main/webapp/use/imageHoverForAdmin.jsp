@@ -42,7 +42,7 @@
       
        <c:choose>
         <c:when test="${product.pstock == 0}">
-          <h3>Sold Out!</h3>
+          <h3 style="color:red;">Sold Out!</h3>
           <h3 style="text-decoration:line-through;">${product.pcost} 원</h3>
         </c:when>
         <c:otherwise>

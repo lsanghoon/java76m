@@ -14,6 +14,8 @@ public interface ProductDao {
   int delete(int no);
   
   int update(Product product);
+  
+  int views(int no);
 
   Product selectOne(int no);
   

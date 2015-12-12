@@ -11,6 +11,8 @@ public class Cart  implements Serializable {
   protected String    cemail; // 컬럼명 = photo
   protected String		cpphoto;
   protected int				cstock;
+  protected int				sum;
+  
   public Cart() {}
 
 	@Override
@@ -19,13 +21,18 @@ public class Cart  implements Serializable {
 	    + cpphoto + "]";
 	}
 
+	public int getSum() {
+		return sum;
+	}
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
 	public int getCstock() {
 		return cstock;
 	}
 	public void setCstock(int cstock) {
 		this.cstock = cstock;
 	}
-
 	public int getNo() {
 		return no;
 	}
