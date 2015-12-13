@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>쇼핑몰~</title>
+<title> FASHION MAKER </title>
 
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
@@ -483,7 +483,7 @@ body a:hover { color: #ffffff; }
   <!-- Sidebar -->
   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
     <ul class="nav sidebar-nav">
-      <li class="sidebar-brand"> <a href="${pageContext.request.contextPath}/auth/list.do"> SHOP NAME </a> </li>
+      <li class="sidebar-brand"> <a href="${pageContext.request.contextPath}/auth/list.do"> FASHION MAKER </a> </li>
       
       <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-male"></i> Outer <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
@@ -523,7 +523,7 @@ body a:hover { color: #ffffff; }
         <ul class="dropdown-menu" role="menu">
           <li class="dropdown-header">Bag menu</li>
           <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=shoulder">숄더백</a></li>
-          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=clutch">클러치백 action</a></li>
+          <li><a href="${pageContext.request.contextPath}/auth/catelist.do?pcate=clutch">클러치백</a></li>
         </ul>
       </li>
         

@@ -1,0 +1,66 @@
+body {
+	width: auto;
+	height: auto;
+}
+
+.vertalign {position: absolute;}
+.imgteaser {
+	margin: 0;
+	overflow: hidden;
+	float: left;
+	position: relative;
+}
+.imgteaser a {
+	text-decoration: none;
+	float: left;
+	margin: 5px;
+	text-aling:center;
+}
+.imgteaser a:hover {
+	cursor: pointer;
+}
+.imgteaser a img {
+	float: left;
+	margin: 0;
+	border: none;
+	padding: 5px;
+	background: #fff;
+	border: 1px solid #ddd;
+}
+.imgteaser a .desc {	display: none; }
+.imgteaser a:hover .desc{
+	display: block;
+	font-size: 14px;
+	font-family:inherit;
+	line-height:130%;
+	padding: 0px 0;
+	background: #111;
+	filter:alpha(opacity=75);
+	opacity:.75;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+	color: #fff;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	padding: 10px;
+	margin: 5px;
+	width: auto;
+	/*border-top: 1px solid #999;*/
+}
+.imgteaser a:hover .desc h2 {
+	color: springgreen;
+	display: block;
+	margin-bottom: 1px;
+	font-size:16px;
+	font-family:dotum;
+	font-weight:bold;
+}
+
+.imgteaser a:hover .desc h3 {
+	color: whitesmoke;
+	display: block;
+	margin-bottom: 1px;
+	font-size:17px;
+	font-family:dotum;
+	font-weight:bold;
+}
