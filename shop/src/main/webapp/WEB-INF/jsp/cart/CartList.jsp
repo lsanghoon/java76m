@@ -627,7 +627,7 @@ body a:hover { color: #ffffff; }
             <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">회원 정보 관리</li>
               <li><a href='${pageContext.request.contextPath}/cart/list.do?email=${loginUser.email}'>장바구니</a></li>
-              <li><a href='${pageContext.request.contextPath}/users/detail.do?email=${loginUser.email}'>개인정보 변경</a></li>
+              <li><a data-toggle="modal" data-target="#squareDetailModal">개인정보 변경</a></li>
               <li><a href='${pageContext.request.contextPath}/purchase/listone.do?email=${loginUser.email}'>구매 목록</a></li>
               <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
             </ul>
@@ -641,7 +641,73 @@ body a:hover { color: #ffffff; }
       </c:choose>
     </ul>
   </nav>
+  <!-- --------------------회원정보 수정 구간--------------------- -->
   
+  <div class="modal fade" id="squareDetailModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+         
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+               </button>
+               <h3 class="modal-title" id="lineModalLabel">회원가입</h3>
+            </div>
+            
+            <div class="modal-body">
+              <section>
+                <article>
+                  <fieldset class="row div div-join">
+                     
+                    <form action='../users/update.do' method='post' enctype="multipart/form-data">
+                      <div class="panel panel-default">
+                           
+                        <div class="panel-heading">
+                          <label>필수 입력 사항</label>
+                        </div>
+                              
+                        <div class="panel-body">
+                          <div id="emailForm" class="form-group has-feedback">
+                            <label for="email">이메일</label> 
+                            <input type="text" class="form-control" id="email" name="email" maxlength="30" value="${loginUser.email}" readonly>
+                            <div class="control-label" id="emailMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
+                          </div>
+                                 
+                          <hr>
+                          <div id="playerNameForm" class="form-group has-feedback">
+                            <label for="playerName">이름</label> 
+                            <input type="text" class="form-control" id="playerName" name="name" maxlength="20" autofocus="true" value="${loginUser.name}">
+                            <div class="control-label" id="playerNameMsg" style="display: none;">필수 정보입니다.</div>
+                          </div>
+                                 
+                          <div id="addrForm" class="form-group has-feedback">
+                            <label for="addr">주소</label>
+                            <input type="text" class="form-control" id="addr" name="addr" maxlength="50" autofocus="true" value="${loginUser.addr}">
+                            <div class="control-label" id="addrMsg" style="display: none;">필수 정보입니다.</div>
+                          </div>
+                                 
+                          <div id="phoneForm" class="form-group has-feedback">
+                            <label for="phone">휴대전화번호</label>
+                            <input type="text" class="form-control" id="phone" name="tel" maxlength="13" value="${loginUser.tel}">
+                            <div class="control-label" id="phoneMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
+                          </div>
+                                 
+                          <div class="div-center">
+                           <button type="submit" id="joinBtn" class="button">변경</button>
+                          </div>
+                        </div>
+                            
+                      </div>
+                    </form>
+                      
+                  </fieldset>
+                </article>
+              </section>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- --------------------/회원정보 수정 구간-------------------- -->
   <!-- --------------------회원가입 구간--------------------- -->
   
   <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

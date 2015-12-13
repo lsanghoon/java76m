@@ -627,7 +627,7 @@ body a:hover { color: #ffffff; }
             <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">회원 정보 관리</li>
               <li><a href='${pageContext.request.contextPath}/cart/list.do?email=${loginUser.email}'>장바구니</a></li>
-              <li><a href='${pageContext.request.contextPath}/users/detail.do?email=${loginUser.email}'>개인정보 변경</a></li>
+              <li><a data-toggle="modal" data-target="#squareDetailModal">개인정보 변경</a></li>
               <li><a href='${pageContext.request.contextPath}/purchase/listone.do?email=${loginUser.email}'>구매 목록</a></li>
               <li><a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a></li>
             </ul>
@@ -635,12 +635,80 @@ body a:hover { color: #ffffff; }
         
         </c:when>
         <c:otherwise>
-		      <li> <a data-toggle="modal" data-target="#squareloginModal"><i class="fa fa-fw fa fa-power-off"></i> Sing In</a> </li>
-		      <li> <a data-toggle="modal" data-target="#squarespaceModal"><i class="fa fa-fw fa fa-power-off"></i> Sign Up</a> </li>
+          <li> <a data-toggle="modal" data-target="#squareloginModal"><i class="fa fa-fw fa fa-power-off"></i> Sing In</a> </li>
+          <li> <a data-toggle="modal" data-target="#squarespaceModal"><i class="fa fa-fw fa fa-power-off"></i> Sign Up</a> </li>
         </c:otherwise>
       </c:choose>
     </ul>
   </nav>
+  
+  <!-- --------------------회원정보 수정 구간--------------------- -->
+  
+  <div class="modal fade" id="squareDetailModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+         
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+               </button>
+               <h3 class="modal-title" id="lineModalLabel">회원가입</h3>
+            </div>
+            
+            <div class="modal-body">
+              <section>
+                <article>
+                  <fieldset class="row div div-join">
+                     
+                    <form action='../users/update.do' method='post' enctype="multipart/form-data">
+                      <div class="panel panel-default">
+                           
+                        <div class="panel-heading">
+                          <label>필수 입력 사항</label>
+                        </div>
+                              
+                        <div class="panel-body">
+                          <div id="emailForm" class="form-group has-feedback">
+                            <label for="email">이메일</label> 
+                            <input type="text" class="form-control" id="email" name="email" maxlength="30" value="${loginUser.email}" readonly>
+                            <div class="control-label" id="emailMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
+                          </div>
+                                 
+                          <hr>
+                          <div id="playerNameForm" class="form-group has-feedback">
+                            <label for="playerName">이름</label> 
+                            <input type="text" class="form-control" id="playerName" name="name" maxlength="20" autofocus="true" value="${loginUser.name}">
+                            <div class="control-label" id="playerNameMsg" style="display: none;">필수 정보입니다.</div>
+                          </div>
+                                 
+                          <div id="addrForm" class="form-group has-feedback">
+                            <label for="addr">주소</label>
+                            <input type="text" class="form-control" id="addr" name="addr" maxlength="50" autofocus="true" value="${loginUser.addr}">
+                            <div class="control-label" id="addrMsg" style="display: none;">필수 정보입니다.</div>
+                          </div>
+                                 
+                          <div id="phoneForm" class="form-group has-feedback">
+                            <label for="phone">휴대전화번호</label>
+                            <input type="text" class="form-control" id="phone" name="tel" maxlength="13" value="${loginUser.tel}">
+                            <div class="control-label" id="phoneMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
+                          </div>
+                                 
+                          <div class="div-center">
+                           <button type="submit" id="joinBtn" class="button">변경</button>
+                          </div>
+                        </div>
+                            
+                      </div>
+                    </form>
+                      
+                  </fieldset>
+                </article>
+              </section>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- --------------------/회원정보 수정 구간-------------------- -->
   
   <!-- --------------------회원가입 구간--------------------- -->
   
@@ -656,74 +724,74 @@ body a:hover { color: #ffffff; }
             </div>
             
             <div class="modal-body">
-							<section>
-								<article>
-									<fieldset class="row div div-join">
-									   
-										<form action='../users/add.do' method='post' enctype="multipart/form-data">
-											<div class="panel panel-default">
-											     
-												<div class="panel-heading">
-												  <label>필수 입력 사항</label>
-												</div>
-												      
-												<div class="panel-body">
-													<div id="emailForm" class="form-group has-feedback">
-														<label for="email">이메일</label> 
-														<input type="text" class="form-control" id="email" name="email" maxlength="30"
-														  placeholder="이메일을 입력해주세요" autofocus="true" onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="emailMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
-													</div>
-													       
-													<hr>
-													<div id="passwordForm" class="form-group has-feedback">
-														<label for="password">비밀번호</label> 
-														<input type="password" class="form-control" id="password" name="password"
-														 maxlength="20" placeholder="비밀번호를 입력하세요." onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="passwordMsg" style="display: none;">필수 정보입니다.</div>
-													</div>
-													       
-													<div id="password2Form" class="form-group has-feedback">
-														<label for="password2">비밀번호 재입력</label> 
-														<input type="password" class="form-control" id="password2" name="password2" maxlength="20"
-														  placeholder="비밀번호를 재입력하세요." onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="password2Msg" style="display: none;">필수 정보입니다.</div>
-													</div>
-													       
-													<hr>
-													<div id="playerNameForm" class="form-group has-feedback">
-														<label for="playerName">이름</label> 
-														<input type="text" class="form-control" id="playerName" name="name" maxlength="20"
-														  autofocus="true" placeholder="이름을 입력하세요." onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="playerNameMsg" style="display: none;">필수 정보입니다.</div>
-													</div>
-													       
-													<div id="addrForm" class="form-group has-feedback">
-														<label for="addr">주소</label>
-														<input type="text" class="form-control" id="addr" name="addr" maxlength="50"
-														  autofocus="true" placeholder="주소를 입력해 주세요" onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="addrMsg" style="display: none;">필수 정보입니다.</div>
-													</div>
-													       
-													<div id="phoneForm" class="form-group has-feedback">
-														<label for="phone">휴대전화번호</label>
-														<input type="text" class="form-control" id="phone" name="tel" maxlength="13"
-														  placeholder="휴대전화번호를 입력해주세요 (예) 010-1234-5678" onchange="check(this.id); nullCheck();">
-														<div class="control-label" id="phoneMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
-													</div>
-													       
-													<div class="div-center">
-													 <button type="submit" id="joinBtn" class="button">가입</button>
-													 <a type="button" class="button1" href="list.do">취소</a>
-													</div>
-												</div>
-											      
-											</div>
-										</form>
-									    
-									</fieldset>
-								</article>
-							</section>
+              <section>
+                <article>
+                  <fieldset class="row div div-join">
+                     
+                    <form action='../users/add.do' method='post' enctype="multipart/form-data">
+                      <div class="panel panel-default">
+                           
+                        <div class="panel-heading">
+                          <label>필수 입력 사항</label>
+                        </div>
+                              
+                        <div class="panel-body">
+                          <div id="emailForm" class="form-group has-feedback">
+                            <label for="email">이메일</label> 
+                            <input type="text" class="form-control" id="email" name="email" maxlength="30"
+                              placeholder="이메일을 입력해주세요" autofocus="true" onchange="check(this.id); nullCheck();">
+                            <div class="control-label" id="emailMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
+                          </div>
+                                 
+                          <hr>
+                          <div id="passwordForm" class="form-group has-feedback">
+                            <label for="password">비밀번호</label> 
+                            <input type="password" class="form-control" id="password" name="password"
+                             maxlength="20" placeholder="비밀번호를 입력하세요." onchange="check(this.id); nullCheck();">
+                            <div class="control-label" id="passwordMsg" style="display: none;">필수 정보입니다.</div>
+                          </div>
+                                 
+                          <div id="password2Form" class="form-group has-feedback">
+                            <label for="password2">비밀번호 재입력</label> 
+                            <input type="password" class="form-control" id="password2" name="password2" maxlength="20"
+                              placeholder="비밀번호를 재입력하세요." onchange="check(this.id); nullCheck();">
+                            <div class="control-label" id="password2Msg" style="display: none;">필수 정보입니다.</div>
+                          </div>
+                                 
+                          <hr>
+                          <div id="playerNameForm" class="form-group has-feedback">
+                            <label for="playerName">이름</label> 
+                            <input type="text" class="form-control" id="playerName" name="name" maxlength="20"
+                              autofocus="true" placeholder="이름을 입력하세요." onchange="check(this.id); nullCheck();">
+                            <div class="control-label" id="playerNameMsg" style="display: none;">필수 정보입니다.</div>
+                          </div>
+                                 
+                          <div id="addrForm" class="form-group has-feedback">
+                            <label for="addr">주소</label>
+                            <input type="text" class="form-control" id="addr" name="addr" maxlength="50"
+                              autofocus="true" placeholder="주소를 입력해 주세요" onchange="check(this.id); nullCheck();">
+                            <div class="control-label" id="addrMsg" style="display: none;">필수 정보입니다.</div>
+                          </div>
+                                 
+                          <div id="phoneForm" class="form-group has-feedback">
+                            <label for="phone">휴대전화번호</label>
+                            <input type="text" class="form-control" id="phone" name="tel" maxlength="13"
+                              placeholder="휴대전화번호를 입력해주세요 (예) 010-1234-5678" onchange="check(this.id); nullCheck();">
+                            <div class="control-label" id="phoneMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
+                          </div>
+                                 
+                          <div class="div-center">
+                           <button type="submit" id="joinBtn" class="button">가입</button>
+                           <a type="button" class="button1" href="list.do">취소</a>
+                          </div>
+                        </div>
+                            
+                      </div>
+                    </form>
+                      
+                  </fieldset>
+                </article>
+              </section>
             </div>
          </div>
       </div>
@@ -750,18 +818,18 @@ body a:hover { color: #ffffff; }
                     <form action='../auth/login.do' method='post' enctype="multipart/form-data">
                       <div class="panel panel-default">
                            
-	                      <div class="panel-heading">
-	                        <label>환영합니다~ 이메일과 패스워드를 입력해주세요!</label>
-	                      </div>
-	                            
-	                      <div class="panel-body">
-	                      
-	                        <div id="emailForm" class="form-group has-feedback">
-	                          <label for="email">이메일</label> 
-	                          <input type=email class="form-control" id="email" name="email" value='${cookie.email.value}' maxlength="30" required="required"/>
-	                        </div>
-	                        
-	                        <div id="passwordForm" class="form-group has-feedback">
+                        <div class="panel-heading">
+                          <label>환영합니다~ 이메일과 패스워드를 입력해주세요!</label>
+                        </div>
+                              
+                        <div class="panel-body">
+                        
+                          <div id="emailForm" class="form-group has-feedback">
+                            <label for="email">이메일</label> 
+                            <input type=email class="form-control" id="email" name="email" value='${cookie.email.value}' maxlength="30" required="required"/>
+                          </div>
+                          
+                          <div id="passwordForm" class="form-group has-feedback">
                             <label for="password">비밀번호</label> 
                             <input type="password" class="form-control" id="password" name="password" maxlength="30" required="required"/>
                           </div>
@@ -771,11 +839,11 @@ body a:hover { color: #ffffff; }
                             <input type="checkbox" name="saveEmail" ${(empty cookie.email)?"":"checked"}>
                           </div> --%>
                           
-		                      <div class="div-center">
-	                          <button type="submit" id="joinBtn" class="button">로그인</button>
-	                        </div>
+                          <div class="div-center">
+                            <button type="submit" id="joinBtn" class="button">로그인</button>
+                          </div>
                         </div>
-	                      
+                        
                       </div> 
                     </form>
                       
@@ -794,7 +862,7 @@ body a:hover { color: #ffffff; }
   <div id="page-content-wrapper">
     <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"> <span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
     
-    <!-- <img src="/images/title.jsp" width="800px" height="200px" style="margin-left: 160px;"> -->
+    <img src="../images/title.png" height="200px" width="800px" style="margin-left: 160px; margin-bottom: 20px" >
     
     <jsp:include page="/use/imageHover.jsp"/>
     

@@ -23,7 +23,7 @@ public class PurchaseController {
 
 	@Autowired PurchaseDao purchaseDao;
 	@Autowired CartDao cartDao;
-	
+
 	@Autowired ServletContext servletContext;
 
 	@RequestMapping("list")
@@ -31,12 +31,12 @@ public class PurchaseController {
 			Model model) throws Exception {
 
 		List<Purchase> purchases = purchaseDao.selectList();
-		
+
 		model.addAttribute("purchases", purchases);
-		
+
 		return "purchase/PurchaseList";
 	}
-	
+
 	@RequestMapping(value="chart", method=RequestMethod.POST)
 	public String chart(
 			String sdate,
@@ -50,19 +50,19 @@ public class PurchaseController {
 		String end = edate.substring(0, 8);
 		int endday = Integer.parseInt(edate.substring(8, 10));
 		endday += 1;
-		
+
 		edate = end + endday;
-		
+
 		purchase.setSbDate(sdate);
 		purchase.setEbDate(edate);
-		
+
 		List<Purchase> charts = purchaseDao.selectChart(purchase);
-		
+
 		model.addAttribute("charts",charts);
-		
+
 		return "purchase/PurchaseChartList";
 	}
-	
+
 	@RequestMapping("listone")
 	public String listone(
 			String email,
@@ -71,7 +71,7 @@ public class PurchaseController {
 		List<Purchase> purchases = purchaseDao.selectOne(email);
 
 		model.addAttribute("purchases", purchases);
-		
+
 		return "purchase/PurchaseListone";
 	}
 
@@ -85,30 +85,31 @@ public class PurchaseController {
 
 		int sum = cpcost * cstock;
 		purchase.setBpsum(sum);
-		
+
 		user = (Users) session.getAttribute("loginUser");
 		purchase.setBuemail(user.getEmail());
 		purchase.setBuname(user.getName());
 
 		purchaseDao.insert(purchase);
-		
+
 		return "redirect:../product/list.do";
 	}
-	
+
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String add(
 			Purchase purchase,
 			Users user,
 			HttpSession session) throws Exception {
 
-		user = (Users) session.getAttribute("loginUser");
-		purchase.setBuemail(user.getEmail());
-		purchase.setBuname(user.getName());
+		if (purchase.getBpsum() > 0) {
+			user = (Users) session.getAttribute("loginUser");
+			purchase.setBuemail(user.getEmail());
+			purchase.setBuname(user.getName());
 
-		purchaseDao.insert(purchase);
-		
-		cartDao.deleteall(user.getEmail());
-		
+			purchaseDao.insert(purchase);
+			cartDao.deleteall(user.getEmail());
+		}
+
 		return "redirect:../product/list.do";
 	}
 
@@ -119,12 +120,12 @@ public class PurchaseController {
 			Model model,
 			Users user,
 			HttpSession session) throws Exception {
-		
+
 		if (purchaseDao.delete(no) <= 0) {
 			model.addAttribute("errorCode", "401");
 			return "cart/CartAuthError";
 		} 
-		
+
 		user = (Users) session.getAttribute("loginUser");
 
 		return "redirect:list.do?email=" + user.getEmail();

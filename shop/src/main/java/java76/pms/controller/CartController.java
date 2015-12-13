@@ -39,7 +39,7 @@ public class CartController {
 			sum += cat.getCpcost();
 			names = names + "/" + cat.getCpname();
 		}
-		
+
 		model.addAttribute("sum", sum);
 		model.addAttribute("names", names);
 		model.addAttribute("cart", cart);
@@ -67,10 +67,10 @@ public class CartController {
 
 		List<Cart> cart = cartDao.selectMy(email);
 		model.addAttribute("cart", cart);
-		
+
 		return "cart/CartDetail";
 	}
-	
+
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(
 			Cart cart,
@@ -82,7 +82,7 @@ public class CartController {
 			model.addAttribute("errorCode", "401");
 			return "cart/CartAuthError";
 		} 
-		
+
 		user = (Users) session.getAttribute("loginUser");
 
 		return "redirect:list.do?email=" + user.getEmail();
@@ -95,12 +95,12 @@ public class CartController {
 			Model model,
 			Users user,
 			HttpSession session) throws Exception {
-		
+
 		if (cartDao.delete(no) <= 0) {
 			model.addAttribute("errorCode", "401");
 			return "cart/CartAuthError";
 		} 
-		
+
 		user = (Users) session.getAttribute("loginUser");
 
 		return "redirect:list.do?email=" + user.getEmail();
