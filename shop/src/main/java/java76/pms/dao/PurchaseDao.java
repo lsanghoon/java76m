@@ -13,7 +13,7 @@ public interface PurchaseDao {
   
   List<Purchase> selectOne(String email);
   
-  List<Purchase> selectChart(Purchase purchase);
+  List<Purchase> selectChart();
 }
 
 

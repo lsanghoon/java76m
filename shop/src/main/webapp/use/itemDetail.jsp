@@ -27,13 +27,21 @@
 	  <tr>
 	    <td></td>
 	    <td height="80" style="font-size: 26px;">
-	     가격: <input type="text" name="cpcost" value="${product.pcost}" readonly style="border:none;">
+	     <c:choose>
+	       <c:when test="${product.pstock == 0}">
+	         <p style="color: red;">Sold Out!</p>
+	         가격: <input type="text" name="cpcost" value="${product.pcost}" readonly style="border:none; text-decoration: line-through;">
+	       </c:when>
+	       <c:otherwise>
+	         가격: <input type="text" name="cpcost" value="${product.pcost}" readonly style="border:none;">
+	       </c:otherwise>
+	     </c:choose>
 	    </td>
 	  </tr>
 	  <tr>
 	    <td height="50"></td>
 	    <td style="font-size: 23px;">
-	     개수: <input type="number" name="cstock" value="1" min="1" max="${product.pstock}" style="width: 65px;"/>
+	     개수: <input type="number" name="cstock" value="${(product.pstock == 0) ? 0 : 1 }" min="${(product.pstock == 0) ? 0 : 1 }" max="${product.pstock}" style="width: 65px;"/>
 	    </td>
 	  </tr>
 	  <tr>
@@ -44,7 +52,14 @@
 	
 	<hr>
 	  <p style="text-align: center;">
-	    <button type="submit" class="button" onclick='mySubmit(1)'>즉시구매</button>
+	   <c:choose>
+	     <c:when test="${product.pstock == 0 }">
+  	    <button type="submit" class="button" onclick='mySubmit(1)' disabled="disabled">즉시구매</button>
+	     </c:when>
+	     <c:otherwise>
+  	    <button type="submit" class="button" onclick='mySubmit(1)'>즉시구매</button>
+	     </c:otherwise>
+	   </c:choose>
 	    &nbsp; &nbsp; &nbsp; &nbsp;
 	    <button type="submit" class="button" onclick='mySubmit(2)'>장바구니</button>
 	  </p>

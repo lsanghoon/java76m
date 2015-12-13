@@ -31,37 +31,14 @@ public class PurchaseController {
 			Model model) throws Exception {
 
 		List<Purchase> purchases = purchaseDao.selectList();
+		List<Purchase> charts = purchaseDao.selectChart();
 
 		model.addAttribute("purchases", purchases);
+		model.addAttribute("charts",charts);
 
 		return "purchase/PurchaseList";
 	}
 
-	@RequestMapping(value="chart", method=RequestMethod.POST)
-	public String chart(
-			String sdate,
-			String edate,
-			Purchase purchase,
-			Model model) throws Exception {
-
-		System.out.println(edate);
-		//2014-01-01
-		//0123456789
-		String end = edate.substring(0, 8);
-		int endday = Integer.parseInt(edate.substring(8, 10));
-		endday += 1;
-
-		edate = end + endday;
-
-		purchase.setSbDate(sdate);
-		purchase.setEbDate(edate);
-
-		List<Purchase> charts = purchaseDao.selectChart(purchase);
-
-		model.addAttribute("charts",charts);
-
-		return "purchase/PurchaseChartList";
-	}
 
 	@RequestMapping("listone")
 	public String listone(
@@ -83,15 +60,17 @@ public class PurchaseController {
 			Users user,
 			HttpSession session) throws Exception {
 
-		int sum = cpcost * cstock;
-		purchase.setBpsum(sum);
+		if (cstock != 0) {
+			int sum = cpcost * cstock;
+			purchase.setBpsum(sum);
 
-		user = (Users) session.getAttribute("loginUser");
-		purchase.setBuemail(user.getEmail());
-		purchase.setBuname(user.getName());
+			user = (Users) session.getAttribute("loginUser");
+			purchase.setBuemail(user.getEmail());
+			purchase.setBuname(user.getName());
 
-		purchaseDao.insert(purchase);
-
+			purchaseDao.insert(purchase);
+		}
+		
 		return "redirect:../product/list.do";
 	}
 

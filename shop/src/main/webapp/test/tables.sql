@@ -48,7 +48,7 @@ select date_format(bDate, '%Y-%m')m, sum(bpsum) as s from purchase group by m;
 
 
 <![CDATA[
-    select date_format(bDate, '%Y-%m')m, sum(bpsum) as s 
+    select date_format(bDate, '%Y')m, sum(bpsum) as s 
     from purchase 
   where bDate >= '0000-01' and bDate < '2500-12'
   group by m
@@ -57,9 +57,7 @@ select date_format(bDate, '%Y-%m')m, sum(bpsum) as s from purchase group by m;
 
 
 
-select date_format(bDate, '%Y-%m-%d')m, sum(bpsum) as s from purchase 
-WHERE bDate >= '2014-01-06'
-   AND bDate < '2014-05-32'
+select date_format(bDate, '%Y')m, sum(bpsum) as s from purchase 
 group by m;
 
 

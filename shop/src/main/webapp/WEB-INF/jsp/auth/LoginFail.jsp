@@ -14,8 +14,7 @@ html {
 }
 
 body {
-  background: -webkit-linear-gradient(45deg, #0082b3 0%, #0082b3 100%);
-  background: linear-gradient(45deg, #0082b3 0%, #2b2f3a 100%);
+  background: #f5f5f5;
   color: rgba(0, 0, 0, 0.6);
   font-family: "Roboto", sans-serif;
   font-size: 14px;
