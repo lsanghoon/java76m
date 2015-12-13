@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java76.pms.dao.PurchaseDao">
+
+  <resultMap type="purchase" id="purchaseMap">
+    <id 		column="bno" 		property="no"/>
+  </resultMap>
+
+  <select id="selectList" resultMap="purchaseMap" parameterType="map">
+    select 
+	  bno,
+  	  bDate,
+  	  bpname,
+  	  bpsum,
+  	  buname,
+  	  buemail
+    from purchase
+    order by bDate desc
+  </select>
+  
+  <insert id="insert" parameterType="purchase">
+    insert into purchase(bDate,bpname,bpsum,buname,buemail) 
+    values(now(),#{bpname},#{bpsum},#{buname},#{buemail})
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+    delete from purchase 
+  	where bno=#{no}
+  </delete>
+  
+  <select id="selectOne" resultMap="purchaseMap" parameterType="map">
+    select
+  	  bno,
+  	  bDate,
+  	  bpname,
+  	  bpsum,
+  	  buname,
+  	  buemail
+    from purchase
+    where buemail=#{buemail}
+  	order by bDate desc
+  </select>
+  
+  <select id="selectChart" resultMap="purchaseMap" parameterType="purchase">
+  	select date_format(bDate, '%Y')m, sum(bpsum) as s 
+  		from purchase 
+		group by m
+  </select>
+</mapper>
+
+
+
+
+
+

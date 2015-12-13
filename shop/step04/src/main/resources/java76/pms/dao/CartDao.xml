@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java76.pms.dao.CartDao">
+
+  <resultMap type="cart" id="cartMap">
+    <id 		column="cno" 		property="no"/>
+  </resultMap>
+
+  <select id="selectList" resultMap="cartMap" parameterType="map">
+    select 
+      cno,
+  	  cpname,
+  	  cpphoto,
+  	  cpcost,
+  	  cemail,
+  	  cstock
+    from cart
+    order by cpname asc
+  </select>
+  
+  <insert id="insert" parameterType="cart">
+    insert into cart(cpname,cpphoto,cpcost,cemail,cstock) 
+    values(#{cpname},#{cpphoto},#{cpcost},#{cemail},#{cstock})
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+    delete from cart 
+  	where cno=#{no}
+  </delete>
+  
+  <delete id="deleteall" parameterType="string">
+    delete from cart 
+  	where cemail=#{cemail}
+  </delete>
+  
+  <update id="update" parameterType="cart">
+    update cart set 
+      cstock=#{cstock}
+    where cno=#{no}
+  </update>
+  
+  <select id="selectMy" resultMap="cartMap" parameterType="map">
+    select 
+  	  cno,
+  	  cpname,
+  	  cpphoto,
+  	  cpcost,
+  	  cemail,
+  	  cstock
+    from cart
+    where cemail=#{cemail}
+  </select>
+  
+</mapper>
+
+
+
+
+
+

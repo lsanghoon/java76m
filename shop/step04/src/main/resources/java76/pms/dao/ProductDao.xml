@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="java76.pms.dao.ProductDao">
+
+  <resultMap type="product" id="productMap">
+    <id 		column="pno" 		property="no"/>
+  </resultMap>
+
+  <select id="selectList" resultMap="productMap" parameterType="map">
+    select 
+      pno,
+  	  pstock,
+      pcost,
+  	  pcate,
+      pname,
+  	  pphoto,
+  	  pcontent,
+  	  pviews
+    from product
+    order by pviews desc
+  </select>
+  
+  <select id="selectCate" resultMap="productMap" parameterType="map">
+    select 
+      pno,
+  	  pstock,
+      pcost,
+  	  pcate,
+      pname,
+  	  pphoto,
+  	  pcontent,
+  	  pviews
+    from product
+  	where pcate=#{pcate}
+    order by pviews desc
+  </select>
+  
+  <insert id="insert" parameterType="product">
+    insert into product(pstock,pcost,pcate,pname,pphoto,fimage,simage) 
+    values(#{pstock},#{pcost},#{pcate},#{pname},#{pphoto},#{fimage},#{simage})
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+    delete from product 
+  	where pno=#{no}
+  </delete>
+  
+  <update id="views" parameterType="int">
+  	update product set
+  	  pviews=pviews+1
+  	where pno=#{no}
+  </update>
+  
+  <update id="update" parameterType="product">
+    update product set
+  	  pname=#{pname},
+  	  pcost=#{pcost},
+  	  pstock=pstock+#{pstock},
+  	  pcate=#{pcate},
+  	  pphoto=#{pphoto},
+  	  fimage=#{fimage},
+  	  simage=#{simage}
+    where pno=#{no}
+  </update>
+  
+  <select id="selectOne" resultMap="productMap" parameterType="int">
+  	select 
+      pno,
+  	  pstock,
+      pcost,
+  	  pcate,
+      pname,
+  	  pphoto,
+  	  pviews,
+  	  fimage,
+  	  simage
+    from product
+  	where pno=#{no}
+  </select>
+  
+  <select id="search" resultMap="productMap" parameterType="string">
+    select 
+      pno,
+  	  pstock,
+      pcost,
+  	  pcate,
+      pname,
+  	  pphoto,
+  	  pviews
+    from product
+    where content like CONCAT('%',#{pname},'%')
+  </select>
+  
+</mapper>
+
+
+
+
+
+
