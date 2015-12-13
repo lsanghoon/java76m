@@ -606,6 +606,10 @@ body a:hover { color: #ffffff; }
   <div id="page-content-wrapper">
     <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"> <span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
     
+    <a href="${pageContext.request.contextPath}/auth/list.do">
+      <img src="../images/title.png" height="200px" width="800px" style="margin-left: 160px; margin-bottom: 20px" >
+    </a>
+    
     <jsp:include page="/use/imageHoverForAdmin.jsp"/>
     
   </div>

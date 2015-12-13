@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>http://www.blueb.co.kr</title>
+<script>
+function lastVisit() {
+  var lastvisit=new Object()
+  lastvisit.firstvisitmsg="당신은 첫번째 방문입니다. 환영합니다." //Change first visit message here
+  lastvisit.subsequentvisitmsg="다시오셨네요! 마지막 방문일은 <b>[displaydate]</b> 입니다." // Change subsequent visit message here
+
+  lastvisit.getCookie=function(Name) { // get cookie value
+    var re=new RegExp(Name+"=[^;]+", "i"); // construct RE to search for target name/value pair
+    if (document.cookie.match(re)) // if cookie found
+      return document.cookie.match(re)[0].split("=")[1] // return its value
+      return ""
+  }
+  lastvisit.setCookie=function(name, value, days) { // set cookie value
+    var expireDate = new Date()
+    //set "expstring" to either future or past date, to set or delete cookie, respectively
+    var expstring=expireDate.setDate(expireDate.getDate()+parseInt(days))
+    document.cookie = name+"="+value+"; expires="+expireDate.toGMTString()+"; path=/";
+  }
+
+  lastvisit.showmessage=function() {
+  if (lastvisit.getCookie("visitcounter")=="") { // if first visit
+    lastvisit.setCookie("visitcounter", 2, 730) // set "visitcounter" to 2 and for 730 days (2 years)
+    document.write(lastvisit.firstvisitmsg)
+  } else
+    document.write(lastvisit.subsequentvisitmsg.replace("\[displaydate\]", new Date().toLocaleString()))
+  }
+  lastvisit.showmessage()
+}
+</script>
+</head>
+<body>
+
+<script type="text/javascript">
+<!--
+  lastVisit()
+//-->
+</script>
+
+
