@@ -47,11 +47,19 @@ select date_format(bDate, '%Y-%m')m, sum(bpsum) as s from purchase group by m;
 
 
 
+<![CDATA[
+    select date_format(bDate, '%Y-%m')m, sum(bpsum) as s 
+    from purchase 
+  where bDate >= '0000-01' and bDate < '2500-12'
+  group by m
+    ]]>
 
 
-select date_format(bDate, '%Y-%m')m, sum(bpsum) as s from purchase 
+
+
+select date_format(bDate, '%Y-%m-%d')m, sum(bpsum) as s from purchase 
 WHERE bDate >= '2014-01-06'
-   AND bDate < '2014-10-10'
+   AND bDate < '2014-05-32'
 group by m;
 
 
@@ -131,6 +139,11 @@ SELECT ifnull(DATE_FORMAT(bDate, '%Y%m%d'), '전체') dt
    AND bDate <  DATE_FORMAT('20120701', '%Y%m%d') + 1
   GROUP BY DATE_FORMAT(bDate, '%Y%m%d') with rollup
 ;
+
+
+
+우리 모두 패피가 되는 그순간까지 FASHION MAKER가 함께 합니다.
+
 
 
 

@@ -14,6 +14,8 @@ public class Purchase  implements Serializable {
 	protected String		buemail;
 	protected String		m;
 	protected int				s;
+	protected String		sbDate;
+	protected String		ebDate;
 	
 	public Purchase() {}
 
@@ -23,6 +25,19 @@ public class Purchase  implements Serializable {
 	    + ", buemail=" + buemail + "]";
 	}
 
+	
+	public String getSbDate() {
+		return sbDate;
+	}
+	public void setSbDate(String sbDate) {
+		this.sbDate = sbDate;
+	}
+	public String getEbDate() {
+		return ebDate;
+	}
+	public void setEbDate(String ebDate) {
+		this.ebDate = ebDate;
+	}
 	public String getM() {
 		return m;
 	}

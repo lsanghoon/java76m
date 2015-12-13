@@ -793,12 +793,14 @@ body a:hover { color: #ffffff; }
   <!-- Page Content -->
   <div id="page-content-wrapper">
     <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"> <span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
-
+    
+    <!-- <img src="/images/title.jsp" width="800px" height="200px" style="margin-left: 160px;"> -->
+    
     <jsp:include page="/use/imageHover.jsp"/>
     
   </div>
   <!-- /#page-content-wrapper --> 
-  
+
 </div>
 
 <!-- /#wrapper --> 

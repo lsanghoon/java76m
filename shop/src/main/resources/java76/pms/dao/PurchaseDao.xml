@@ -44,11 +44,13 @@
   	order by bDate desc
   </select>
   
-  <select id="selectChart" resultMap="purchaseMap" parameterType="string">
+  <select id="selectChart" resultMap="purchaseMap" parameterType="purchase">
+  	<![CDATA[
   	select date_format(bDate, '%Y-%m')m, sum(bpsum) as s 
   	from purchase 
-	where bDate >= #{sbDate}
+	where bDate >= #{sbDate} and bDate <= #{ebDate}
 	group by m
+  	]]>
   </select>
 </mapper>
 

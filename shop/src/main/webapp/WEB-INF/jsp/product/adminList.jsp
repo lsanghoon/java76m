@@ -3,7 +3,7 @@
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html>
 <head>
@@ -383,146 +383,6 @@ body a:hover { color: #ffffff; }
 </head>
 
 <body>
-<script>
-   function check(id) {
-       var oid = $("#" + id).val();
-       var oMsg = $("#" + id + "Msg");
-       var oDiv = $("#" + id + "Form");
-       var btn = $("#joinBtn");
-
-       btn.addClass("disabled");
-       //oDiv.removeClass("has-success");
-       //oDiv.addClass("has-error");
-       if (oid == "") {
-      oDiv.removeClass("has-success");
-      oDiv.addClass("has-error");
-      oMsg.css("display", "block");
-      oMsg.html("필수 정보입니다.");
-
-      return false;
-       }
-
-       if (id == "id" || id == "password" || id == "password2") {
-      var isID = /^[a-z0-9_@.]{4,20}$/;
-      if (!isID.test(oid)) {
-          oDiv.removeClass("has-success");
-          oDiv.addClass("has-error");
-          oMsg.css("display", "block");
-          oMsg.html("4-20자의 영소문자, 숫자와 특수기호(_)만 사용 가능합니다.");
-
-          return false;
-      }
-       }
-
-       if (id == "playerName") {
-      var isName = /^[가-힝]{2,}$/;
-
-      if (!isName.test(oid) || oid == "") {
-          oDiv.removeClass("has-success");
-          oDiv.addClass("has-error");
-          oMsg.css("display", "block");
-          oMsg.html("한글로 입력해주세요");
-
-          return false;
-      }
-
-      else {
-          oDiv.addClass("has-success");
-          oDiv.removeClass("has-error");
-          oMsg.css("display", "block");
-          oMsg.html("OK");
-
-          return true;
-      }
-       }
-     
-       if (id == "addr") {
-            var isName = /^[가-힝]{2,}$/;
-
-            if (!isName.test(oid) || oid == "") {
-                oDiv.removeClass("has-success");
-                oDiv.addClass("has-error");
-                oMsg.css("display", "block");
-                oMsg.html("정확히 입력해주세요");
-
-                return false;
-            }
-
-            else {
-                oDiv.addClass("has-success");
-                oDiv.removeClass("has-error");
-                oMsg.css("display", "block");
-                oMsg.html("OK");
-
-                return true;
-            }
-             }
-
-       if (id == "email") {
-      var isEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-      if (!isEmail.test(oid)) {
-          oDiv.removeClass("has-success");
-          oDiv.addClass("has-error");
-          oMsg.css("display", "block");
-          oMsg.html("양식에 맞게 입력해주세요");
-          
-          
-          return false;
-          
-      }else 
-          {
-             oDiv.removeClass("has-success");
-             oDiv.addClass("has-error");
-             oMsg.css("display", "block");
-             oMsg.html("OK");
-          }
-       }
-      
-      
-
-       if (id == "phone") {
-      var isPhone = /[01](0|1|6|7|8|9)[-](\d{4}|\d{3})[-]\d{4}$/;
-      if (!isPhone.test(oid)) {
-          oDiv.removeClass("has-success");
-          oDiv.addClass("has-error");
-          oMsg.css("display", "block");
-          oMsg.html("양식에 맞게 입력해주세요");
-
-          return false;
-      }else 
-          {
-          oDiv.removeClass("has-success");
-          oDiv.addClass("has-error");
-          oMsg.css("display", "block");
-          oMsg.html("OK");
-       }
-    }
-
-       if (id == "password") {
-      oDiv.removeClass("has-error");
-      oDiv.addClass("has-success");
-      oMsg.css("display", "block");
-      oMsg.html("사용 가능한 비밀번호입니다.");
-      return true;
-       }
-
-       if (id == "password2") {
-      var oPswd = $("#password").val();
-      if (oPswd == "" || oPswd != oid) {
-          oDiv.removeClass("has-success");
-          oDiv.addClass("has-error");
-          oMsg.css("display", "block");
-          oMsg.html("비밀번호가 일치하지 않습니다.");
-          return false;
-      }
-      oDiv.removeClass("has-error");
-      oDiv.addClass("has-success");
-      oMsg.css("display", "block");
-      oMsg.html("비밀번호가 일치합니다.");
-      return true;
-       }
-   }
-</script>
 
 <div id="wrapper">
   <div class="overlay"></div>
@@ -687,6 +547,58 @@ body a:hover { color: #ffffff; }
       </div>
    </div>
    <!-- --------------------/상품추가 구간-------------------- -->
+   
+    <!-- --------------------날짜선택 구간-------------------- -->
+   <div class="modal fade" id="squarePurChartModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+         
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+               </button>
+               <h3 class="modal-title" id="lineModalLabel">상품추가</h3>
+            </div>
+            
+            <div class="modal-body">
+              <section>
+                <article>
+                  <fieldset class="row div div-join">
+                     
+                    <form action='../purchase/chart.do' method='post' enctype="multipart/form-data">
+                      <div class="panel panel-default">
+                           
+                        <div class="panel-heading">
+                          <label>확인할 년도를 선택해 주세요</label>
+                        </div>
+                              
+                        <div class="panel-body">
+                        
+                          <div id="pnameForm" class="form-group has-feedback">
+                            <label for="sdate">Start Year</label> 
+                            <input type="date" class="form-control" id="sdate" name="sdate" maxlength="30" required="required"/>
+                          
+                            <label for="edate">End Year</label> 
+                            <input type="date" class="form-control" id="edate" name="edate" maxlength="30" required="required"/>
+                          </div>
+                          
+                          <div class="div-center">
+                            <button type="submit" id="joinBtn" class="button" style="height: 45px; width: 100px;">등록</button>
+                          </div>
+                          
+                        </div>
+                        
+                      </div> 
+                    </form>
+                      
+                  </fieldset>
+                </article>
+              </section>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- --------------------/날짜선택 구간-------------------- -->
   
   <!-- /#sidebar-wrapper --> 
   
