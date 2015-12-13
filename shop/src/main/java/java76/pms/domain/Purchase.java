@@ -12,6 +12,8 @@ public class Purchase  implements Serializable {
 	protected int				bpsum;
 	protected String		buname;
 	protected String		buemail;
+	protected String		m;
+	protected int				s;
 	
 	public Purchase() {}
 
@@ -21,6 +23,18 @@ public class Purchase  implements Serializable {
 	    + ", buemail=" + buemail + "]";
 	}
 
+	public String getM() {
+		return m;
+	}
+	public void setM(String m) {
+		this.m = m;
+	}
+	public int getS() {
+		return s;
+	}
+	public void setS(int s) {
+		this.s = s;
+	}
 	public int getNo() {
 		return no;
 	}

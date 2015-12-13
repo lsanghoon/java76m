@@ -41,7 +41,19 @@ create table purchase (
   constraint purchase_pk primary key (bno)
 );
 
-select date_format(bDate,'%Y-%m')m,count(*) as a from purchase group by m;
+select date_format(bDate,'%Y-%m')m,count(*) as s from purchase group by m;
+
+select date_format(bDate, '%Y-%m')m, sum(bpsum) as s from purchase group by m;
+
+
+
+
+
+select date_format(bDate, '%Y-%m')m, sum(bpsum) as s from purchase 
+WHERE bDate >= '2014-01-06'
+   AND bDate < '2014-10-10'
+group by m;
+
 
 
 insert into purchase(bDate,bpname,bpsum,buname,buemail)
@@ -91,6 +103,35 @@ insert into cart(cpno,cemail)
 values(6,'sing@sing.sing');
 insert into cart(cpno,cemail)
 values(7,'sing@sing.sing');
+
+
+
+
+SELECT NVL(bDate, '전체')m
+     , NVL(SUM(bpsum), 0)s
+  FROM (SELECT TO_CHAR(TO_DATE('20120620', 'yyyymmdd') + LEVEL - 1, 'yyyymmdd') dt
+          FROM purchase
+          CONNECT BY LEVEL <= TO_DATE('20120701', 'yyyymmdd') - TO_DATE('20120620', 'yyyymmdd') + 1
+        )a
+     , (SELECT TO_CHAR(dtime, 'yyyymmdd') dt, COUNT(*) tot
+          FROM purchase
+          WHERE bDate >= TO_DATE('20120620', 'yyyymmdd')
+          AND bDate <  TO_DATE('20120701', 'yyyymmdd') + 1
+          GROUP BY TO_CHAR(bDate, 'yyyymmdd')
+        )b
+ WHERE a.dt = b.dt(+)
+ GROUP BY ROLLUP(a.dt)
+;
+
+
+SELECT ifnull(DATE_FORMAT(bDate, '%Y%m%d'), '전체') dt
+     , COUNT(*) tot
+  FROM purchase
+  WHERE bDate >= DATE_FORMAT('20120620', '%Y%m%d')
+   AND bDate <  DATE_FORMAT('20120701', '%Y%m%d') + 1
+  GROUP BY DATE_FORMAT(bDate, '%Y%m%d') with rollup
+;
+
 
 
 select pno,pcost,pname from product where pno=(select cpno from cart where cemail='sing@sing.sing');

@@ -8,7 +8,9 @@
 
 <h4>판매 현황</h4>
 <br>
-
+  <c:forEach var="chart" items="${charts }">
+    ${chart.m} : ${chart.s}
+  </c:forEach>
 <table id="hor-minimalist-b" summary="Employee Pay Sheet" border="0">
   <thead>
     <tr>

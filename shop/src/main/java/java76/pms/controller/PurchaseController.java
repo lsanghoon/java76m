@@ -30,8 +30,10 @@ public class PurchaseController {
 	public String list(
 			Model model) throws Exception {
 
+		String date = "2015-01";
+		
 		List<Purchase> purchases = purchaseDao.selectList();
-		List<Purchase> charts = purchaseDao.selectChart();
+		List<Purchase> charts = purchaseDao.selectChart(date);
 		
 		
 		model.addAttribute("purchases", purchases);
