@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <h1>변수 선언</h1>
+
+  <script>
+  "use strict";
+
+  // 문자열 다루기
+  var str1 = "Hello"; // string타입
+  var str2 = new String("Hello"); // object 타입
+
+  console.log(str1, typeof str1);
+  console.log(str2, typeof str2);
+
+  /* 자바 스크립트의 primitive type과 object type
+  => primitive type: string, number, boolean
+  => object type: String(), Number(), Boolean(), ...
+  */
+
+  /* primitive type 값은 대응하는 객체로 자동 변환(autoboxing)되기 때문에
+     객체처럼 사용할 수 있다. */
+
+  // 자바스크립트 문자열은 immutable 이다.
+  var str3 = str2.replace("ll", "xx");  // 새 문자열 리턴한다.
+  console.log(str2, typeof str2);
+  console.log(str3, typeof str3); // replace() 리턴 값은 string 타입이다.
+
+  /* primitive type 값은 대응하는 객체로 자동 변환(autoboxing) 되기 때문에
+     객체처럼 사용할 수 있다. */
+  // str1은 string 타입인데도 불구하고 String 객체처럼 사용할 수 있다.
+  var str4 = str1.replace("ll", "oo");
+  console.log(str1, typeof str1);
+  console.log(str4, typeof str4);
+  </script>
+</body>
+</html>
