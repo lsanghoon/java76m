@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  position: relative;
+  /*border: 1px solid red;*/
+  padding: 0px;
+}
+
+/* 헤더 영역 설정 */
+header {
+  margin: 0px;
+  position: relative; 
+  height: 50px;
+  line-height: 50px;
+  background: black;
+  color: white;
+}
+
+#post-box {
+  display: inline;
+  height: 44px;
+  /*width: 80px;*/
+  position: absolute;
+  right: 5px;
+  border-style: none;
+}
+
+#post-img {
+  height: 40px;
+}
+
+#post-count {
+  border-radius: 3px;
+  color:black;
+  background: yellow;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-weight: bolder;
+  font-size: 1.2em;
+  position: relative;
+  right: 14px;
+  top:-14px;
+}
+/* /헤더 영역 설정 */
+
+
+/* 왼쪽 편 메뉴 설정 */
+aside#menu {
+  width: 180px;
+  position: absolute;
+  left: 0px;
+  top: 50px;
+  margin: 0px;
+  background: #ffcc00;
+}
+/* /왼쪽 편 메뉴 설정 */
+
+/* 본문 내용 설정 */
+#totoro {
+  width: 50px;
+}
+
+section {
+  margin: 0px 180px ;
+  padding: 0px 10px;
+  min-width: 300px;
+}
+
+#toolbar {
+  margin: 10px 0px;
+}
+/* /본문 내용 설정 */
+
+/* 오른쪽 편 영역 설정 */
+aside#preview {
+  width: 180px;
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  margin: 0px;
+  background: #59f;
+}
+/* /오른쪽 편 영역 설정 */
+
+/* 사진 */
+#apple {
+  width: 100px;
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+}
+
+/* 꼬리말 영역 */
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 50px;
+  left: 0px;
+  text-align: center;
+}
+
+/* 쿠폰 */
+#coupon {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  left: 0px;
+  top: 239px;
+}
+

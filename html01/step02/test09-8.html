@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test04</title>
+
+<style type="text/css">
+/* 배경다루기 */
+
+/* 입력 상자 + 배경 */
+input[name=id] {
+  height: 30px;
+}
+
+#idcheck {
+  border-style: none;
+  height: 30px;
+  width: 30px;
+  background: url('icon01.gif') no-repeat left -200px top 0px;
+  
+}
+</style>
+
+</head>
+<body>
+  <h1>회원 가입</h1>
+  <form>
+    아이디 : <input type="text" name="id">
+          <input type="text" id='idcheck' readonly><br>
+    이름 : <input type="text" name="name"><br>
+    암호 : <input type="password" name="password">
+  </form>
+</body>
+</html>

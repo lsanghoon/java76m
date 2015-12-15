@@ -1,8 +1,8 @@
 @CHARSET "UTF-8";
 
 .button1 {
-  background-color:lightgray;
-  border:2px outset lightgray;
+	background-color:lightgray;
+	border:2px outset lightgray;
   text-decoration:none;
   font-size:11px;
   height:22px;
@@ -13,8 +13,8 @@
 }
 
 .button2 {
-  background-color:lightgray;
-  border:2px outset lightgray;
+	background-color:lightgray;
+	border:2px outset lightgray;
   text-decoration:none;
   font-size:11px;
   height:16px;

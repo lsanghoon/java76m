@@ -1,324 +1,217 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-  <title>로그인</title>
-
-<style rel="stylesheet">
-html {
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  background: -webkit-linear-gradient(45deg, #0082b3 0%, #0082b3 100%);
-  background: linear-gradient(45deg, #0082b3 0%, #2b2f3a 100%);
-  color: rgba(0, 0, 0, 0.6);
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  line-height: 1.6em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.overlay, .form-panel.one:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
-  background: rgba(0, 0, 0, 0.8);
-  width: 100%;
-  height: 100%;
-}
-
-.form {
-  z-index: 15;
-  position: relative;
-  background: #FFFFFF;
-  width: 600px;
-  border-radius: 4px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  margin: 100px auto 10px;
-  overflow: hidden;
-}
-.form-toggle {
-  z-index: 10;
-  position: absolute;
-  top: 60px;
-  right: 60px;
-  background: #FFFFFF;
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
-  -webkit-transform: translate(0, -25%) scale(0);
-      -ms-transform: translate(0, -25%) scale(0);
-          transform: translate(0, -25%) scale(0);
-  opacity: 0;
-  cursor: pointer;
-  -webkit-transition: all 0.3s ease;
-          transition: all 0.3s ease;
-}
-.form-toggle:before, .form-toggle:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 4px;
-  background: #4285F4;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-.form-toggle:before {
-  -webkit-transform: translate(-50%, -50%) rotate(45deg);
-      -ms-transform: translate(-50%, -50%) rotate(45deg);
-          transform: translate(-50%, -50%) rotate(45deg);
-}
-.form-toggle:after {
-  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
-      -ms-transform: translate(-50%, -50%) rotate(-45deg);
-          transform: translate(-50%, -50%) rotate(-45deg);
-}
-.form-toggle.visible {
-  -webkit-transform: translate(0, -25%) scale(1);
-      -ms-transform: translate(0, -25%) scale(1);
-          transform: translate(0, -25%) scale(1);
-  opacity: 1;
-}
-.form-group {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin: 0 0 20px;
-}
-.form-group:last-child {
-  margin: 0;
-}
-.form-group label {
-  display: block;
-  margin: 0 0 10px;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: .2em;
-}
-.two .form-group label {
-  color: #FFFFFF;
-}
-.form-group input {
-  outline: none;
-  display: block;
-  background: rgba(0, 0, 0, 0.1);
-  width: 100%;
-  border: 0;
-  border-radius: 4px;
-  box-sizing: border-box;
-  padding: 12px 20px;
-  color: rgba(0, 0, 0, 0.6);
-  font-family: inherit;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: inherit;
-  -webkit-transition: 0.3s ease;
-          transition: 0.3s ease;
-}
-.form-group input:focus {
-  color: rgba(0, 0, 0, 0.8);
-}
-.two .form-group input {
-  color: #FFFFFF;
-}
-.two .form-group input:focus {
-  color: #FFFFFF;
-}
-.form-group button {
-  outline: none;
-  background: #0082b3;
-  width: 100%;
-  border: 0;
-  border-radius: 4px;
-  padding: 12px 20px;
-  color: #FFFFFF;
-  font-family: inherit;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: inherit;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.form-group .form-remember {
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-}
-.form-group .form-remember input[type='checkbox'] {
-  display: inline-block;
-  width: auto;
-  margin: 0 10px 0 0;
-}
-.form-group .form-recovery {
-  color: #4285F4;
-  font-size: 12px;
-  text-decoration: none;
-}
-.form-panel {
-  padding: 60px calc(5% + 60px) 60px 60px;
-  box-sizing: border-box;
-}
-.form-panel.one:before {
-  content: '';
-  display: block;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: 0.3s ease;
-          transition: 0.3s ease;
-}
-.form-panel.one.hidden:before {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-}
-
-.form-header {
-  margin: 0 0 40px;
-}
-.form-header h1 {
-  padding: 4px 0;
-  color: #2b2f3a;
-  font-size: 32px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.two .form-header h1 {
-  position: relative;
-  z-index: 40;
-  color: #FFFFFF;
-}
-
-.pen-footer {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 600px;
-  margin: 20px auto 100px;
-}
-.pen-footer a {
-  color: #FFFFFF;
-  font-size: 12px;
-  text-decoration: none;
-  text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.1);
-}
-.pen-footer a .material-icons {
-  width: 12px;
-  margin: 0 5px;
-  vertical-align: middle;
-  font-size: 12px;
-}
-
-.cp-fab {
-  background: #FFFFFF !important;
-  color: #4285F4 !important;
-}
-
-</style>
+<meta charset='UTF-8'>
+<title>학생-등록</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+ integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+ crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet"
+ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+ integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+ crossorigin="anonymous">
+<script
+ src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script
+ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+ integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+ crossorigin="anonymous"></script>
+<link href='../css/bootstrap.min.css' rel='stylesheet'>
+<link href="../css/join.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
+ <script>
+   function check(id) {
+       var oid = $("#" + id).val();
+       var oMsg = $("#" + id + "Msg");
+       var oDiv = $("#" + id + "Form");
+       var btn = $("#joinBtn");
 
-<!-- Form-->
-<div class="form">
-  <div class="form-toggle"></div>
-  <div class="form-panel one">
-    <div class="form-header">
-      <h1>로그인</h1>
-    </div>
-    <div class="form-content">
-      <form id="form1" action="login.do" method="post">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type=email id="email" name="email" value='${cookie.email.value}' required="required"/>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required="required"/>
-        </div>
-        <div class="form-group">
-          <label class="form-remember">
-            <input type="checkbox" name="saveEmail" ${(empty cookie.email)?"":"checked"}/>
-              Remember Me
-          </label>
-        </div>
-        <div class="form-group">
-          <button type="submit">Sign In</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
-<script type="text/javascript">
-$(document).ready(function() {
-  var panelOne = $('.form-panel.two').height(),
-    panelTwo = $('.form-panel.two')[0].scrollHeight;
+       btn.addClass("disabled");
+       //oDiv.removeClass("has-success");
+       //oDiv.addClass("has-error");
+       if (oid == "") {
+      oDiv.removeClass("has-success");
+      oDiv.addClass("has-error");
+      oMsg.css("display", "block");
+      oMsg.html("필수 정보입니다.");
 
-  $('.form-panel.two').not('.form-panel.two.active').on('click', function(e) {
-    e.preventDefault();
+      return false;
+       }
 
-    $('.form-toggle').addClass('visible');
-    $('.form-panel.one').addClass('hidden');
-    $('.form-panel.two').addClass('active');
-    $('.form').animate({
-      'height': panelTwo
-    }, 200);
-  });
+       if (id == "id" || id == "password" || id == "password2") {
+      var isID = /^[a-z0-9_@.]{4,20}$/;
+      if (!isID.test(oid)) {
+          oDiv.removeClass("has-success");
+          oDiv.addClass("has-error");
+          oMsg.css("display", "block");
+          oMsg.html("4-20자의 영소문자, 숫자와 특수기호(_)만 사용 가능합니다.");
 
-  $('.form-toggle').on('click', function(e) {
-    e.preventDefault();
-    $(this).removeClass('visible');
-    $('.form-panel.one').removeClass('hidden');
-    $('.form-panel.two').removeClass('active');
-    $('.form').animate({
-      'height': panelOne
-    }, 200);
-  });
-});
+          return false;
+      }
+       }
 
-</script>
+       if (id == "playerName") {
+      var isName = /^[가-힝]{2,}$/;
 
+      if (!isName.test(oid) || oid == "") {
+          oDiv.removeClass("has-success");
+          oDiv.addClass("has-error");
+          oMsg.css("display", "block");
+          oMsg.html("한글로 입력해주세요");
+
+          return false;
+      }
+
+      else {
+          oDiv.addClass("has-success");
+          oDiv.removeClass("has-error");
+          oMsg.css("display", "block");
+          oMsg.html("OK");
+
+          return true;
+      }
+       }
+     
+
+       if (id == "email") {
+      var isEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+      if (!isEmail.test(oid)) {
+          oDiv.removeClass("has-success");
+          oDiv.addClass("has-error");
+          oMsg.css("display", "block");
+          oMsg.html("양식에 맞게 입력해주세요");
+          
+          
+          return false;
+          
+      }else 
+          {
+             oDiv.removeClass("has-success");
+             oDiv.addClass("has-error");
+             oMsg.css("display", "block");
+             oMsg.html("OK");
+          }
+       }
+      
+      
+
+       if (id == "phone") {
+      var isPhone = /[01](0|1|6|7|8|9)[-](\d{4}|\d{3})[-]\d{4}$/;
+      if (!isPhone.test(oid)) {
+          oDiv.removeClass("has-success");
+          oDiv.addClass("has-error");
+          oMsg.css("display", "block");
+          oMsg.html("양식에 맞게 입력해주세요");
+
+          return false;
+      }else 
+          {
+          oDiv.removeClass("has-success");
+          oDiv.addClass("has-error");
+          oMsg.css("display", "block");
+          oMsg.html("OK");
+       }
+    }
+
+       if (id == "password") {
+      oDiv.removeClass("has-error");
+      oDiv.addClass("has-success");
+      oMsg.css("display", "block");
+      oMsg.html("사용 가능한 비밀번호입니다.");
+      return true;
+       }
+
+       if (id == "password2") {
+      var oPswd = $("#password").val();
+      if (oPswd == "" || oPswd != oid) {
+          oDiv.removeClass("has-success");
+          oDiv.addClass("has-error");
+          oMsg.css("display", "block");
+          oMsg.html("비밀번호가 일치하지 않습니다.");
+          return false;
+      }
+      oDiv.removeClass("has-error");
+      oDiv.addClass("has-success");
+      oMsg.css("display", "block");
+      oMsg.html("비밀번호가 일치합니다.");
+      return true;
+       }
+   }
+    </script>
+
+ <h1>새 학생</h1>
+
+ <section>
+  <article>
+   <fieldset class="row div div-join">
+   
+    <form action='add.do' method='post' enctype="multipart/form-data">
+     <div class="panel panel-default">
+     
+      <div class="panel-heading">
+       <label>필수 입력 사항</label>
+      </div>
+      
+      <div class="panel-body">
+       <div id="playerNameForm" class="form-group has-feedback">
+        <label for="playerName">이름</label> 
+        <input type="text" class="form-control" id="playerName" name="name" maxlength="20"
+         autofocus="true" placeholder="이름을 입력하세요." onchange="check(this.id); nullCheck();">
+        <div class="control-label" id="playerNameMsg" style="display: none;">필수 정보입니다.</div>
+       </div>
+       
+       <hr>
+       <div id="emailForm" class="form-group has-feedback">
+        <label for="email">이메일</label> 
+        <input type="text" class="form-control" id="email" name="email" maxlength="30"
+         placeholder="이메일을 입력해주세요" autofocus="true" onchange="check(this.id); nullCheck();">
+        <div class="control-label" id="emailMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
+       </div>
+       
+       <div id="phoneForm" class="form-group has-feedback">
+        <label for="phone">휴대전화번호</label>
+        <input type="text" class="form-control" id="phone" name="tel" maxlength="13"
+         placeholder="휴대전화번호를 입력해주세요 (예) 010-1234-5678" onchange="check(this.id); nullCheck();">
+        <div class="control-label" id="phoneMsg" style="display: none;">양식에 맞게 입력해주세요.</div>
+       </div>
+       
+       <hr>
+       <div id="passwordForm" class="form-group has-feedback">
+        <label for="password">비밀번호</label> 
+        <input type="password" class="form-control" id="password" name="password"
+         maxlength="20" placeholder="비밀번호를 입력하세요." onchange="check(this.id); nullCheck();">
+        <div class="control-label" id="passwordMsg" style="display: none;">필수 정보입니다.</div>
+       </div>
+       
+       <div id="password2Form" class="form-group has-feedback">
+        <label for="password2">비밀번호 재입력</label> 
+        <input type="password" class="form-control" id="password2" name="password2" maxlength="20"
+         placeholder="비밀번호를 재입력하세요." onchange="check(this.id); nullCheck();">
+        <div class="control-label" id="password2Msg" style="display: none;">필수 정보입니다.</div>
+       </div>
+       
+       <div class="div-center">
+        <button type="submit" id="joinBtn" class="btn btn-lg btn-primary btn-join">가입하기</button>
+        <a type="button" class="btn btn-lg btn-danger btn-cancel" href="list.do">취소</a>
+       </div>
+      </div>
+      
+     </div>
+    </form>
+    
+   </fieldset>
+  </article>
+ </section>
 
 </body>
 </html>
-
-
-
-
-

@@ -33,14 +33,15 @@ public class ProductController {
 			Users users,
 			HttpSession session,
 			Model model) throws Exception {
-		
-		users = (Users) session.getAttribute("loginUser");
-		Users user = usersDao.point(users.getEmail());
-		model.addAttribute("user", user);
 
+		if (session.getAttribute("loginUser") != null) {
+			users = (Users) session.getAttribute("loginUser");
+			Users user = usersDao.point(users.getEmail());
+			model.addAttribute("user", user);
+		}
 		List<Product> products = productDao.selectList();
 		model.addAttribute("products", products);
-		
+
 		return "product/ProductList";
 	}
 
@@ -48,13 +49,13 @@ public class ProductController {
 	public String catelist(
 			String pcate,
 			Model model) throws Exception {
-		
+
 		List<Product> products = productDao.selectCate(pcate);
 		model.addAttribute("products", products);
-		
+
 		return "product/ProductList";
 	}
-	
+
 	@RequestMapping(value="search", method=RequestMethod.GET)
 	public String search(
 			String content,
@@ -115,13 +116,13 @@ public class ProductController {
 			Users users,
 			HttpSession session,
 			Model model) throws Exception {
-		
+
 		users = (Users) session.getAttribute("loginUser");
-		
+
 		Users user = usersDao.point(users.getEmail());
-		
+
 		model.addAttribute("user", user);
-		
+
 		Product product = productDao.selectOne(no);
 		productDao.views(no);
 		model.addAttribute("product", product);
@@ -146,7 +147,7 @@ public class ProductController {
 		} else if (product.getPphoto().length() == 0) {
 			product.setPphoto(null);
 		}
-		
+
 		if (fimagefile.getSize() > 0) {
 			String newFileName = MultipartHelper.fimageFilename(fimagefile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
@@ -157,7 +158,7 @@ public class ProductController {
 		} else if (product.getFimage().length() == 0) {
 			product.setFimage(null);
 		}
-		
+
 		if (simagefile.getSize() > 0) {
 			String newFileName = MultipartHelper.simageFilename(simagefile.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 

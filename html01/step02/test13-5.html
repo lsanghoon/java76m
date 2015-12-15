@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test04</title>
+
+<style type="text/css">
+/* 상자의 위치를 지정하기 - fixed */
+ 
+body {
+  padding: 0px;
+  margin: 0px;
+  font-size: small;
+}
+
+div {
+  border: 1px solid gray;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.header {
+  height: 50px;
+  line-height: 50px;
+  background: black;
+  
+}
+
+/* position : absolute, fixed, relative
+1) absolute
+=> absolute 또는 fixed조상을 기준으로 자식 태그의 위치를 지정하기.
+=> 만약 조상 중에 absolute나 fixed유형의 태그가 없다면 body를 기준으로 위치를 찾는다.
+=> float과 달리 좌/우 상/하 어디에든 위치시킬 수 있다.
+=> 
+*/
+
+.aside {
+  width: 180px;
+  position: absolute;
+  left: 0px;
+  top: 51px;
+  margin: 0px;
+  background: #ffcc00;
+}
+
+.aside2 {
+  width: 180px;
+  position: absolute;
+  right: 0px;
+  top: 51px;
+  margin: 0px;
+  background: #59f;
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  text-align: center;
+}
+
+.section {
+  margin-left: 180px;
+  padding: 0px 19px;
+  min-width: 300px;
+}
+
+/* 쿠폰 이미지를 웹브라우저 좌표로 위치 지정하기 */
+#coupon {
+  /* absolute의 특징은 기준 태그가 이동하면 
+     그 태그를 따라 함께 이동한다.
+  position: absolute;
+  */
+  /* 기준이 되는 태그의 이동에 영향을 받지 않고,
+     웹 브라우저의 좌표를 기준으로 고정시키고 싶다면 fixed를 사용하라 */
+  position: fixed;
+  left: 0px;
+  top: 239px;
+}
+</style>
+
+</head>
+<body>
+ <div class="header">
+    <img src="log1o.jpg">
+    <span>세계 최고의 프로그래밍 전문 교육기관 "비트캠프"</span>
+  </div>
+  <div class="aside">
+    <h2>관리</h2>
+    <ul>
+      <li>학생 관리</li>
+      <li>강사 관리</li>
+      <li>과정 관리</li>
+      <li>교육장 관리</li>
+      <li>수강신청 관리</li>
+    </ul>
+    <h2>공지사항</h2>
+    <ul>
+      <li>공지입니다...</li>
+      <li>공지입니다...</li>
+      <li>공지입니다...</li>
+      <li>공지입니다...</li>
+      <li>공지입니다...</li>
+    </ul>
+  </div>
+  <div class="aside2">
+    <h2>최근글</h2>
+    <ul>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+      <li>제목입니다...</li>
+    </ul>
+    <h2>질문/답변</h2>
+    <ul>
+      <li>질문입니다...</li>
+      <li> -> 답변입니다...</li>
+      <li>질문입니다...</li>
+      <li> -> 답변입니다...</li>
+      <li>질문입니다...</li>
+    </ul>
+  </div>
+  
+  <div class="section">
+    <h1>회원목록</h1>
+    <table border='1'>
+	    <tr id="tr1"> <th>번호</th> <th>이름</th> <th>이메일</th> <th>전화번호</th>  </tr>
+	    <tr id="tr2"> <td>1</td> <td>홍길동</td> <td>hong@test.com</td> <td>111-1111</td> </tr>
+	    <tr id="tr3"> <td>2</td> <td>임꺽정</td> <td>leem@test.com</td> <td>111-2222</td> </tr>
+	    <tr id="tr4"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	  </table>
+  </div>
+  
+  <img src="a.gif" id="coupon">
+  
+  <div class="footer">
+    <address>서울 서초구 비트 캠프</address>
+  </div>
+  
+</body>
+</html>

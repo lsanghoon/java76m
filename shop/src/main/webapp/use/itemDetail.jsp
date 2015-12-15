@@ -62,7 +62,14 @@
 	     </c:otherwise>
 	   </c:choose>
 	    &nbsp; &nbsp; &nbsp; &nbsp;
-	    <button type="submit" class="button" onclick='mySubmit(2)'>장바구니</button>
+	    <c:choose>
+       <c:when test="${product.pstock == 0 }">
+		    <button type="submit" class="button" onclick='mySubmit(2)' disabled="disabled">장바구니</button>
+       </c:when>
+       <c:otherwise>
+		    <button type="submit" class="button" onclick='mySubmit(2)'>장바구니</button>
+       </c:otherwise>
+     </c:choose>
 	  </p>
 	<hr>
 </form>
