@@ -1,18 +1,15 @@
-@charset "UTF-8";
-
-
+@CHARSET "UTF-8";
 html {
-  height: 100%;
-}
-body {
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
-  font-size: small;
+/*   border: 1px solid blue; */
+  height: 100%;	
 }
 
-div {
-  /*border: 1px solid gray;*/
+body {
+	height: 100%;
+/* 	border: 1px solid red; */
+  margin: 0px;
+  padding: 0px;
+  font-size: small;
 }
 
 img {
@@ -20,81 +17,78 @@ img {
 }
 
 .header {
-  position: relative; 
+  position: relative;
   height: 50px;
   line-height: 50px;
-  background: black;
+  background-color: black;
   color: white;
+  min-width: 600px;
 }
 
 .aside {
   width: 180px;
   position: absolute;
   left: 0px;
-  top: 0px;
+  top: 0px; 
   margin: 0px;
-  background: #ffcc00;
+  background-color: #ffcc00;
+  opacity: 1;
 }
 
 .aside2 {
   width: 180px;
   position: absolute;
-  right: 0px;
   top: 0px;
+  right: 0px;
   margin: 0px;
-  background: #59f;
+  background-color: #59f;
+}
+
+.section {
+  margin-left: 181px;
+  padding: 0px 10px;
+  min-width: 300px;
 }
 
 .footer {
   width: 100%;
   position: absolute;
-  bottom: 50px;
   left: 0px;
+  bottom: 60px;
   text-align: center;
 }
 
-.section {
-  margin-left: 180px;
-  padding: 0px 19px;
-  min-width: 300px;
-}
-
 #coupon {
-  width: 100px;
-  height: 100px;
   position: fixed;
+  
   left: 0px;
-  top: 239px;
+  top: 200px;
 }
 
-#apple {
-  width: 100px;
-  position: absolute;
+#ohora {
+  width: 50px;
+  position: absolute; 
   right: 10px;
   bottom: 0px;
 }
 
+#dotori {
+  width: 30px;
+}
+
 #title {
-  position: relative; /* 현재 위치 고수하면서 위치 이동 */
+  position: relative;
   left: -20px;
-  top: -10px;
-}
-
-h1 {
-  /*margin: 2px;*/
-}
-
-#totoro {
-  width: 50px;
+  top: 5px;
 }
 
 #post-box {
-  display: inline;
+  border-style: none;
+  display: inline-block;
   height: 44px;
   width: 80px;
   position: absolute;
   right: 5px;
-  border-style: none;
 }
 
 #post-img {
@@ -102,23 +96,22 @@ h1 {
 }
 
 #count {
+  border: 3px solid white;
+  color: white;
   border-radius: 3px;
-  color:black;
-  background: yellow;
-  padding-left: 3px;
-  padding-right: 3px;
+  background: blue;
+  padding: 3px;
   font-weight: bolder;
   font-size: 1.2em;
   position: relative;
-  right: 14px;
-  top:-14px;
+  left: 60px;
+  top: -6px;
 }
 
 #main {
-  height: 100%;
-  padding: 0px;
+	height: 100%; 
   position: relative;
-  /*border: 0px solid red;*/
-  width: 900px;
-  margin: 0px auto;
+  width: 800px;
+  margin: 0px auto 0px auto;
+  border-top: 1px solid white; 
 }

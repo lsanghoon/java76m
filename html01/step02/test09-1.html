@@ -5,45 +5,43 @@
 <title>test04</title>
 
 <style type="text/css">
-/* 배경다루기 */
+/* 배경 다루기 */
 
 /* 색상의 표현
 - 미리 상수로 정의된 색상: aqua, black, white, gray, ...
-  더 많은 정보는 wikipedia의 "web color" 참고
+  더 많은 정보는 wikipedia의 "web color" 참고.
 - rgb(%,%,%): rgb(100%,0%,0%), rgb(0%,0%,100%)
 - rgb(0 ~ 255, 0 ~ 255, 0 ~ 255): rgb(255,0,0)
 - #RRGGBB: #ff0000(red), #0000ff(blue), #00ff00(green)
   => 단축 표현법: #RGB 예) #f47 ==> #ff4477
   
  */
- /* 색상이름으로 지정하기 */
- h1 {
-   background: yellow;
- }
- 
- /* RGB(Red Green Blue) 값을 %로 표현하기 */
- p:nth-child(4) {
-   background: rgb(100%,0%,0%);
- }
+
+/* 색상 이름으로 지정하기 */
+h1 {
+  background-color: yellow;
+} 
+
+/* RGB(Red, Green, Blue) 값을 %로 표현하기 */
+p:nth-child(2) {
+  background-color: rgb(100%, 0%, 0%);
+}
 
 /* RGB 값을 0 ~ 255(8비트)로 표현하기 */
 #n01 h2 {
-  background-color: rgb(0,100,0);
+  background-color: rgb(100, 255, 100);
 }
 
-/* RGB 값을 16진수로 표혀하기 */
+/* RGB 값을 16진수로 표현하기 */
 #n02 > p.g2 {
-  background-color: #00ffff;
-}
-#n01 {
-  background-image: url('a.gif');
-  
+  background-color: #0000ff;
 }
 
-/* RGB 값을 16진수로 표혀하기 - 단축 표기법 */
+/* RGB 값 16진수로 표현하기 => 단축 표기법 */
 #n02 h2:nth-child(3) {
-  background-color: #f80;
+  background-color: #f80; /* #ff8800의 단축 표기 */ 
 }
+
 </style>
 
 </head>
@@ -54,12 +52,6 @@
        <h2 class="g3 g1">h2.g3.g1 - 제목 1</h2>
        <p class="g1">p.g1 - 내용 내용 내용 내용 내용</p>
        <h2 class="g2">h2.g2 - 제목 2</h2>
-       <p class="g2">p.g2 - 내용2 내용2 내용2 내용2 내용2</p>
-       <p class="g2">p.g2 - 내용2 내용2 내용2 내용2 내용2</p>
-       <p class="g2">p.g2 - 내용2 내용2 내용2 내용2 내용2</p>
-       <p class="g2">p.g2 - 내용2 내용2 내용2 내용2 내용2</p>
-       <p class="g2">p.g2 - 내용2 내용2 내용2 내용2 내용2</p>
-       <p class="g2">p.g2 - 내용2 내용2 내용2 내용2 내용2</p>
        <p class="g2">p.g2 - 내용2 내용2 내용2 내용2 내용2</p>
      </nav>
      

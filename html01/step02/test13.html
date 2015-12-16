@@ -2,14 +2,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test04</title>
+<title>test</title>
 
 <style type="text/css">
-/* 상자의 위치를 지정하기
+/* 상자의 위치 지정하기 */
+/*
 1) float  
    . left, right  => center 없다.
-   . 원래 출력해야 할 줄에서 좌/우로 이동시키기.
-   . 다음 순서의 엘리먼트가 자동으로  태그의 위치로 이동한다.
+   . 원래 출력해야 위치에서 좌/우로 이동시키기.
+   . 다음 순서의 엘리먼트가 자동으로 현재 태그의 위치로 이동한다.
      
 2) position: absolute
    . absolute나 relative로 설정된 조상을 기준으로 엘리먼트의 위치를 지정한다.
@@ -21,9 +22,7 @@
 4) position: fixed
    . 웹 브라우저의 내용 창을 기준으로 위치를 지정한다.
    . 화면 안의 내용이 위/아래/좌/우로 이동하더라도 해당 엘리먼트는 이동하지 않는다.
-   
-실습 목표 : 화면 준비            
- */
+*/   
 
 div {
   border: 1px solid gray;
@@ -34,17 +33,26 @@ div {
 
 </head>
 <body>
- <div class="header">
-    <img src="logo.jpg">
+  <div class="header">
+    <img src="http://www.bitacademy.net/images/join_head/bit_logo.gif">
     <span>세계 최고의 프로그래밍 전문 교육기관 "비트캠프"</span>
   </div>
   <div class="aside">
+    <h2>메뉴</h2>
     <ul>
       <li>학생 관리</li>
       <li>강사 관리</li>
       <li>과정 관리</li>
       <li>교육장 관리</li>
       <li>수강신청 관리</li>
+    </ul>
+    <h2>공지사항</h2>
+    <ul>
+      <li>공지사항1...</li>
+      <li>공지사항2...</li>
+      <li>공지사항3...</li>
+      <li>공지사항4...</li>
+      <li>공지사항5...</li>
     </ul>
   </div>
   

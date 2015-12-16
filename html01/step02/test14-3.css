@@ -1,38 +1,40 @@
-@charset "UTF-8";
+@CHARSET "UTF-8";
 
 html {
-  height: 100%;
+  height: 100%;	
 }
 
 body {
-  height: 100%;
+	height: 100%;
   margin: 0px;
   padding: 0px;
 }
 
 .container {
-  position: relative;
-  /*border: 1px solid red;*/
+  position: relative;  
+  border: 1px solid red;
   padding: 0px;
+  height: 100%;
 }
 
 /* 헤더 영역 설정 */
 header {
+  /*border: 1px solid red;*/
   margin: 0px;
-  position: relative; 
+  position: relative;
   height: 50px;
   line-height: 50px;
-  background: black;
+  background-color: black;
   color: white;
+  min-width: 600px;
 }
 
 #post-box {
-  display: inline;
+  border: 0px solid red;
+  display: inline-block;
   height: 44px;
-  /*width: 80px;*/
   position: absolute;
   right: 5px;
-  border-style: none;
 }
 
 #post-img {
@@ -40,38 +42,34 @@ header {
 }
 
 #post-count {
+  border: 3px solid white;
+  color: white;
   border-radius: 3px;
-  color:black;
-  background: yellow;
-  padding-left: 3px;
-  padding-right: 3px;
+  background: blue;
+  padding: 3px;
   font-weight: bolder;
   font-size: 1.2em;
   position: relative;
-  right: 14px;
-  top:-14px;
+  left: 60px;
+  top: -6px;
 }
-/* /헤더 영역 설정 */
-
+/* 끝 - 헤더 영역 설정*/
 
 /* 왼쪽 편 메뉴 설정 */
 aside#menu {
   width: 180px;
   position: absolute;
   left: 0px;
-  top: 50px;
+  top: 51px; 
   margin: 0px;
-  background: #ffcc00;
+  background-color: #ffcc00;
+  opacity: 1;
 }
-/* /왼쪽 편 메뉴 설정 */
+/* 끝 - 왼쪽 편 메뉴 설정*/
 
 /* 본문 내용 설정 */
-#totoro {
-  width: 50px;
-}
-
 section {
-  margin: 0px 180px ;
+  margin: 0 181px 0 181px;
   padding: 0px 10px;
   min-width: 300px;
 }
@@ -79,42 +77,42 @@ section {
 #toolbar {
   margin: 10px 0px;
 }
-/* /본문 내용 설정 */
+
+/* 끝 - 본문 내용 설정 */
+
 
 /* 오른쪽 편 영역 설정 */
 aside#preview {
   width: 180px;
   position: absolute;
+  top: 51px;
   right: 0px;
-  top: 50px;
   margin: 0px;
-  background: #59f;
+  background-color: #59f;
 }
-/* /오른쪽 편 영역 설정 */
 
-/* 사진 */
-#apple {
-  width: 100px;
-  position: absolute;
+#ohora {
+  width: 50px;
+  position: absolute; 
   right: 10px;
   bottom: 0px;
 }
+/* 끝 - 오른쪽 편 영역 설정 */
 
-/* 꼬리말 영역 */
+/* 꼬리말 영역 설정 */
 footer {
   width: 100%;
   position: absolute;
-  bottom: 50px;
   left: 0px;
+  bottom: 0px;
   text-align: center;
 }
+/* 끝 - 꼬리말 영역 설정 */
 
-/* 쿠폰 */
+
 #coupon {
-  width: 100px;
-  height: 100px;
+  display: none;
   position: fixed;
   left: 0px;
-  top: 239px;
+  top: 200px;
 }
-
