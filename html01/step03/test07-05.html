@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>객체 사용법</h1>
+
+<script>
+"use strict";
+
+// 생성자 4 - 상속 구현하기
+
+function Calculator(n, t, e) {
+	this.result = 0;
+}
+
+Calculator.prototype.plus = function(value) {this.result += value;};
+Calculator.prototype.minus = function(value) {this.result -= value;};
+
+function CalculatorEx() {
+	// 상위 생성자 호출
+	Calculator.call(this);
+}
+
+// 상위 생성자의 prototype을 사용하기
+// => 함수의 기본 prototype을 상위 생성자의 prototype으로 교체하기
+CalculatorEx.prototype = Calculator.prototype;
+// Calculator.prototype.multiple = function(value) {this.result *= value;};
+// Calculator.prototype.divide = function(value) {this.result /= value;};
+
+var c1 = new CalculatorEx();
+
+// 객체를 초기화 시킨 생성자를 검사하기
+console.log();
+console.log(CalculatorEx.prototype);
+
+c1.plus(100);
+c1.minus(50);
+console.log(c1.result);
+</script>
+</body>
+</html>

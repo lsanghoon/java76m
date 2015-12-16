@@ -10,18 +10,18 @@
 <script>
 "use strict";
 
-// 생성자 4 - 상속 구현하기 
+// 생성자 4 - 상속 구현하기 2: prototype도 상속 받기
 
 function Member(n, t, e) {
 	this.mname = n;
 	this.tel = t;
 	this.email = e;
-} 
+}
 
 function Student(n, t, e, w) {
-	// 수퍼 클래스의 생성자를 호출하는 효과 
+	// 수퍼 클래스의 생성자를 호출하는 효과
 	Member.call(this, n, t, e);
-	
+
 	this.working = w;
 }
 var s1 = new Student("안중근", "111-4444", "ahn@test.com", true);
@@ -36,7 +36,7 @@ console.log(s1 instanceof Member); // false
 
 /*
 // Student() 생성자와 Member() 생성자를 상속 관계로 연결한다.
-// => Student 객체를 만들 때 사용할 틀을 지정한다. 
+// => Student 객체를 만들 때 사용할 틀을 지정한다.
 // => Student 객체를 만들 때 Member 틀을 기준으로 생성할 것이다.
 console.log(Student.prototype);
 Student.prototype = new Member();
@@ -45,7 +45,7 @@ Student.prototype.constructor = Student;
 
 console.log(s1.constructor);
 
-// 상속 관계 확인하기 
+// 상속 관계 확인하기
 
 
 */
