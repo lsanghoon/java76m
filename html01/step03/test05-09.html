@@ -10,25 +10,28 @@
 <script>
 "use strict";
 
-// 명시적 형변환
+/* 명시적 형변환  */
 // 1) boolean 형으로 변환
 console.log(Boolean(0));    // false
 console.log(Boolean(1));    // true
 console.log(Boolean(-1));   // true
+
 console.log(Boolean(''));   // false
 console.log(Boolean(' '));  // true
 console.log(Boolean('true'));// true
 console.log(Boolean('false'));// true
+
 console.log(Boolean(null)); // false
 console.log(Boolean(undefined));// false
 console.log(Boolean(NaN));  // false
 console.log("------------------------");
+
 // 2) number 형으로 변환
 console.log(Number(true));    // 1
 console.log(Number(false));   // 0
 
 console.log(Number(''));      // 0
-console.log(Number(' '));     // 0
+console.log(Number('  '));    // 0
 console.log(Number('12'));    // 12
 console.log(Number('017'));   // 17
 console.log(Number('true'));  // NaN
@@ -50,6 +53,7 @@ console.log(Number(["10"])); // 배열(한개 항목) => 10
 console.log(Number([10,20])); // 빈배열(여러개 항목) => NaN
 console.log(Number({})); // 기본 객체 => NaN
 console.log("------------------------");
+
 // 3) string 형으로 변환
 console.log(String(true));    // "true"
 console.log(String(false));   // "false"
@@ -61,7 +65,6 @@ console.log(String(NaN));     // "NaN"
 console.log(String([])); // ""
 console.log(String({})); // 객체 정보를 리턴 "[object 타입]" -> 예) "[object Object]"
 console.log("------------------------");
-
 </script>
 </body>
 </html>
