@@ -34,24 +34,27 @@ public class Board  implements Serializable {
     return no;
   }
 
-  public void setNo(int no) {
+  public Board setNo(int no) {
     this.no = no;
+    return this;
   }
 
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public Board setTitle(String title) {
     this.title = title;
+    return this;
   }
 
   public String getContent() {
     return content;
   }
 
-  public void setContent(String content) {
+  public Board setContent(String content) {
     this.content = content;
+    return this;
   }
 
   public int getViews() {
