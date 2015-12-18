@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>DOM API 다루기</h1>
+
+  <a id="link" href="test01-11.html">링크</a><br>
+
+<script>
+/* 태그의 사용자 속성 추가하기 */
+
+var e1 = document.querySelector('#link');
+e1.mydata="nono";
+
+console.log(e1.getAttribute("mydata"));
+
+</script>
+</body>
+</html>
