@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java76.pms.dao.BoardDao;
+import java76.pms.domain.AjaxResult;
 import java76.pms.domain.Board;
 import java76.pms.util.MultipartHelper;
 
@@ -72,13 +73,10 @@ public class BoardController {
 	}
 
 	@RequestMapping("detail")
-	public String detail(
-			int no, Model model) throws Exception {
+	public Object detail(int no) throws Exception {
 
 		Board board = boardDao.selectOne(no);
-		model.addAttribute("board", board);
-		
-		return "board/BoardDetail";
+		return new AjaxResult("success", board);
 	}
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
@@ -108,21 +106,19 @@ public class BoardController {
 	}
 
 	@RequestMapping("delete")
-	public String delete(
+	public AjaxResult delete(
 			int no,
-			String password,
-			Model model) throws Exception {
+			String password) throws Exception {
 
 		HashMap<String,Object> paramMap = new HashMap<>();
 		paramMap.put("no", no);
 		paramMap.put("password", password);
 
 		if (boardDao.delete(paramMap) <= 0) {
-			model.addAttribute("errorCode", "401");
-			return "board/BoardAuthError";
+			return new AjaxResult("failure", null);
 		} 
 
-		return "redirect:list.do";
+		return new AjaxResult("success", null);
 	}
 
 
