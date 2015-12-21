@@ -1,19 +1,19 @@
-function bit(selector) {
+function bit(s) {
 	var el;
 	
 	
-	if (selector instanceof HTMLElement) {	// 파라미터가 태그 객체라면
-		el = [selector];
+	if (s instanceof HTMLElement) {	// 파라미터가 태그 객체라면
+		el = [s];
 		
-	} else if (selector.indexOf("<") == 0) {	// 파라미터가 문자열이고 <..> 라면,
+	} else if (s.indexOf("<") == 0) {	// 파라미터가 문자열이고 <..> 라면,
 		// selector 값이 < 로 시작한다면, 예) <p> 
 		// 태그를 생성하여 배열에 담는다.
-		var tagName = selector.substr(1, selector.length - 2)
+		var tagName = s.substr(1, s.length - 2)
 		el = [document.createElement(tagName)];
 		
 	} else {	// 그 밖에 CSS 셀렉터 문법
 		// DOM API 를 통해 찾은 순수한 태그 목록
-		el = document.querySelectorAll(selector);
+		el = document.querySelectorAll(s);
 		
 	}
 	

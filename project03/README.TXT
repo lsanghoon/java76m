@@ -1,66 +1,33 @@
-[주제: AJAX와 JSON 적용]
-0. AJAX, JSON 사용을 위한 준비
-  - build.gradle 파일에 com.fasterxml.jackson 추가
-    => compile 'com.fasterxml.jackson.core:jackson-databind:2.6.4'
-  - 스프링 WebMVC 설정 파일 변경 ContentNegotiatingViewResolver 적용
-  
-  <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-    <property name="viewResolvers">
-      <list>
-       <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
-       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-         <property name="prefix" value="/WEB-INF/jsp/"/>
-         <property name="suffix" value=".jsp"/>
-       </bean>
-      </list>
-    </property>
-    <property name="defaultViews">
-        <list>
-            <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
-        </list>
-    </property>
-  </bean>
+[주제: 프론트 엔드 패키지 관리자 도입]
+- bower 패키지 관리자 도입
 
-1. 게시판 UI 작성
-  - webapp/board/index.html
+1. nodejs 설치
+2. bower 설치
+  - 윈도: npm install -g bower
+  - 맥OSX:sudo npm install -g bower
+3. 프로젝트 폴더에서 jquery 라이브러리 가져온다.
+  - 가져온 라이브러리는 bower를 실행한 하위 폴더 "bower_components"에 저장된다.
+  1) 폴더로 jquery 라이브러리 가져온다.
+    - 최신 버전 라이브러리 가져오기
+      ==> bower install jquery
+    - 특정 버전의 라이브러리 가져오기
+      ==> bower install jquery#버전
+        예) bower install jquery#1.11.3
+  2) bootstrap 라이브러리 가져온다.
+    - bower install bootstrap
   
-2. 게시판 페이지 컨트롤러 작성
-  - controller.ajax.BoardController.java
-  
-  
-[주제: 코드 재사용성 높이기]
-=> 엘리먼트 찾는 코드를 함수로 만들기
-  - 기존 코드 백업 : index01.html, form01.html
-  - BIT 자바스크립트 라이브러리 생성 : webapp/js/bit.js
-  - 엘리먼트 찾기 함수 추가 : bit() {}
-  
-=> bit() 함수를 최소 이름의 변수에 저장하기
-  - 기존 코드 백업: index02.html, form02.html, bit02.js
-  - $변수를 만들고 bit() 함수의 주소를 저장한다.
-  - 기존 코드에서 bit() 호출을 $()로 변경한다.
-  
-=> 이벤트를 등록하는 함수를 만든다.
-  - IE8 이하에서도 사용할 수 있는 함수.
-  - click() 함수 추가
-
-=> 폼 입력 항목의 값을 설정하는 함수를 만든다.
-  - val() 함수 추가
-  
-=> 엘리먼트 만드는 함수를 만든다.
-  - bit() 함수 변경
-  
-=> innerHTML, textContent를 설정할 함수를 만든다.
-  - innerHTML -> html()
-  - textContent -> text()
-  
-=> 자식 엘리먼트를 추가하는 함수 만든다.
-  - append??
-  
-  
-  
-  
-  
+4. 각각의 라이브러리를 개별적으로 가져오지 말고 한 번에 가져오기
+  1) bower 설정 파일을 작성한다.
+    ==> bower init명령을 사용하여 bower 매니페스트 파일(bower.json) 만들기
+    ==> bower.json 파일을 작성할 때 현재 bower_components 폴더에 다운 받은
+        라이브러리가 의존 라이브러리 목록에 자동으로 추가된다.
+  2) 배포하기
+    ==> 다른 사람에게 프로젝트를 줄 때는 gradle과 같이 bower_components 폴더를 지워라.
+  3) 가져오기
+    ==> 프로젝트를 가져왔다면 "bower install"을 실행하여 웹 프론트엔드 라이브러리를
+        가져와라. 이때 라이브러리를 지정하지 말라!
+    ==> bower install을 실행하는 폴더에 bower.json 파일이 있다면,
+        그 파일에 설정된 내용에 따라 의존 라이브러리를 자동으로 가져온다.
   
   
   

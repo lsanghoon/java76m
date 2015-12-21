@@ -1,0 +1,23 @@
+{
+  "name": "project03",
+  "homepage": "https://github.com/lsanghoon/java76m",
+  "authors": [
+    "lsanghoon"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "jquery": "1.11.3"
+  }
+}
