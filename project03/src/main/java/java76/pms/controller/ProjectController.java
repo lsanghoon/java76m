@@ -1,6 +1,5 @@
 package java76.pms.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java76.pms.dao.ProjectDao;
 import java76.pms.domain.Project;
+import java76.pms.service.ProjectService;
 
 @Controller
 @RequestMapping("/project/*")
 public class ProjectController {  
-	@Autowired ProjectDao projectDao;
+	@Autowired ProjectService projectService;
 
 	@RequestMapping("list")
 	public String list(
@@ -26,13 +25,7 @@ public class ProjectController {
 			@RequestParam(defaultValue="desc") String align,
 			Model model) throws Exception {
 
-		HashMap<String,Object> paramMap = new HashMap<>();
-		paramMap.put("startIndex", (pageNo - 1) * pageSize);
-		paramMap.put("length", pageSize);
-		paramMap.put("keyword", keyword);
-		paramMap.put("align", align);
-
-		List<Project> projects = projectDao.selectList(paramMap);
+		List<Project> projects = projectService.getProjectList(pageNo, pageSize, keyword, align);
 
 		model.addAttribute("projects", projects);
 
@@ -47,7 +40,7 @@ public class ProjectController {
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String add(Project project) throws Exception {
 
-		projectDao.insert(project); 
+		projectService.register(project); 
 
 		return "redirect:list.do";
 	}
@@ -57,35 +50,24 @@ public class ProjectController {
 			int no,
 			Model model) throws Exception {
 
-		Project project = projectDao.selectOne(no);
+		Project project = projectService.retrieve(no);
 		model.addAttribute("project", project);
 
 		return "project/ProjectDetail";
 	}
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
-	public String update(
-			Project project,
-			Model model) throws Exception {
+	public String update(Project project) throws Exception {
 
-		if (projectDao.update(project) <= 0) {
-			model.addAttribute("errorCode", "401");
-			return "project/ProjectAuthError";
-		} 
+		projectService.change(project);
 
 		return "redirect:list.do";
-
 	}
 
 	@RequestMapping("delete")
-	public String delete(
-			int no,
-			Model model) throws Exception {
+	public String delete(int no) throws Exception {
 
-		if (projectDao.delete(no) <= 0) {
-			model.addAttribute("errorCode", "401");
-			return "project/ProjectAuthError";
-		} 
+		projectService.remove(no);
 
 		return "redirect:list.do";
 	}
