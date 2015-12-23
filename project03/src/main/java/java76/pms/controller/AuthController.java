@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java76.pms.domain.Student;
-import java76.pms.service.StudentService;
+import java76.pms.service.support.DefaultStudentService;
 
 @Controller
 @RequestMapping("/auth/*")
 public class AuthController {  
-  @Autowired StudentService studentService;
+  @Autowired DefaultStudentService studentService;
 
   @RequestMapping(value="login", method=RequestMethod.GET)
   public String loginform() {
