@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java76.pms.dao.StudentDao;
 import java76.pms.domain.Student;
@@ -27,7 +25,6 @@ public class DefaultStudentService implements StudentService {
 		return studentDao.selectList(paramMap);
   }
 
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
   public void register(Student student) {
   	studentDao.insert(student);
   }
@@ -44,7 +41,7 @@ public class DefaultStudentService implements StudentService {
   	return studentDao.selectOne(email);
   }
 
-  public Student validate(String email, String password) {
+  public Student retrieve(String email, String password) {
   	HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("email", email);
     paramMap.put("password", password);

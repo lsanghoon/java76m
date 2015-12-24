@@ -2,8 +2,6 @@ package java76.pms.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import java76.pms.domain.CourseEnrollment;
 
 public interface CourseEnrollmentService {

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java76.pms.domain.Board;
-import java76.pms.service.support.DefaultBoardService;
+import java76.pms.service.BoardService;
 import java76.pms.util.MultipartHelper;
 
 @Controller
@@ -22,7 +22,7 @@ import java76.pms.util.MultipartHelper;
 public class BoardController { 
 	public static final String SAVED_DIR = "/attachfile";
 	
-	@Autowired DefaultBoardService boardService;
+	@Autowired BoardService boardService;
 	@Autowired ServletContext servletContext;
 
 	@RequestMapping("list")

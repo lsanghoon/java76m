@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
 import java76.pms.service.BoardService;
+
 @Service
 public class DefaultBoardService implements BoardService {
+	
 	@Autowired BoardDao boardDao;
 	
   public List<Board> getBoardList(int pageNo, int pageSize, String keyword, String align) {

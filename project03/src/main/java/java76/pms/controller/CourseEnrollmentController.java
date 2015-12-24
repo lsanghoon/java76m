@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java76.pms.domain.CourseEnrollment;
-import java76.pms.service.support.DefaultCourseEnrollmentService;
+import java76.pms.service.CourseEnrollmentService;
 
 @Controller
 @RequestMapping("/enroll/*")
 public class CourseEnrollmentController {
 
-	@Autowired DefaultCourseEnrollmentService enrollService;
+	@Autowired CourseEnrollmentService enrollService;
 
 	@RequestMapping("list")
 	public String list(Model model) throws Exception {

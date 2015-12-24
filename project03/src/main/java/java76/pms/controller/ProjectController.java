@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java76.pms.domain.Project;
-import java76.pms.service.support.DefaultProjectService;
+import java76.pms.service.ProjectService;
 
 @Controller
 @RequestMapping("/project/*")
 public class ProjectController {  
-	@Autowired DefaultProjectService projectService;
+	@Autowired ProjectService projectService;
 
 	@RequestMapping("list")
 	public String list(

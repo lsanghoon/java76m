@@ -1,36 +1,25 @@
-[주제: 서비스 층 추가]
-- 업무를 전문으로 담당하는 객체를 추가한다.
-- 비즈니스 로직 코드와 트랜잭션 처리 코드를 둔다.
+[주제: 트랜잭션에 AOP 적용]
+1. AOP 의존 라이브러리 가져오기 
+  - build.gradle 파일에 라이브러리 추가
 
-0. 서비스 층을 위한 패키지 생성
-  - java76.pms.service 패키지 추가
+2. @Transactional 애노테이션을 모두 제거한다.
   
-1. CourseEnrollmentService.java 추가
-  - 메서드 이름은 가능한 업무 용어를 사용하라!
-  - 각 컨트롤러들 Service추가
+3. 스프링 설정 파일 변경    
+  <!-- 어떤 조건의 메서드에 대해 트랜잭션을 적용할 지 설정한다. -->
+  <tx:advice id="txAdvice" transaction-manager="txManager">
+    <tx:attributes>
+      <tx:method name="get*" read-only="true"/>
+      <tx:method name="retrieve*" read-only="true"/>
+      <tx:method name="*"/> <!-- 그 밖의 모든 메서드에 대해 트랜잭션 적용하라! -->
+    </tx:attributes>
+  </tx:advice>
   
-2. 페이지 컨트롤러에서 서비스 객체 사용
-  - 기존의 페이지 컨트롤러 변경
-
-3. 애노테이션을 사용하여 입력, 변경, 삭제에 대한 트랜잭션 적용
-  - 모든 서비스 객체에서 입력과 변경, 삭제에 해당하는 메서드에 대해 트랜잭션을 적용한다.
-  1) 스프링 설정 파일에 트랜잭션 애노테이션을 처리하는 객체를 등록한다.
-  <tx:annotation-driven transaction-manager="txManager"/>
+  <!-- 위에서 정의한 트랜잭션 advice를 어떤 지점(pointcut)에 연결할지 설정한다. -->
+  <aop:config>
+    <aop:pointcut id="serviceOperation" 
+         expression="execution(* *..service..*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
+  </aop:config>
   
-  2) 서비스 객체에서 입력, 변경, 삭제에 관련된 메서드에 대해 트랜잭션을 적용
-  
-4. 서비스 클래스에 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- AOP 애노테이션 처리자 등록 -->
+  <aop:aspectj-autoproxy/>

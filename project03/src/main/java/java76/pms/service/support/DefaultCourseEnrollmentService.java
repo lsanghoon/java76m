@@ -6,16 +6,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
 
 import java76.pms.dao.CourseEnrollmentDao;
 import java76.pms.domain.CourseEnrollment;
 import java76.pms.domain.Student;
 import java76.pms.service.CourseEnrollmentService;
+import java76.pms.service.StudentService;
 
 @Service
 public class DefaultCourseEnrollmentService implements CourseEnrollmentService {
-	@Autowired DefaultStudentService studentService;
+	
+	@Autowired StudentService studentService;
 	@Autowired CourseEnrollmentDao enrollDao;
 
 	@Autowired PlatformTransactionManager txManager;
@@ -48,7 +49,6 @@ public class DefaultCourseEnrollmentService implements CourseEnrollmentService {
 		enrollDao.updateForStatus(paramMap);
 	}
 
-	@Transactional
 	public void approve(String email) {
 		HashMap<String,Object> paramMap = new HashMap<>();
 		paramMap.put("email", email);

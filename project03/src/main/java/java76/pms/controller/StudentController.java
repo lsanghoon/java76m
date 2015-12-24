@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java76.pms.domain.Student;
-import java76.pms.service.support.DefaultStudentService;
+import java76.pms.service.StudentService;
 import java76.pms.util.MultipartHelper;
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -24,7 +24,7 @@ import net.coobird.thumbnailator.Thumbnails;
 public class StudentController {
 	public static final String SAVED_DIR = "/file";
 	
-	@Autowired DefaultStudentService studentService;
+	@Autowired StudentService studentService;
 	@Autowired ServletContext servletContext;
 
 	@RequestMapping("list")
